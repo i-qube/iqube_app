@@ -19,6 +19,15 @@ use Spatie\FlareClient\View;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/dashboard_user', function(){
+    return view('dashboard');
+});
+Route::get('/item_user', function(){
+    return view('item_user');
+});
+Route::get('/room_user', function(){
+    return view('room_user');
+});
 
 Route::group(['prefix', 'authentication'], function () {
     Route::get('/login', [LoginController::class, 'index'])->name('login');
@@ -27,7 +36,6 @@ Route::group(['prefix', 'authentication'], function () {
         return view('auth.signup');
     });
 });
-
 Route::get('/dashboard', [WelcomeController::class, 'index']);
 Route::group(['prefix' => 'level'], function() {
     Route::get('/', [LevelController::class, 'index']);
@@ -69,8 +77,6 @@ Route::group(['prefix' => 'ruangan'], function() {
     Route::put('/{id}', [RuanganController::class, 'update']);
     Route::delete('/{id}', [RuanganController::class, 'destroy']);
 });
-
-
 Route::group(['prefix' => 'user'], function () {
     Route::get('/home', [ItemController::class, 'index']);
     Route::get('/item_user', [ItemController::class, 'item']);
