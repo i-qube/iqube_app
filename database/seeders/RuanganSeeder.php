@@ -18,7 +18,7 @@ class RuanganSeeder extends Seeder
                 'room_code' => 'RT.01',
                 'room_name' => 'Ruangan 101',
                 'room_floor' => '5',
-                'image' => 'public/images/rt1.jpg',
+                'image' => 'public/images/rt1.png',
             ],
             
         ];
