@@ -35,16 +35,16 @@
                         class="nav-icon far fa-list-alt"></i>
                     <p>Data Ruangan</p>
                 </a> </li>
-            <li class="nav-header">Data Transaksi</li>
-            <li class="nav-item"> <a href="{{ url('/stok') }}"
+            <li class="nav-header">Data Peminjaman</li>
+            <li class="nav-item"> <a href="{{ url('/peminjaman') }}"
                     class="nav-link {{ $activeMenu == 'stok' ? 'active' : '' }} "> <i
                         class="nav-icon fas fa-cubes"></i>
-                    <p>Stok Barang</p>
+                    <p>Data Peminjaman</p>
                 </a> </li>
             <li class="nav-item">
-                <a href="{{ url('/penjualan') }}" class="nav-link {{ $activeMenu == 'penjualan' ? 'active' : '' }} ">
+                <a href="{{ url('/riwayat') }}" class="nav-link {{ $activeMenu == 'penjualan' ? 'active' : '' }} ">
                     <i class="nav-icon fas fa-cash-register"></i>
-                    <p>Transaksi Penjualan</p>
+                    <p>Riwayat Peminjaman</p>
                 </a>
             </li>
         </ul>

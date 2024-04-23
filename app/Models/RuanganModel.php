@@ -12,6 +12,6 @@ class RuanganModel extends Model
     protected $table = 'm_room';
     protected $primaryKey = 'room_id';
 
-    protected $fillable = ['room_code','room_name','room_floor', 'image'];
+    protected $fillable = ['room_code','room_name','room_floor', 'img'];
     public $timestamps = false;
 }

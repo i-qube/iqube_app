@@ -5,7 +5,7 @@
         <div class="card-header">
             <h3 class="card-title">{{ $page->title }}</h3>
             <div class="card-tools">
-                <a class="btn btn-sm btn-primary mt-1" href="{{ url('barang/create') }}">Tambah</a>
+                <a class="btn btn-sm btn-primary mt-1" href="{{ url('ruangan/create') }}">Tambah</a>
             </div>
         </div>
         <div class="card-body">
@@ -85,7 +85,7 @@
                 }, {
                     data: "image",
                     render: function(data, type, row) {
-                        return '<img src="' + data + '" alt="Gambar Ruangan" style="max-width: 100px; max-height: 100px;">';
+                        return '<img src="{{ asset('images/rt1.png') }}" alt="Gambar RT1" style="max-width: 100px; max-height: 100px;">';
                     },
                     className: "",
                     orderable: false,

@@ -71,7 +71,11 @@ class RuanganController extends Controller
             'image' => 'required|image'
         ]);
 
-        $imagePath = $request->file('image')->store('images', 'public');
+        if($request->hasFile('image')){
+            $imagePath = $request->file('image')->store('images', 'public');
+        } else {
+            return redirect()->back()->withErrors('Gagal mengupload gambar.');
+        }
 
         RuanganModel::create([
             'room_code' => $request->room_code,
@@ -128,7 +132,11 @@ class RuanganController extends Controller
             'image' => 'required|image'
         ]);
 
-        $imagePath = $request->file('image')->store('images', 'public');
+        if ($request->file('image')->isValid()) {
+            $imagePath = $request->file('image')->store('images', 'public');
+        } else {
+            return redirect()->back()->withErrors('Gagal mengupload gambar.');
+        }
 
         RuanganModel::find($id)->update([
             'room_code' => $request->room_code,
