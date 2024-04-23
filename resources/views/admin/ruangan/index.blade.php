@@ -83,7 +83,7 @@
                     orderable: true,
                     searchable: true
                 }, {
-                    data: "image",
+                    data: "img",
                     render: function(data, type, row) {
                         return '<img src="{{ asset('images/rt1.png') }}" alt="Gambar RT1" style="max-width: 100px; max-height: 100px;">';
                     },
