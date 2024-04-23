@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id('user_id');
-            $table->unsignedBigInteger('nim')->unique();
-            $table->unsignedBigInteger('level_id')->index();
-            $table->string('password');
-            $table->timestamps();
+        // Schema::create('m_user', function (Blueprint $table) {
+        //     $table->id('user_id');
+        //     $table->unsignedBigInteger('nim')->unique();
+        //     $table->unsignedBigInteger('level_id')->index();
+        //     $table->string('password');
+        //     $table->timestamps();
 
-            $table->foreign('level_id')->references('level_id')->on('m_level');
-        });
+        //     $table->foreign('level_id')->references('level_id')->on('m_level');
+        // });
     }
 
     /**
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('m_user');
     }
 };

@@ -20,6 +20,7 @@ use Spatie\FlareClient\View;
 |
 */
 
+
 Route::group(['prefix', 'authentication'], function () {
     Route::get('/login', [LoginController::class, 'index'])->name('login');
     Route::post('/login', [LoginController::class, 'login_process'])->name('login');
