@@ -4,7 +4,7 @@
 
     <head>
         <meta charset="UTF-8" />
-        <title>Data Barang</title>
+        <title>Data Ruangan</title>
         <link rel="stylesheet" href="{{ asset('css\style.css') }}" />
         <!-- Font Awesome Cdn Link -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
@@ -96,7 +96,7 @@
 
             <section class="main">
                 <div class="main-top">
-                    <h1>Data Barang</h1>
+                    <h1>Data Ruangan</h1>
                     <i class="fas fa-user-cog"></i>
                 </div>
                 <table>
@@ -111,7 +111,7 @@
                 </th>
                 <th>
                 <div class="component-action">
-                    <button class="action-button">AMBIL</button>
+                    <button class="action-button">PINJAM</button>
                 </div>
                 </th>
                   </tr>
