@@ -16,8 +16,7 @@ return new class extends Migration
             $table->string('room_code')->unique();
             $table->string('room_name');
             $table->string('room_floor');
-            $table->string('img');
-            $table->longblob('image');
+            $table->string('image');
         });
     }
 

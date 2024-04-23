@@ -36,7 +36,7 @@
                     <p>Data Ruangan</p>
                 </a> </li>
             <li class="nav-header">Data Peminjaman</li>
-            <li class="nav-item"> <a href="{{ url('/peminjaman') }}"
+            <li class="nav-item"> <a href="{{ url('/pinjam') }}"
                     class="nav-link {{ $activeMenu == 'stok' ? 'active' : '' }} "> <i
                         class="nav-icon fas fa-cubes"></i>
                     <p>Data Peminjaman</p>
