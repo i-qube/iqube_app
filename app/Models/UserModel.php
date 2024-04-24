@@ -10,7 +10,7 @@ class UserModel extends Model
 {
     use HasFactory;
     protected $table = 'm_user';
-    protected $primaryKey = 'user_id';
+    protected $primaryKey = 'nim';
 
     protected $fillable = ['nim','level_id','password'];
     public $timestamps = false;

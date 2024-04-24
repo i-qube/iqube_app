@@ -13,7 +13,7 @@ class LevelSeeder extends Seeder
      */
     public function run(): void
     {
-        $level = [
+        $data = [
             [
                 'level_id' => 1,
                 'level_code' => 'ADMN',
@@ -25,6 +25,6 @@ class LevelSeeder extends Seeder
                 'level_name'=> 'User',
             ],
         ];
-        DB::table('m_level')->insert($level);
+        DB::table('m_level')->insert($data);
     }
 }

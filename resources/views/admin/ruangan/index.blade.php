@@ -69,17 +69,17 @@
                     searchable: false
                 }, {
                     data: "room_code",
-                    className: "",
+                    className: "text-center",
                     orderable: true,
                     searchable: true
                 }, {
                     data: "room_name",
-                    className: "",
+                    className: "text-center",
                     orderable: true,
                     searchable: true
                 }, {
                     data: "room_floor",
-                    className: "",
+                    className: "text-center",
                     orderable: true,
                     searchable: true
                 }, {
@@ -87,12 +87,12 @@
                     render: function(data, type, row) {
                         return '<img src="{{ asset('images/rt1.png') }}" alt="Gambar RT1" style="max-width: 100px; max-height: 100px;">';
                     },
-                    className: "",
+                    className: "text-center",
                     orderable: false,
                     searchable: false
                 }, {
                     data: "aksi",
-                    className: "",
+                    className: "text-center",
                     orderable: false,
                     searchable: false
                 }]

@@ -14,15 +14,14 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = [
+        $data = [
             [
-                'user_id' => 1,
                 'nim' => 12345,
                 'level_id' => 2,
                 'password' => Hash::make('12345'),
             ],
             
         ];
-        DB::table('m_user')->insert($user);
+        DB::table('m_user')->insert($data);
     }
 }

@@ -14,7 +14,7 @@ class ItemSeeder extends Seeder
      */
     public function run(): void
     {
-        $item = [
+        $data = [
             [
                 'item_id' => 1,
                 'item_name' => "Charger Baterai AA AAA",
@@ -51,6 +51,6 @@ class ItemSeeder extends Seeder
                 'date_received' =>  Carbon::create(2023, 5, 22),
             ],
         ];
-        DB::table('m_item')->insert($item);
+        DB::table('m_item')->insert($data);
     }
 }

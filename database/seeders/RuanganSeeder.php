@@ -13,7 +13,7 @@ class RuanganSeeder extends Seeder
      */
     public function run(): void
     {
-        $room = [
+        $data = [
             [
                 'room_code' => 'RT.01',
                 'room_name' => 'Ruangan 101',
@@ -22,6 +22,6 @@ class RuanganSeeder extends Seeder
             ],
             
         ];
-        DB::table('m_room')->insert($room);
+        DB::table('m_room')->insert($data);
     }
 }

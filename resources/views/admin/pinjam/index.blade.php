@@ -4,6 +4,7 @@
     <div class="card card-outline card-primary">
         <div>
             <h3></h3>
+            <h3></h3>
         </div>
         <!-- Toggle button -->
         <div class="toggle-button-container">
@@ -26,7 +27,7 @@
                             <select class="form-control" name="peminjaman_barang_id" id="peminjaman_barang_id" required>
                                 <option value="">-- Semua --</option>
                                 @foreach ($peminjaman as $i)
-                                    <option value="{{ $i->peminjaman_barang_id }}">{{ $i->user_name }}</option>
+                                    <option value="{{ $i->peminjaman_barang_id }}">{{ $i->nama }}</option>
                                 @endforeach
                             </select>
                             <small class="form-text text-muted">Peminjam</small>
@@ -34,19 +35,50 @@
                     </div>
                 </div>
             </div>
-
-            <div id="tabel_peminjaman_barang" style="display: none;">
+            @push('css')
+            <style>
+                .toggle-button-container {
+                    display: flex;
+                    overflow: hidden;
+                    border: 1px solid #ccc;
+                    border-radius: 20px;
+                    width: 500px;
+                    margin: auto;
+                }
+        
+                .toggle-button {
+                    flex: 1;
+                    padding: 10px;
+                    text-align: center;
+                    cursor: pointer;
+                    transition: background-color 0.3s;
+                }
+        
+                .toggle-button:hover {
+                    background-color: #3e2ddbd2;
+                }
+        
+                #toggle-button-left {
+                    border-radius: 20px 0 0 20px;
+                }
+        
+                #toggle-button-right {
+                    border-radius: 0 20px 20px 0;
+                }
+            </style>
+        @endpush
+            <div id="table_peminjaman_barang" style="display: none;">
                 <div class="card-header">
                     <h3 class="card-title">{{ $page->title }}</h3>
                 </div>
                 <div class="card-body">
-                    <table class="table-bordered table-striped table-hover table-sm table" id="tabel_peminjaman_barang">
+                    <table class="table-bordered table-striped table-hover table-sm table" id="table_peminjaman_barang">
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Nama Admin</th>
-                                <th>Nama User</th>
-                                <th>Nama Item</th>
+                                <th>NIM</th>
+                                <th>Nama</th>
+                                <th>Item ID</th>
                                 <th>Kelas</th>
                                 <th>Jumlah</th>
                                 <th>Tanggal Pemakaian</th>
@@ -56,18 +88,18 @@
                 </div>
             </div>
 
-            <div id="tabel_peminjaman_ruangan" style="display: none;">
+            <div id="table_peminjaman_ruangan" style="display: none;">
                 <div class="card-header">
                     <h3 class="card-title">{{ $page->title }}</h3>
                 </div>
                 <div class="card-body">
-                    <table class="table-bordered table-striped table-hover table-sm table" id="tabel_peminjaman_barang">
+                    <table class="table-bordered table-striped table-hover table-sm table" id="table_peminjaman_ruangan">
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Nama Admin</th>
-                                <th>Nama User</th>
-                                <th>Nama Item</th>
+                                <th>NIM</th>
+                                <th>Nama</th>
+                                <th>ID Ruangan</th>
                                 <th>Kelas</th>
                                 <th>Tanggal Peminjaman</th>
                                 <th>Tanggal Pengembalian</th>
@@ -82,38 +114,6 @@
     </div>
 @endsection
 
-@push('css')
-    <style>
-        .toggle-button-container {
-            display: flex;
-            overflow: hidden;
-            border: 1px solid #ccc;
-            border-radius: 20px;
-            width: 500px;
-            margin: auto;
-        }
-
-        .toggle-button {
-            flex: 1;
-            padding: 10px;
-            text-align: center;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .toggle-button:hover {
-            background-color: #3e2ddbd2;
-        }
-
-        #toggle-button-left {
-            border-radius: 20px 0 0 20px;
-        }
-
-        #toggle-button-right {
-            border-radius: 0 20px 20px 0;
-        }
-    </style>
-@endpush
 
 @push('js')
     <script>
@@ -122,16 +122,16 @@
 
             $('#toggle-button-left').click(function() {
                 if (currentTable !== 'peminjaman_barang') {
-                    $('#tabel_peminjaman_barang').show();
-                    $('#tabel_peminjaman_ruangan').hide();
+                    $('#table_peminjaman_barang').show();
+                    $('#table_peminjaman_ruangan').hide();
                     currentTable = 'peminjaman_barang';
                 }
             });
 
             $('#toggle-button-right').click(function() {
                 if (currentTable !== 'peminjaman_ruangan') {
-                    $('#tabel_peminjaman_barang').hide();
-                    $('#tabel_peminjaman_ruangan').show();
+                    $('#table_peminjaman_barang').hide();
+                    $('#table_peminjaman_ruangan').show();
                     currentTable = 'peminjaman_ruangan';
                 }
             });
@@ -157,17 +157,17 @@
                     orderable: false,
                     searchable: false
                 }, {
-                    data: "admin_name",
+                    data: "nim",
                     className: "",
                     orderable: false,
                     searchable: false
                 }, {
-                    data: "item_name",
+                    data: "nama",
                     className: "",
                     orderable: false,
                     searchable: false
                 }, {
-                    data: "user_name",
+                    data: "item_id",
                     className: "",
                     orderable: true,
                     searchable: true
@@ -195,7 +195,7 @@
             var dataPeminjamanRuangan = $('#table_peminjaman_ruangan').DataTable({
                 serverSide: true,
                 ajax: {
-                    "url": "{{ url('pinjam/list_ruangan') }}",
+                    "url": "{{ url('pinjam/list/ruangan') }}",
                     "dataType": "json",
                     "type": "POST",
                     "data": function(d) {
@@ -213,17 +213,17 @@
                     orderable: false,
                     searchable: false
                 }, {
-                    data: "admin_name",
+                    data: "nim",
                     className: "",
                     orderable: false,
                     searchable: false
                 }, {
-                    data: "room_name",
+                    data: "nama",
                     className: "",
                     orderable: false,
                     searchable: false
                 }, {
-                    data: "user_name",
+                    data: "room_id",
                     className: "",
                     orderable: true,
                     searchable: true

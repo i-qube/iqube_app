@@ -11,10 +11,6 @@
             @else
                 <table class="table table-bordered table-striped table-hover table-sm">
                     <tr>
-                        <th>ID</th>
-                        <td>{{ $user->user_id }}</td>
-                    </tr>
-                    <tr>
                         <th>NIM</th>
                         <td>{{ $user->nim }}</td>
                     </tr>

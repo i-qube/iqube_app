@@ -29,7 +29,7 @@ class UserController extends Controller
 
     public function list(Request $request)
     {
-        $users = UserModel::select('user_id', 'nim', 'level_id', 'password')
+        $users = UserModel::select('nim', 'level_id', 'password')
         ->with('level');
 
         if($request->level_id){
@@ -39,9 +39,9 @@ class UserController extends Controller
         return DataTables::of($users)
             ->addIndexColumn() // menambahkan kolom index / no urut (default nama kolom: DT_RowIndex) 
             ->addColumn('aksi', function ($user) { // menambahkan kolom aksi 
-                $btn = '<a href="' . url('/user/' . $user->user_id) . '" class="btn btn-info btn-sm">Detail</a> ';
-                $btn .= '<a href="' . url('/user/' . $user->user_id . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
-                $btn .= '<form class="d-inline-block" method="POST" action="' . url('/user/' . $user->user_id) . '">'
+                $btn = '<a href="' . url('/user/' . $user->nim) . '" class="btn btn-info btn-sm">Detail</a> ';
+                $btn .= '<a href="' . url('/user/' . $user->nim . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
+                $btn .= '<form class="d-inline-block" method="POST" action="' . url('/user/' . $user->nim) . '">'
                     . csrf_field() . method_field('DELETE') .
                     '<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm(\'Apakah Anda yakit menghapus data ini?\');">Hapus</button></form>';
                 return $btn;
@@ -116,7 +116,7 @@ class UserController extends Controller
 
     public function update(Request $request, string $id){
         $request->validate([
-            'nim' => 'required|string|min:3|unique:users,nim,'.$id.',user_id',
+            'nim' => 'required|string|min:3|unique:users,nim,'.$id.',nim',
             'password' => 'nullable|min:5',
             'level_id' => 'required|integer'
         ]);
