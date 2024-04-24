@@ -3,6 +3,7 @@
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\PeminjamanBarangController;
 use App\Http\Controllers\PeminjamanRuanganController;
 use App\Http\Controllers\RuanganController;
@@ -84,6 +85,9 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('/home', [ItemController::class, 'index']);
     Route::get('/item_user', [ItemController::class, 'item']);
 });
+
+Route::get('/keluar', [LogoutController::class, 'index']);
+
 
 Route::group(['prefix' => 'pinjam'], function() {
     Route::get('/', [PeminjamanBarangController::class, 'index']);
