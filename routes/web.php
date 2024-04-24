@@ -3,6 +3,7 @@
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\PeminjamanBarangController;
 use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\UserController;
@@ -83,9 +84,9 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('/home', [ItemController::class, 'index']);
     Route::get('/item_user', [ItemController::class, 'item']);
 });
-<<<<<<< HEAD
+
 Route::get('/keluar', [LogoutController::class, 'index']);
-=======
+
 
 Route::group(['prefix' => 'pinjam'], function() {
     Route::get('/', [PeminjamanBarangController::class, 'index']);
@@ -97,4 +98,3 @@ Route::group(['prefix' => 'pinjam'], function() {
     Route::put('/{id}', [PeminjamanBarangController::class, 'update']);
     Route::delete('/{id}', [PeminjamanBarangController::class, 'destroy']);
 });
->>>>>>> f248573052d2d622eda3eb528ee1b157de7d7d7a
