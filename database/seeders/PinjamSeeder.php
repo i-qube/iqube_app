@@ -15,9 +15,13 @@ class PinjamSeeder extends Seeder
     {
         $level = [
             [
-                'level_id' => 1,
-                'level_code' => 'ADMN',
-                'level_name'=> 'Administrator',
+                'admin_id' => 1,
+                'user_id' => 'ADMN',
+                'item_id'=> 'Administrator',
+                'user_name'=> '',
+                'class'=>'babayo',
+                'jumlah'=> 12,
+                'date_borrow'=>''
             ],
             [
                 'level_id' => 2,
