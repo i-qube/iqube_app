@@ -83,6 +83,9 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('/home', [ItemController::class, 'index']);
     Route::get('/item_user', [ItemController::class, 'item']);
 });
+<<<<<<< HEAD
+Route::get('/keluar', [LogoutController::class, 'index']);
+=======
 
 Route::group(['prefix' => 'pinjam'], function() {
     Route::get('/', [PeminjamanBarangController::class, 'index']);
@@ -94,3 +97,4 @@ Route::group(['prefix' => 'pinjam'], function() {
     Route::put('/{id}', [PeminjamanBarangController::class, 'update']);
     Route::delete('/{id}', [PeminjamanBarangController::class, 'destroy']);
 });
+>>>>>>> f248573052d2d622eda3eb528ee1b157de7d7d7a
