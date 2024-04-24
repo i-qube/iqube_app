@@ -82,3 +82,4 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('/home', [ItemController::class, 'index']);
     Route::get('/item_user', [ItemController::class, 'item']);
 });
+Route::get('/keluar', [LogoutController::class, 'index']);

@@ -45,6 +45,10 @@
                 <a href="{{ url('/riwayat') }}" class="nav-link {{ $activeMenu == 'penjualan' ? 'active' : '' }} ">
                     <i class="nav-icon fas fa-cash-register"></i>
                     <p>Riwayat Peminjaman</p>
+            <li class="nav-item">
+                <a href="{{ url('/keluar') }}" class="nav-link {{ $activeMenu == 'keluar' ? 'active' : '' }} ">
+                    <i class="nav-icon fas fa-cash-register"></i>
+                    <p>Keluar</p>
                 </a>
             </li>
         </ul>
