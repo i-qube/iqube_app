@@ -47,7 +47,7 @@
                     <p>Riwayat Peminjaman</p>
                 </a> </li>
                 <a href="{{ url('/keluar') }}" class="nav-link {{ $activeMenu == 'keluar' ? 'active' : '' }} ">
-                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
                     <p>Keluar</p>
                 </a>
             </li>
