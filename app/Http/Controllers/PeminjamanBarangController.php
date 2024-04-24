@@ -15,7 +15,7 @@ class PeminjamanBarangController extends Controller
             'list' => ['Home', 'peminjaman barang']
         ];
         $page = (object) [
-            'title' => 'Daftar peminjaman barang yang terdata'
+            'title' => ''
         ];
         $activeMenu = 'peminjaman';
         $peminjaman = PeminjamanBarangModel::all();
