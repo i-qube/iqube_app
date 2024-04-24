@@ -14,18 +14,18 @@ class LoginController extends Controller
     }
 
     public function login_process(Request $request)
-{
-    $request->validate([
-        'nim' => 'required',
-        'password' => 'required',
-    ]);
+    {
+        $request->validate([
+            'nim' => 'required',
+            'password' => 'required',
+        ]);
 
-    $credentials = $request->only('nim', 'password');
+        $credentials = $request->only('nim', 'password');
 
-    if (Auth::attempt($credentials)) {
-        return redirect('/dashboard');
-    } else {
-        return redirect('login')->with('failed', 'No Induk atau Password Salah');
+        if (Auth::attempt($credentials)) {
+            return redirect('/dashboard');
+        } else {
+            return redirect('login')->with('failed', 'No Induk atau Password Salah');
+        }
     }
-}
 }

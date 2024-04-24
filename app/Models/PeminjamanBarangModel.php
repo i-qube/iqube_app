@@ -11,6 +11,6 @@ class PeminjamanBarangModel extends Model
     protected $table = 't_peminjaman_barang';
     protected $primaryKey = 'peminjaman_barang_id';
 
-    protected $fillable = ['admin_id','user_id','item_id','user_name','class','jumlah','date_borrow'];
+    protected $fillable = ['peminjaman_barang_id','nim','item_id','nama','class','jumlah','date_borrow'];
     public $timestamps=false;
 }
