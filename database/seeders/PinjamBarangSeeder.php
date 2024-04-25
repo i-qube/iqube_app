@@ -24,6 +24,15 @@ class PinjamBarangSeeder extends Seeder
                 'jumlah'=> 12,
                 'date_borrow'=> Carbon::now(),
             ],
+            [
+                'peminjaman_barang_id' => 2,
+                'nim'=> 2141762139,
+                'nama'=> 'Jati',
+                'item_id'=> 3,
+                'class'=>'SIB3A',
+                'jumlah'=> 10,
+                'date_borrow'=> Carbon::now(),
+            ],
         ];
         DB::table('t_peminjaman_barang')->insert($data);
     }

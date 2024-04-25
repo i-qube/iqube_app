@@ -8,8 +8,8 @@
         </div>
         <!-- Toggle button -->
         <div class="toggle-button-container">
-            <div id="toggle-button-left" class="toggle-button">Peminjaman Barang</div>
-            <div id="toggle-button-right" class="toggle-button">Peminjaman Ruangan</div>
+            <div id="toggle-button-left" class="toggle-button" data-value="peminjaman_barang">Peminjaman Barang</div>
+            <div id="toggle-button-right" class="toggle-button" data-value="peminjaman_ruangan">Peminjaman Ruangan</div>
         </div>
         @push('css')
             <style>
@@ -43,12 +43,13 @@
                 }
             </style>
         @endpush
-        <div>
+
+        <div id="pinjam_barang_card" class="hide">
             <div class="card-header">
                 <h3 class="card-title">{{ $page->title }}</h3>
             </div>
             <div class="card-body">
-                <div id="table_peminjaman_barang" class="table-bordered table-striped table-hover table-sm table">
+                <table id="table_peminjaman_barang" class="table-bordered table-striped table-hover table-sm table">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -60,16 +61,16 @@
                             <th>Tanggal Pemakaian</th>
                         </tr>
                     </thead>
-                </div>
+                </table>
             </div>
         </div>
 
-        <div>
+        <div id="pinjam_ruangan_card" class="hide">
             <div class="card-header">
                 <h3 class="card-title">{{ $page->title }}</h3>
             </div>
-            <div class="card-body">
-                <table id="table_peminjaman_ruangan" class="table-bordered table-striped table-hover table-sm table">
+            <div class="card-body w-full">
+                <table id="table_peminjaman_ruangan" class="table-bordered table-striped table-hover  table table-full">
                     <thead>
                         <tr>
                             <th>NO</th>
@@ -79,12 +80,13 @@
                             <th>Kelas</th>
                             <th>Tanggal Peminjaman</th>
                             <th>Tanggal Pengembalian</th>
-                            <th>Button Status</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                 </table>
             </div>
         </div>
+
     </div>
 @endsection
 
@@ -93,19 +95,31 @@
     <script>
         $(document).ready(function() {
             var currentTable = 'none';
+            $('.toggle-button').val('peminjaman_barang');
 
-            $('#toggle-button-left').click(function() {
-                if (currentTable !== 'peminjaman_barang') {
-                    $('#table_peminjaman_barang').show();
-                    $('#table_peminjaman_ruangan').hide();
+            let value = $('.toggle-button').data('value');
+
+            if (value === 'peminjaman_barang') {
+                $('#pinjam_barang_card').show();
+                $('#pinjam_ruangan_card').hide();
+                currentTable = 'peminjaman_barang';
+            } else if (value === 'peminjaman_ruangan') {
+                $('#pinjam_barang_card').hide();
+                $('#pinjam_ruangan_card').show();
+                currentTable = 'peminjaman_ruangan';
+            }
+
+            $('.toggle-button').click(function() {
+                var value = $(this).data('value');
+
+                // Handle your toggle logic here
+                if (value === 'peminjaman_barang') {
+                    $('#pinjam_barang_card').show();
+                    $('#pinjam_ruangan_card').hide();
                     currentTable = 'peminjaman_barang';
-                }
-            });
-
-            $('#toggle-button-right').click(function() {
-                if (currentTable !== 'peminjaman_ruangan') {
-                    $('#table_peminjaman_barang').hide();
-                    $('#table_peminjaman_ruangan').show();
+                } else if (value === 'peminjaman_ruangan') {
+                    $('#pinjam_barang_card').hide();
+                    $('#pinjam_ruangan_card').show();
                     currentTable = 'peminjaman_ruangan';
                 }
             });
@@ -118,6 +132,8 @@
 
             var dataPeminjamanBarang = $('#table_peminjaman_barang').DataTable({
                 serverSide: true,
+                processing: true,
+                autoWidth: false,
                 ajax: {
                     "url": "{{ url('pinjam/list/barang') }}",
                     "dataType": "json",
@@ -127,15 +143,10 @@
                     }
                 },
                 columns: [{
-                    data: "DT_RowIndex",
-                    className: "text-center",
-                    orderable: false,
-                    searchable: false
-                }, {
                     data: "peminjaman_barang_id",
-                    className: "",
-                    orderable: false,
-                    searchable: false
+                    className: "text-center",
+                    orderable: true,
+                    searchable: true
                 }, {
                     data: "nim",
                     className: "",
@@ -167,23 +178,20 @@
                     orderable: false,
                     searchable: false
                 }, {
-                    data: "date_return",
-                    className: "",
-                    orderable: false,
-                    searchable: false
-                }, {
                     data: "aksi",
                     className: "",
                     orderable: false,
                     searchable: false
                 }]
             });
+
             $('#peminjaman_barang_id').on('change', function() {
                 dataPeminjamanBarang.ajax.reload();
             });
 
             var dataPeminjamanRuangan = $('#table_peminjaman_ruangan').DataTable({
                 serverSide: true,
+                autoWidth: false,
                 ajax: {
                     "url": "{{ url('pinjam/list/ruangan') }}",
                     "dataType": "json",
@@ -200,13 +208,13 @@
                 }, {
                     data: "nim",
                     className: "",
-                    orderable: false,
-                    searchable: false
+                    orderable: true,
+                    searchable: true
                 }, {
                     data: "nama",
                     className: "",
-                    orderable: false,
-                    searchable: false
+                    orderable: true,
+                    searchable: true
                 }, {
                     data: "room_id",
                     className: "",
@@ -227,6 +235,11 @@
                     className: "",
                     orderable: false,
                     searchable: false
+                }, {
+                    data: "aksi",
+                    className: "",
+                    orderable: false,
+                    searchable: false
                 }]
             });
             $('#peminjaman_ruangan_id').on('change', function() {
@@ -235,3 +248,4 @@
         });
     </script>
 @endpush
+
