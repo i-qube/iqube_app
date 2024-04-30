@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\PeminjamanBarangController;
 use App\Http\Controllers\PeminjamanRuanganController;
+use App\Http\Controllers\RiwayatBarangController;
 use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
@@ -88,6 +89,9 @@ Route::group(['prefix' => 'user'], function () {
 
 Route::get('/keluar', [LogoutController::class, 'index']);
 
+Route::group(['prefix' => 'riwayat'], function() {
+    Route::get('/', [RiwayatBarangController::class, 'index']);
+});
 
 Route::group(['prefix' => 'pinjam'], function() {
     Route::get('/', [PeminjamanBarangController::class, 'index']);
