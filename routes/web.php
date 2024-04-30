@@ -9,6 +9,7 @@ use App\Http\Controllers\PeminjamanRuanganController;
 use App\Http\Controllers\RiwayatBarangController;
 use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserItemController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 use Spatie\FlareClient\View;
@@ -23,16 +24,22 @@ use Spatie\FlareClient\View;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/dashboard_user', function(){
-    return view('dashboard');
-});
-Route::get('/item_user', function(){
-    return view('item_user');
-});
-Route::get('/room_user', function(){
-    return view('room_user');
+
+Route::get('/dashboard_user', function () {
+    return view('user.dashboard');
 });
 
+Route::group(['prefix', 'item_user'], function () {
+    Route::get('/item_user', [UserItemController::class, 'index']);
+    Route::post('/load', [UserItemController::class, 'load']);
+    Route::get('/item_borrow', function () {
+        return view('user.item.item_borrow');
+    });
+});
+
+Route::get('/room_user', function () {
+    return view('user.ruangan.room_user');
+});
 
 Route::group(['prefix', 'authentication'], function () {
     Route::get('/login', [LoginController::class, 'index'])->name('login');
@@ -41,8 +48,9 @@ Route::group(['prefix', 'authentication'], function () {
         return view('auth.signup');
     });
 });
+
 Route::get('/dashboard', [WelcomeController::class, 'index']);
-Route::group(['prefix' => 'level'], function() {
+Route::group(['prefix' => 'level'], function () {
     Route::get('/', [LevelController::class, 'index']);
     Route::post('/list', [LevelController::class, 'list']);
     Route::get('/create', [LevelController::class, 'create']);
@@ -52,7 +60,7 @@ Route::group(['prefix' => 'level'], function() {
     Route::put('/{id}', [LevelController::class, 'update']);
     Route::delete('/{id}', [LevelController::class, 'destroy']);
 });
-Route::group(['prefix' => 'user'], function() {
+Route::group(['prefix' => 'user'], function () {
     Route::get('/', [UserController::class, 'index']);
     Route::post('/list', [UserController::class, 'list']);
     Route::get('/create', [UserController::class, 'create']);
@@ -62,7 +70,7 @@ Route::group(['prefix' => 'user'], function() {
     Route::put('/{id}', [UserController::class, 'update']);
     Route::delete('/{id}', [UserController::class, 'destroy']);
 });
-Route::group(['prefix' => 'barang'], function() {
+Route::group(['prefix' => 'barang'], function () {
     Route::get('/', [ItemController::class, 'index']);
     Route::post('/list', [ItemController::class, 'list']);
     Route::get('/create', [ItemController::class, 'create']);
@@ -72,7 +80,7 @@ Route::group(['prefix' => 'barang'], function() {
     Route::put('/{id}', [ItemController::class, 'update']);
     Route::delete('/{id}', [ItemController::class, 'destroy']);
 });
-Route::group(['prefix' => 'ruangan'], function() {
+Route::group(['prefix' => 'ruangan'], function () {
     Route::get('/', [RuanganController::class, 'index']);
     Route::post('/list', [RuanganController::class, 'list']);
     Route::get('/create', [RuanganController::class, 'create']);
@@ -89,11 +97,11 @@ Route::group(['prefix' => 'user'], function () {
 
 Route::get('/keluar', [LogoutController::class, 'index']);
 
-Route::group(['prefix' => 'riwayat'], function() {
+Route::group(['prefix' => 'riwayat'], function () {
     Route::get('/', [RiwayatBarangController::class, 'index']);
 });
 
-Route::group(['prefix' => 'pinjam'], function() {
+Route::group(['prefix' => 'pinjam'], function () {
     Route::get('/', [PeminjamanBarangController::class, 'index']);
     Route::post('/list/barang', [PeminjamanBarangController::class, 'list']);
     Route::post('/list/ruangan', [PeminjamanRuanganController::class, 'list']);
