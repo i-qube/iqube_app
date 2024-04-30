@@ -79,7 +79,7 @@
                             <th>ID Ruangan</th>
                             <th>Kelas</th>
                             <th>Tanggal Peminjaman</th>
-                            <th>Tanggal Pengembalian</th>
+                            <th>Tanggal Pengembalian</th> 
                             <th>Status</th>
                         </tr>
                     </thead>

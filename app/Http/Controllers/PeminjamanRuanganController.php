@@ -35,7 +35,7 @@ class PeminjamanRuanganController extends Controller
             ->addColumn('aksi', function ($peminjaman) {
                 $btn = '<a href="' . url('/peminjaman/' . $peminjaman->peminjaman_ruangan_id) . '" class="btn btn-info btn-sm">Not Complete</a> ';
                 return $btn;
-            })
+            })  
             ->rawColumns(['aksi'])
             ->make(true);
         }
