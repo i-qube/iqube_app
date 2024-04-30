@@ -14,8 +14,8 @@
                     <div class="col-9">
                         <input type="text" class="form-control" id="room_id" name="room_id"
                             value="{{ old('room_id') }}" required>
-                        @error('room_id')
-                            <small class="form-text text-danger">{{ $message }}</small>
+                            @error('room_id')
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                 <div class="form-group row">
                     <label class="col-3 control-label col-form-label">Foto Ruangan</label>
                     <div class="col-9">
-                        <input type="file" class="form-control-file" id="image" name="image" accept="image/*" required style="border: none; padding: 0;">
+                        <input type="file" class="form-control-file" id="image" name="image" accept="image/*" required>
                         @error('image')
                             <small class="form-text text-danger">{{ $message }}</small>
                         @enderror

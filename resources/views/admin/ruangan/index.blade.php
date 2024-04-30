@@ -85,7 +85,7 @@
                 }, {
                     data: "img",
                     render: function(data, type, row) {
-                        return '<img src="{{ asset('images/rt1.png') }}" alt="Gambar RT1" style="max-width: 100px; max-height: 100px;">';
+                        return '<img src="{{ asset('public/images/'.$filename->image) }}" alt="" style="max-width: 100px; max-height: 100px;">';
                     },
                     className: "text-center",
                     orderable: false,
