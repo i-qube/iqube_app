@@ -79,7 +79,11 @@
                             <th>ID Ruangan</th>
                             <th>Kelas</th>
                             <th>Tanggal Peminjaman</th>
+<<<<<<< HEAD
                             <th>Tanggal Pengembalian</th>
+=======
+                            <th>Tanggal Pengembalian</th> 
+>>>>>>> c4804f7fdaa33e2465a338bef53cd0f79b9eee37
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -112,7 +116,11 @@
             $('.toggle-button').click(function() {
                 var value = $(this).data('value');
 
+<<<<<<< HEAD
                 // Toggle logic 
+=======
+                // Handle your toggle logic here
+>>>>>>> c4804f7fdaa33e2465a338bef53cd0f79b9eee37
                 if (value === 'peminjaman_barang') {
                     $('#pinjam_barang_card').show();
                     $('#pinjam_ruangan_card').hide();
@@ -145,8 +153,13 @@
                 columns: [{
                     data: "peminjaman_barang_id",
                     className: "text-center",
+<<<<<<< HEAD
                     orderable: false,
                     searchable: false
+=======
+                    orderable: true,
+                    searchable: true
+>>>>>>> c4804f7fdaa33e2465a338bef53cd0f79b9eee37
                 }, {
                     data: "nim",
                     className: "",
@@ -177,6 +190,14 @@
                     className: "",
                     orderable: false,
                     searchable: false
+<<<<<<< HEAD
+=======
+                }, {
+                    data: "aksi",
+                    className: "",
+                    orderable: false,
+                    searchable: false
+>>>>>>> c4804f7fdaa33e2465a338bef53cd0f79b9eee37
                 }]
             });
 
@@ -203,13 +224,13 @@
                 }, {
                     data: "nim",
                     className: "",
-                    orderable: false,
-                    searchable: false
+                    orderable: true,
+                    searchable: true
                 }, {
                     data: "nama",
                     className: "",
-                    orderable: false,
-                    searchable: false
+                    orderable: true,
+                    searchable: true
                 }, {
                     data: "room_id",
                     className: "",
@@ -231,6 +252,7 @@
                     orderable: false,
                     searchable: false
                 }, {
+<<<<<<< HEAD
                     data: null,
                     className: "text-center",
                     render: function(data, type, row) {
@@ -244,6 +266,12 @@
                                 '</button>';
                         }
                     }
+=======
+                    data: "aksi",
+                    className: "",
+                    orderable: false,
+                    searchable: false
+>>>>>>> c4804f7fdaa33e2465a338bef53cd0f79b9eee37
                 }]
             });
             $('#peminjaman_ruangan_id').on('change', function() {
@@ -286,3 +314,4 @@
         });
     </script>
 @endpush
+

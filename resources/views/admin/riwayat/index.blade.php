@@ -31,7 +31,11 @@
                 }
 
                 .toggle-button:hover {
+<<<<<<< HEAD
                     background-color: #2612d8d2;
+=======
+                    background-color: #3e2ddbd2;
+>>>>>>> c4804f7fdaa33e2465a338bef53cd0f79b9eee37
                 }
 
                 #toggle-button-left {
@@ -75,12 +79,18 @@
                         <tr>
                             <th>NO</th>
                             <th>NIM</th>
+<<<<<<< HEAD
                             <th>Nama</th>
                             <th>ID Ruangan</th>
                             <th>Kelas</th>
                             <th>Tanggal Peminjaman</th>
                             <th>Tanggal Pengembalian</th>
                             <th>Status</th>
+=======
+                            <th>ID Ruangan</th>
+                            <th>Tanggal Peminjaman</th>
+                            <th>Tanggal Pengembalian</th>
+>>>>>>> c4804f7fdaa33e2465a338bef53cd0f79b9eee37
                         </tr>
                     </thead>
                 </table>
@@ -135,9 +145,15 @@
                 processing: true,
                 autoWidth: false,
                 ajax: {
+<<<<<<< HEAD
                     "url": "{{ url('riwayat/listBarang') }}",
                     "dataType": "json",
                     "type": "GET",
+=======
+                    "url": "{{ url('pinjam/list/barang') }}",
+                    "dataType": "json",
+                    "type": "POST",
+>>>>>>> c4804f7fdaa33e2465a338bef53cd0f79b9eee37
                     "data": function(d) {
                         d.peminjaman_barang_id = $('#peminjaman_barang_id').val();
                     }
@@ -145,8 +161,13 @@
                 columns: [{
                     data: "peminjaman_barang_id",
                     className: "text-center",
+<<<<<<< HEAD
                     orderable: false,
                     searchable: false
+=======
+                    orderable: true,
+                    searchable: true
+>>>>>>> c4804f7fdaa33e2465a338bef53cd0f79b9eee37
                 }, {
                     data: "nim",
                     className: "",
@@ -177,6 +198,14 @@
                     className: "",
                     orderable: false,
                     searchable: false
+<<<<<<< HEAD
+=======
+                }, {
+                    data: "aksi",
+                    className: "",
+                    orderable: false,
+                    searchable: false
+>>>>>>> c4804f7fdaa33e2465a338bef53cd0f79b9eee37
                 }]
             });
 
@@ -188,12 +217,20 @@
                 serverSide: true,
                 autoWidth: false,
                 ajax: {
+<<<<<<< HEAD
                     "url": "{{ url('riwayat/listRuangan') }}",
                     "dataType": "json",
                     "type": "GET",
                     "data": function(d) {
                         d.peminjaman_ruangan_id = $('#peminjaman_ruangan_id').val();
                         d.status = 'Complete';
+=======
+                    "url": "{{ url('pinjam/list/ruangan') }}",
+                    "dataType": "json",
+                    "type": "POST",
+                    "data": function(d) {
+                        d.peminjaman_ruangan_id = $('#peminjaman_ruangan_id').val();
+>>>>>>> c4804f7fdaa33e2465a338bef53cd0f79b9eee37
                     }
                 },
                 columns: [{
@@ -202,6 +239,7 @@
                     orderable: false,
                     searchable: false
                 }, {
+<<<<<<< HEAD
                     data: "nim",
                     className: "",
                     orderable: false,
@@ -211,17 +249,26 @@
                     className: "",
                     orderable: false,
                     searchable: false
+=======
+                    data: "nama",
+                    className: "",
+                    orderable: true,
+                    searchable: true
+>>>>>>> c4804f7fdaa33e2465a338bef53cd0f79b9eee37
                 }, {
                     data: "room_id",
                     className: "",
                     orderable: true,
                     searchable: true
                 }, {
+<<<<<<< HEAD
                     data: "class",
                     className: "",
                     orderable: false,
                     searchable: false
                 }, {
+=======
+>>>>>>> c4804f7fdaa33e2465a338bef53cd0f79b9eee37
                     data: "date_borrow",
                     className: "",
                     orderable: false,
@@ -231,6 +278,7 @@
                     className: "",
                     orderable: false,
                     searchable: false
+<<<<<<< HEAD
                 }, {
                     data: null,
                     className: "text-center",
@@ -245,12 +293,21 @@
                                 '</button>';
                         }
                     }
+=======
+>>>>>>> c4804f7fdaa33e2465a338bef53cd0f79b9eee37
                 }]
             });
             $('#peminjaman_ruangan_id').on('change', function() {
                 dataPeminjamanRuangan.ajax.reload();
             });
+<<<<<<< HEAD
 
         });
     </script>
 @endpush
+=======
+        });
+    </script>
+@endpush
+
+>>>>>>> c4804f7fdaa33e2465a338bef53cd0f79b9eee37

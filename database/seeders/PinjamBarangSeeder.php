@@ -26,6 +26,7 @@ class PinjamBarangSeeder extends Seeder
             ],
             [
                 'peminjaman_barang_id' => 2,
+<<<<<<< HEAD
                 'nim'=> 123456,
                 'nama'=> 'Delinda',
                 'item_id'=> 5,
@@ -57,6 +58,12 @@ class PinjamBarangSeeder extends Seeder
                 'nama'=> 'Fablo',
                 'item_id'=> 4,
                 'class'=>'SIB3A',
+=======
+                'nim'=> 2141762139,
+                'nama'=> 'Jati',
+                'item_id'=> 3,
+                'class'=>'SIB3A',
+>>>>>>> c4804f7fdaa33e2465a338bef53cd0f79b9eee37
                 'jumlah'=> 10,
                 'date_borrow'=> Carbon::now(),
             ],

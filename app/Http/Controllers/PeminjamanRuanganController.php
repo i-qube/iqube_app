@@ -34,6 +34,14 @@ class PeminjamanRuanganController extends Controller
 
         return DataTables::of($peminjamans)
             ->addIndexColumn()
+<<<<<<< HEAD
+=======
+            ->addColumn('aksi', function ($peminjaman) {
+                $btn = '<a href="' . url('/peminjaman/' . $peminjaman->peminjaman_ruangan_id) . '" class="btn btn-info btn-sm">Not Complete</a> ';
+                return $btn;
+            })  
+            ->rawColumns(['aksi'])
+>>>>>>> c4804f7fdaa33e2465a338bef53cd0f79b9eee37
             ->make(true);
     }
 
