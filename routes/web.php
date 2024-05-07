@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\PeminjamanBarangController;
 use App\Http\Controllers\PeminjamanRuanganController;
+use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
@@ -39,6 +40,8 @@ Route::group(['prefix', 'authentication'], function () {
     Route::get('/signup', function () {
         return view('auth.signup');
     });
+    Route::get('/keluar', [LogoutController::class, 'index']);
+
 });
 Route::get('/dashboard', [WelcomeController::class, 'index']);
 Route::group(['prefix' => 'level'], function() {
@@ -86,17 +89,18 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('/item_user', [ItemController::class, 'item']);
 });
 
-Route::get('/keluar', [LogoutController::class, 'index']);
-
-
 Route::group(['prefix' => 'pinjam'], function() {
     Route::get('/', [PeminjamanBarangController::class, 'index']);
     Route::post('/list/barang', [PeminjamanBarangController::class, 'list']);
     Route::post('/list/ruangan', [PeminjamanRuanganController::class, 'list']);
-    Route::get('/create', [PeminjamanBarangController::class, 'create']);
-    Route::post('/', [PeminjamanBarangController::class, 'store']);
-    Route::get('/{id}', [PeminjamanBarangController::class, 'show']);
-    Route::get('/{id}/edit', [PeminjamanBarangController::class, 'edit']);
-    Route::put('/{id}', [PeminjamanBarangController::class, 'update']);
-    Route::delete('/{id}', [PeminjamanBarangController::class, 'destroy']);
+    Route::post('/change-status', [PeminjamanRuanganController::class, 'changeStatus']);
 });
+
+
+Route::group(['prefix' => 'riwayat'], function() {
+    Route::get('/', [RiwayatController::class, 'index']);
+    Route::get('/listBarang', [RiwayatController::class, 'listBarang']);
+    Route::get('/listRuangan', [RiwayatController::class, 'listRuangan']);
+
+});
+

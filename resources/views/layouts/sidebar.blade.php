@@ -37,17 +37,19 @@
                 </a> </li>
             <li class="nav-header">Data Peminjaman</li>
             <li class="nav-item"> <a href="{{ url('/pinjam') }}"
-                    class="nav-link {{ $activeMenu == 'stok' ? 'active' : '' }} "> <i
-                        class="nav-icon fas fa-cubes"></i>
+                    class="nav-link {{ $activeMenu == 'stok' ? 'active' : '' }} "> 
+                    <i class="nav-icon fas fa-tasks"></i>
                     <p>Data Peminjaman</p>
                 </a> </li>
             <li class="nav-item">
-                <a href="{{ url('/riwayat') }}" class="nav-link {{ $activeMenu == 'penjualan' ? 'active' : '' }} ">
-                    <i class="nav-icon fas fa-cash-register"></i>
+                <a href="{{ url('/riwayat') }}" class="nav-link {{ $activeMenu == 'riwayat' ? 'active' : '' }} ">
+                    <i class="nav-icon fas fa-history"></i>
                     <p>Riwayat Peminjaman</p>
-                </a> </li>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="{{ url('/keluar') }}" class="nav-link {{ $activeMenu == 'keluar' ? 'active' : '' }} ">
-                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <i class="nav-icon fas fa-power-off"></i>
                     <p>Keluar</p>
                 </a>
             </li>

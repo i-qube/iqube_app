@@ -20,6 +20,26 @@ class UserSeeder extends Seeder
                 'level_id' => 2,
                 'password' => Hash::make('12345'),
             ],
+            [
+                'nim' => 123456,
+                'level_id' => 2,
+                'password' => Hash::make('123456'),
+            ],
+            [
+                'nim' => 123457,
+                'level_id' => 2,
+                'password' => Hash::make('123457'),
+            ],
+            [
+                'nim' => 123458,
+                'level_id' => 2,
+                'password' => Hash::make('123458'),
+            ],
+            [
+                'nim' => 123459,
+                'level_id' => 2,
+                'password' => Hash::make('123459'),
+            ],
             
         ];
         DB::table('m_user')->insert($data);

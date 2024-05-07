@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('class');
             $table->dateTime('date_borrow');
             $table->dateTime('date_return');
+            $table->string('status')->default('Not Complete'); 
             
             $table->foreign('nim')->references('nim')->on('m_user');
             $table->foreign('room_id')->references('room_id')->on('m_room');

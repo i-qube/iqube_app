@@ -31,7 +31,7 @@
                 }
 
                 .toggle-button:hover {
-                    background-color: #3e2ddbd2;
+                    background-color: #2612d8d2;
                 }
 
                 #toggle-button-left {
@@ -112,7 +112,7 @@
             $('.toggle-button').click(function() {
                 var value = $(this).data('value');
 
-                // Toggle logic 
+                // Handle your toggle logic here
                 if (value === 'peminjaman_barang') {
                     $('#pinjam_barang_card').show();
                     $('#pinjam_ruangan_card').hide();
@@ -135,9 +135,9 @@
                 processing: true,
                 autoWidth: false,
                 ajax: {
-                    "url": "{{ url('pinjam/list/barang') }}",
+                    "url": "{{ url('riwayat/listBarang') }}",
                     "dataType": "json",
-                    "type": "POST",
+                    "type": "GET",
                     "data": function(d) {
                         d.peminjaman_barang_id = $('#peminjaman_barang_id').val();
                     }
@@ -188,11 +188,12 @@
                 serverSide: true,
                 autoWidth: false,
                 ajax: {
-                    "url": "{{ url('pinjam/list/ruangan') }}",
+                    "url": "{{ url('riwayat/listRuangan') }}",
                     "dataType": "json",
-                    "type": "POST",
+                    "type": "GET",
                     "data": function(d) {
                         d.peminjaman_ruangan_id = $('#peminjaman_ruangan_id').val();
+                        d.status = 'Complete';
                     }
                 },
                 columns: [{
@@ -249,39 +250,6 @@
             $('#peminjaman_ruangan_id').on('change', function() {
                 dataPeminjamanRuangan.ajax.reload();
             });
-
-            // Tambahkan event listener untuk tombol di dalam tabel
-            $('#table_peminjaman_ruangan').on('click', '.btn-change-status', function() {
-                // Dapatkan ID peminjaman ruangan dari data atribut pada tombol
-                var button = $(this);
-                var peminjamanRuanganId = button.data('id');
-
-                // Kirim permintaan AJAX untuk mengubah status
-                $.ajax({
-                    url: 'pinjam/change-status', // Ubah sesuai dengan URL endpoint Anda
-                    type: 'POST',
-                    data: {
-                        peminjaman_ruangan_id: peminjamanRuanganId,
-                        _token: '{{ csrf_token() }}' // Sertakan token CSRF untuk validasi
-                    },
-                    success: function(response) {
-                        // Tanggapan berhasil
-                        if (response.success) {
-                            // Perbarui tombol menjadi 'Complete'
-                            button.removeClass('btn-danger').addClass('btn-success').prop(
-                                'disabled', true).text('Complete');
-                        } else {
-                            // Tanggapan gagal
-                            console.error('Failed to update status.');
-                        }
-                    },
-                    error: function(xhr) {
-                        // Tanggapan error
-                        console.error(xhr.responseText);
-                    }
-                });
-            });
-
 
         });
     </script>
