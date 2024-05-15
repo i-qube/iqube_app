@@ -12,7 +12,7 @@ class UserModel extends Model
     protected $table = 'm_user';
     protected $primaryKey = 'nim';
 
-    protected $fillable = ['nim','level_id','password'];
+    protected $fillable = ['level_id','nama','jurusan','angkatan','kelas','password'];
     public $timestamps = false;
 
     public function level(): BelongsTo
