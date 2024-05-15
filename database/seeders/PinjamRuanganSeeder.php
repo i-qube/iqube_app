@@ -17,10 +17,8 @@ class PinjamRuanganSeeder extends Seeder
         $data = [
             [
                 'peminjaman_ruangan_id' => 1,
-                'nim'=> 12345,
-                'nama'=> 'Fadly',
+                'nim'=> 2141762110,
                 'room_id'=> 1,
-                'class'=>'SIB3A',
                 'date_borrow'=> Carbon::now(),
                 'date_return'=> Carbon::now(),
             ],
