@@ -38,7 +38,6 @@ class UserItemController extends Controller
 
     public function store(Request $request)
     {
-        //dd($request->all());
         $request->validate([
             'item_id' => 'required|integer',
             'jumlah' => 'required|integer',
