@@ -17,7 +17,6 @@ return new class extends Migration
             $table->unsignedBigInteger('item_id')->index();
             $table->unsignedBigInteger('jumlah');
             $table->dateTime('date_borrow');
-            
             $table->foreign('nim')->references('nim')->on('m_user');
             $table->foreign('item_id')->references('item_id')->on('m_item');
         });
