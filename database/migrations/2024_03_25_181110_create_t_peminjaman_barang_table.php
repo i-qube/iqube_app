@@ -14,9 +14,7 @@ return new class extends Migration
         Schema::create('t_peminjaman_barang', function (Blueprint $table) {
             $table->id('peminjaman_barang_id');
             $table->unsignedBigInteger('nim')->index();
-            $table->string('nama');
             $table->unsignedBigInteger('item_id')->index();
-            $table->string('class');
             $table->unsignedBigInteger('jumlah');
             $table->dateTime('date_borrow');
             
