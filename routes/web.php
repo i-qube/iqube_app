@@ -9,6 +9,8 @@ use App\Http\Controllers\PeminjamanRuanganController;
 use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserItemController;
+use App\Http\Controllers\UserRoomController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 use Spatie\FlareClient\View;
@@ -26,13 +28,15 @@ use Spatie\FlareClient\View;
 Route::get('/dashboard_user', function(){
     return view('dashboard');
 });
-Route::get('/item_user', function(){
-    return view('item_user');
+Route::group(['prefix' => 'item_user'], function () {
+    Route::get('/', [UserItemController::class, 'index']);
+    Route::post('/load', [UserItemController::class, 'load']);
+    Route::get('/item_borrow', [UserItemController::class, 'form']);
+    Route::post('/', [UserItemController::class, 'store']);
 });
-Route::get('/room_user', function(){
-    return view('room_user');
+Route::group(['prefix' => 'room_user'], function(){
+    Route::get('/', [UserRoomController::class, 'index']);
 });
-
 
 Route::group(['prefix', 'authentication'], function () {
     Route::get('/login', [LoginController::class, 'index'])->name('login');
