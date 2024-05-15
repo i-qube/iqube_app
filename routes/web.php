@@ -104,6 +104,5 @@ Route::group(['prefix' => 'riwayat'], function() {
     Route::get('/', [RiwayatController::class, 'index']);
     Route::get('/listBarang', [RiwayatController::class, 'listBarang']);
     Route::get('/listRuangan', [RiwayatController::class, 'listRuangan']);
-
 });
 
