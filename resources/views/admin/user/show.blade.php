@@ -15,6 +15,22 @@
                         <td>{{ $user->nim }}</td>
                     </tr>
                     <tr>
+                        <th>Nama</th>
+                        <td>{{ $user->nama }}</td>
+                    </tr>
+                    <tr>
+                        <th>Jurusan</th>
+                        <td>{{ $user->jurusan }}</td>
+                    </tr>
+                    <tr>
+                        <th>Angkatan</th>
+                        <td>{{ $user->angkatan }}</td>
+                    </tr>
+                    <tr>
+                        <th>Kelas</th>
+                        <td>{{ $user->kelas }}</td>
+                    </tr>
+                    <tr>
                         <th>Level Pengguna</th>
                         <td>{{ $user->level->level_name }}</td>
                     </tr>

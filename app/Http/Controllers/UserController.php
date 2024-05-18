@@ -23,22 +23,23 @@ class UserController extends Controller
         $activeMenu = 'user';
 
         $level = LevelModel::all();
+        $user = UserModel::all();
+        //$kelas = UserModel::select('kelas')->distinct()->get();
 
-        return view('admin.user.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'level' => $level, 'activeMenu' => $activeMenu]);
+        return view('admin.user.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'level' => $level, 'user' => $user, 'activeMenu' => $activeMenu]);
     }
 
     public function list(Request $request)
     {
-        $users = UserModel::select('nim', 'level_id', 'password')
+        $users = UserModel::select('nim', 'nama', 'jurusan', 'angkatan', 'kelas' ,'level_id', 'password')
         ->with('level');
 
         if($request->level_id){
             $users->where('level_id', $request->level_id);
         }
-
         return DataTables::of($users)
-            ->addIndexColumn() // menambahkan kolom index / no urut (default nama kolom: DT_RowIndex) 
-            ->addColumn('aksi', function ($user) { // menambahkan kolom aksi 
+            ->addIndexColumn()
+            ->addColumn('aksi', function ($user) { 
                 $btn = '<a href="' . url('/user/' . $user->nim) . '" class="btn btn-info btn-sm">Detail</a> ';
                 $btn .= '<a href="' . url('/user/' . $user->nim . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
                 $btn .= '<form class="d-inline-block" method="POST" action="' . url('/user/' . $user->nim) . '">'
@@ -46,7 +47,7 @@ class UserController extends Controller
                     '<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm(\'Apakah Anda yakit menghapus data ini?\');">Hapus</button></form>';
                 return $btn;
             })
-            ->rawColumns(['aksi']) // memberitahu bahwa kolom aksi adalah html 
+            ->rawColumns(['aksi'])
             ->make(true);
     }
 
@@ -59,8 +60,8 @@ class UserController extends Controller
         $page = (object)[
             'title' => 'Tambah user baru'
         ];
-        $level = LevelModel::all(); //ambil data level untuk di tampilkan
-        $activeMenu = 'user'; //set menu yg aktif
+        $level = LevelModel::all(); 
+        $activeMenu = 'user';
 
         return view('admin.user.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'level' => $level, 'activeMenu' => $activeMenu]);
     }
@@ -68,12 +69,20 @@ class UserController extends Controller
     public function store(Request $request){
         $request->validate([
             'nim' => 'required|string|min:3|unique:users,nim',
+            'nama' => 'required|string',
+            'jurusan' => 'required|string',
+            'angkatan' => 'required|string',
+            'kelas' => 'required|string',
             'password' => 'required|min:5',
             'level_id' => 'required|integer'
         ]);
 
         UserModel::create([
             'nim' => $request->nim,
+            'nama' => $request->nama,
+            'jurusan' => $request->jurusan,
+            'angkatan' => $request->angkatan,
+            'kelas' => $request->kelas,
             'password' => bcrypt($request->password),
             'level_id' => $request->level_id
         ]);
@@ -117,12 +126,20 @@ class UserController extends Controller
     public function update(Request $request, string $id){
         $request->validate([
             'nim' => 'required|string|min:3|unique:users,nim,'.$id.',nim',
+            'nama' => 'required|string',
+            'jurusan' => 'required|string',
+            'angkatan' => 'required|string',
+            'kelas' => 'required|string',
             'password' => 'nullable|min:5',
             'level_id' => 'required|integer'
         ]);
 
         UserModel::find($id)->update([
             'nim' => $request->nim,
+            'nama' => $request->nama,
+            'jurusan' => $request->jurusan,
+            'angkatan' => $request->angkatan,
+            'kelas' => $request->kelas,
             'password' => $request->password ? bcrypt($request->password) : UserModel::find($id)->password,
             'level_id' => $request->level_id,
         ]);
