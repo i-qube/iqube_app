@@ -30,8 +30,14 @@
                         <td>{{ $room->room_floor }}</td>
                     </tr>
                     <tr>
-                        <th>Gambar</th>
-                        <td>{{ $room->image }}</td>
+                        <th>Foto Ruangan</th>
+                        <td>
+                            @if($room->image)
+                                <img src="{{ asset('storage/ruangan/' . $room->image) }}" alt="Gambar Ruangan" style="max-width: 500px; ">
+                            @else
+                                No Image Available
+                            @endif
+                        </td>
                     </tr>
                 </table>
             @endempty

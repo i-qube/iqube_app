@@ -38,7 +38,7 @@
                         <th>Kode Ruangan</th>
                         <th>Nama Ruangan</th>
                         <th>Lantai</th>
-                        <th>Gambar</th>
+                        <th>Foto Ruangan</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -83,9 +83,10 @@
                     orderable: true,
                     searchable: true
                 }, {
-                    data: "img",
+                    data: "image",
                     render: function(data, type, row) {
-                        return '<img src="{{ asset('images/rt1.png') }}" alt="Gambar RT1" style="max-width: 100px; max-height: 100px;">';
+                        return '<img src="{{ asset('storage/ruangan/') }}/' + row.image +
+                            '" alt="Gambar RT1" style="max-height: 200px">';
                     },
                     className: "text-center",
                     orderable: false,
