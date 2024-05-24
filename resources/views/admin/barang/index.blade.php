@@ -68,7 +68,7 @@
                     className: "text-center",
                     orderable: false,
                     searchable: false
-                },{
+                }, {
                     data: "item_name",
                     className: "",
                     orderable: true,
@@ -83,7 +83,7 @@
                     className: "",
                     orderable: true,
                     searchable: true
-                },{
+                }, {
                     data: "image",
                     render: function(data, type, row) {
                         return '<img src="{{ asset('storage/barang/') }}/' + row.image +
@@ -92,12 +92,12 @@
                     className: "",
                     orderable: false,
                     searchable: false
-                },{
+                }, {
                     data: "date_received",
                     className: "",
                     orderable: true,
                     searchable: true
-                },{
+                }, {
                     data: "aksi",
                     className: "",
                     orderable: false,

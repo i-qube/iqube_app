@@ -76,10 +76,12 @@ class ItemController extends Controller
             'image' => 'required|mimes:png,jpg,jpeg|max:2048'
         ]);
 
-        if($validator->fails()){ return response()->json($validator->errors()); }
+        if ($validator->fails()) {
+            return response()->json($validator->errors());
+        }
         $image = $request->file('image');
-        $fileName = date('Y-m-d'). $image->getClientOriginalName();
-        $path = 'barang/'.$fileName;
+        $fileName = date('Y-m-d') . $image->getClientOriginalName();
+        $path = 'barang/' . $fileName;
 
         Storage::disk('public')->put($path, file_get_contents($image));
 
@@ -118,7 +120,7 @@ class ItemController extends Controller
 
         $breadcrumb = (object) [
             'title' => 'Edit Barang',
-            'list'=> ['Home', 'Barang', 'Edit']
+            'list' => ['Home', 'Barang', 'Edit']
         ];
 
         $page = (object) [
@@ -171,11 +173,11 @@ class ItemController extends Controller
     public function destroy(string $id)
     {
         $check = ItemModel::find($id);
-        if(!$check) {
+        if (!$check) {
             return redirect('/barang')->with('error', 'Data barang tidak ditemukan');
         }
 
-        try{
+        try {
             ItemModel::destroy($id);
             return redirect('/barang')->with('success', 'Data barang berhasil dihapus');
         } catch (\Illuminate\Database\QueryException $e) {

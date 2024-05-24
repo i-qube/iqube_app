@@ -13,9 +13,10 @@
                 </div>
                 <a href="{{ url('barang') }}" class="btn btn-sm btn-default mt-2">Kembali</a>
             @else
-                <form method="POST" action="{{ url('barang/' . $item->item_id) }}" class="form-horizontal" enctype="multipart/form-data">
+                <form method="POST" action="{{ url('barang/' . $item->item_id) }}" class="form-horizontal"
+                    enctype="multipart/form-data">
                     @csrf
-                    {!! method_field('PUT') !!} <!-- tambahkan baris ini untuk proses edit yang butuh method PUT -->
+                    {!! method_field('PUT') !!}
                     <div class="form-group row">
                         <label class="col-1 control-label col-form-label">Nama Barang</label>
                         <div class="col-11">
@@ -59,11 +60,13 @@
                     <div class="form-group row">
                         <label class="col-3 control-label col-form-label">Foto Barang</label>
                         <div class="col-9">
-                            @if($item->image)
-                            <img src="{{ asset('storage/barang/'. $item->image) }}" alt="Foto Barang" style="max-width: 500px;">
-                            <br>
+                            @if ($item->image)
+                                <img src="{{ asset('storage/barang/' . $item->image) }}" alt="Foto Barang"
+                                    style="max-width: 500px;">
+                                <br>
                             @endif
-                            <input type="file" class="form-control-file" id="image" name="image" accept="image/png, image/jpeg, image/jpg">
+                            <input type="file" class="form-control-file" id="image" name="image"
+                                accept="image/png, image/jpeg, image/jpg">
                             @error('image')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror

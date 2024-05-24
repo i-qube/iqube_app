@@ -38,7 +38,7 @@
                         <td>
                             @if ($item->image)
                                 <img src="{{ asset('storage/barang/' . $item->image) }}" alt="Gambar Barang"
-                                    style="max-width: 500px; ">
+                                    style="max-width: 500px;">
                             @else
                                 No Image Available
                             @endif
