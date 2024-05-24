@@ -33,6 +33,17 @@
                         <th>Tanggal Diterima</th>
                         <td>{{ $item->date_received }}</td>
                     </tr>
+                    <tr>
+                        <th>Foto Barang</th>
+                        <td>
+                            @if ($item->image)
+                                <img src="{{ asset('storage/barang/' . $item->image) }}" alt="Gambar Barang"
+                                    style="max-width: 500px; ">
+                            @else
+                                No Image Available
+                            @endif
+                        </td>
+                    </tr>
                 </table>
             @endempty
             <a href="{{ url('barang') }}" class="btn btn-sm btn-default mt-2">Kembali</a>
