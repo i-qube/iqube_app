@@ -24,6 +24,34 @@
                         @enderror
                     </div>
                 </div>
+                <div class="form-group row"> <label class="col-3 control-label col-form-label">Nama</label>
+                    <div class="col-9"> <input type="text" class="form-control" id="nama" name="nama"
+                            value="{{ old('nama') }}" required> @error('nama')
+                            <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
+                <div class="form-group row"> <label class="col-3 control-label col-form-label">Jurusan</label>
+                    <div class="col-9"> <input type="text" class="form-control" id="jurusan" name="jurusan"
+                            value="{{ old('jurusan') }}" required> @error('jurusan')
+                            <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
+                <div class="form-group row"> <label class="col-3 control-label col-form-label">Angkatan</label>
+                    <div class="col-9"> <input type="text" class="form-control" id="angkatan" name="angkatan"
+                            value="{{ old('angkatan') }}" required> @error('angkatan')
+                            <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
+                <div class="form-group row"> <label class="col-3 control-label col-form-label">Kelas</label>
+                    <div class="col-9"> <input type="text" class="form-control" id="kelas" name="kelas"
+                            value="{{ old('kelas') }}" required> @error('kelas')
+                            <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
                 <div class="form-group row"> <label class="col-3 control-label col-form-label">Password</label>
                     <div class="col-9"> <input type="password" class="form-control" id="password" name="password"
                             required> @error('password')

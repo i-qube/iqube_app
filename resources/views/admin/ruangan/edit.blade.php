@@ -13,7 +13,7 @@
                 </div>
                 <a href="{{ url('ruangan') }}" class="btn btn-sm btn-default mt-2">Kembali</a>
             @else
-                <form method="POST" action="{{ url('/ruangan/' . $room->room_id) }}" class="form-horizontal">
+                <form method="POST" action="{{ url('ruangan/' . $room->room_id) }}" class="form-horizontal" enctype="multipart/form-data">
                     @csrf
                     {!! method_field('PUT') !!}
                     <div class="form-group row">
@@ -50,10 +50,10 @@
                         <label class="col-3 control-label col-form-label">Foto Ruangan</label>
                         <div class="col-9">
                             @if($room->image)
-                            <img src="{{ asset($room->image) }}" alt="Foto Ruangan" style="max-width: 100px; max-height: 100px;">
+                            <img src="{{ asset('storage/ruangan/'. $room->image) }}" alt="Foto Ruangan" style="max-width: 500px;">
                             <br>
                             @endif
-                            <input type="file" class="form-control-file mt-2" id="image" name="image" accept="image/*">
+                            <input type="file" class="form-control-file mt-2" id="image" name="image" accept="image/png, image/jpeg, image/jpg">
                             @error('image')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror

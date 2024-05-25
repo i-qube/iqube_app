@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PeminjamanBarangModel;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class RiwayatBarangController extends Controller
 {
@@ -22,7 +24,7 @@ class RiwayatBarangController extends Controller
 
     public function list(Request $request)
     {
-        $peminjamans = PeminjamanBarangModel::select('peminjaman_barang_id', 'nim', 'nama', 'item_id', 'class', 'jumlah', 'date_borrow');
+        $peminjamans = PeminjamanBarangModel::select('peminjaman_barang_id', 'nim', 'item_id', 'jumlah', 'date_borrow');
 
         if ($request->peminjaman_barang_id) {
             $peminjamans->where('peminjaman_barang_id', $request->peminjaman_barang_id);

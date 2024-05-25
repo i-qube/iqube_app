@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PeminjamanBarangModel;
+use App\Models\UserModel;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -18,16 +19,17 @@ class PeminjamanBarangController extends Controller
             'title' => ''
         ];
         $activeMenu = 'peminjaman';
-        $peminjaman = PeminjamanBarangModel::all();
-        return view('admin.pinjam.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'peminjaman' => $peminjaman, 'activeMenu' => $activeMenu]);
+        $user = UserModel::all();
+        return view('admin.pinjam.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'user' => $user, 'activeMenu' => $activeMenu]);
     }
 
     public function list(Request $request)
     {
-        $peminjamans = PeminjamanBarangModel::select('peminjaman_barang_id', 'nim', 'nama', 'item_id', 'class', 'jumlah', 'date_borrow');
+        $peminjamans = PeminjamanBarangModel::select('peminjaman_barang_id', 'nim', 'item_id', 'jumlah', 'date_borrow')
+        ->with('user');
 
-        if ($request->peminjaman_barang_id) {
-            $peminjamans->where('peminjaman_barang_id', $request->peminjaman_barang_id);
+        if ($request->nim) {
+            $peminjamans->where('nim', $request->nim);
         }
 
         return DataTables::of($peminjamans)

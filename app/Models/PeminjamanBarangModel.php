@@ -12,7 +12,7 @@ class PeminjamanBarangModel extends Model
     protected $table = 't_peminjaman_barang';
     protected $primaryKey = 'peminjaman_barang_id';
 
-    protected $fillable = ['peminjaman_barang_id','nim','item_id','nama','class','jumlah','date_borrow'];
+    protected $fillable = ['nim','item_id','jumlah','date_borrow'];
     public $timestamps=false;
 
     public function user(): BelongsTo

@@ -100,11 +100,9 @@ Route::group(['prefix' => 'pinjam'], function() {
     Route::post('/change-status', [PeminjamanRuanganController::class, 'changeStatus']);
 });
 
-
 Route::group(['prefix' => 'riwayat'], function() {
     Route::get('/', [RiwayatController::class, 'index']);
     Route::get('/listBarang', [RiwayatController::class, 'listBarang']);
     Route::get('/listRuangan', [RiwayatController::class, 'listRuangan']);
-
 });
 

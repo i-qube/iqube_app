@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PeminjamanBarangModel;
 use App\Models\PeminjamanRuanganModel;
 use App\Models\RiwayatModel;
+use App\Models\UserModel;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -20,16 +21,17 @@ class RiwayatController extends Controller
             'title' => ''
         ];
         $activeMenu = 'riwayat';
-        $riwayat = RiwayatModel::all();
-        return view('admin.riwayat.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'riwayat' => $riwayat, 'activeMenu' => $activeMenu]);
+        $user = UserModel::all();
+        return view('admin.riwayat.index', ['breadcrumb' => $breadcrumb, 'page' => $page,'user' => $user, 'activeMenu' => $activeMenu]);
     }
 
     public function listBarang(Request $request)
     {
-        $peminjamans = PeminjamanBarangModel::select('peminjaman_barang_id', 'nim', 'nama', 'item_id', 'class', 'jumlah', 'date_borrow');
+        $peminjamans = PeminjamanBarangModel::select('peminjaman_barang_id', 'nim', 'item_id', 'jumlah', 'date_borrow')
+        ->with('user');
 
-        if ($request->peminjaman_barang_id) {
-            $peminjamans->where('peminjaman_barang_id', $request->peminjaman_barang_id);
+        if ($request->nim) {
+            $peminjamans->where('nim', $request->nim);
         }
 
         return DataTables::of($peminjamans)
@@ -38,8 +40,8 @@ class RiwayatController extends Controller
     }
 
     public function  listRuangan(Request $request){
-        $peminjamans = PeminjamanRuanganModel::select('peminjaman_ruangan_id', 'nim', 'nama', 'room_id', 'class', 'date_borrow', 'date_return','status')
-        ->where('status', 'Complete');
+        $peminjamans = PeminjamanRuanganModel::select('peminjaman_ruangan_id', 'nim', 'room_id', 'date_borrow', 'date_return','status')
+        ->where('status', 'Complete')->with('user');
 
         if ($request->peminjaman_ruangan_id) {
             $peminjamans->where('peminjaman_ruangan_id', $request->peminjaman_ruangan_id);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PeminjamanRuanganModel;
 use App\Models\RiwayatModel;
+use App\Models\UserModel;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -19,29 +20,22 @@ class PeminjamanRuanganController extends Controller
             'title' => ''
         ];
         $activeMenu = 'peminjaman';
-        $peminjaman = PeminjamanRuanganModel::all();
-        return view('admin.pinjam.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'peminjaman' => $peminjaman, 'activeMenu' => $activeMenu]);
+        $user = UserModel::all();
+        return view('admin.pinjam.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'user' => $user, 'activeMenu' => $activeMenu]);
     }
 
 
     public function list(Request $request)
     {
-        $peminjamans = PeminjamanRuanganModel::select('peminjaman_ruangan_id', 'nim', 'nama', 'room_id', 'class', 'date_borrow', 'date_return','status');
+        $peminjamans = PeminjamanRuanganModel::select('peminjaman_ruangan_id', 'nim', 'room_id', 'date_borrow', 'date_return','status')
+        ->with('user');
 
-        if ($request->peminjaman_ruangan_id) {
-            $peminjamans->where('peminjaman_ruangan_id', $request->peminjaman_ruangan_id);
+        if ($request->nim) {
+            $peminjamans->where('nim', $request->nim);
         }
 
         return DataTables::of($peminjamans)
             ->addIndexColumn()
-<<<<<<< HEAD
-=======
-            ->addColumn('aksi', function ($peminjaman) {
-                $btn = '<a href="' . url('/peminjaman/' . $peminjaman->peminjaman_ruangan_id) . '" class="btn btn-info btn-sm">Not Complete</a> ';
-                return $btn;
-            })  
-            ->rawColumns(['aksi'])
->>>>>>> c4804f7fdaa33e2465a338bef53cd0f79b9eee37
             ->make(true);
     }
 

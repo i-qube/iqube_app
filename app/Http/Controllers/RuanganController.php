@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\RuanganModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
 
 class RuanganController extends Controller
@@ -24,7 +26,7 @@ class RuanganController extends Controller
 
     public function list(Request $request)
     {
-        $rooms = RuanganModel::select('room_id','room_code','room_name','room_floor', 'image');
+        $rooms = RuanganModel::select('room_id', 'room_code', 'room_name', 'room_floor', 'image');
 
         if ($request->room_id) {
             $rooms->where('room_id', $request->room_id);
@@ -47,6 +49,7 @@ class RuanganController extends Controller
 
     public function create()
     {
+        $room = RuanganModel::all();
         $breadcrumb = (object) [
             'title' => 'Tambah Ruangan',
             'list' => ['Home', 'Ruangan', 'Tambah']
@@ -56,7 +59,7 @@ class RuanganController extends Controller
             'title' => 'Tambah ruangan baru'
         ];
 
-        $room = RuanganModel::all();
+        
         $activeMenu = 'ruangan';
 
         return view('admin.ruangan.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'room' => $room, 'activeMenu' => $activeMenu]);
@@ -64,26 +67,27 @@ class RuanganController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'room_code' => 'required|string',
             'room_name' => 'required|string',
-            'room_floor' => 'required|integer',
-            'image' => 'required|image'
+            'room_floor' => 'required|string',
+            'image' => 'required|mimes:png,jpg,jpeg|max:2048'
         ]);
 
-        if($request->hasFile('image')){
-            $imagePath = $request->file('image')->store('images', 'public');
-        } else {
-            return redirect()->back()->withErrors('Gagal mengupload gambar.');
-        }
+        if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
+        $image = $request->file('image');
+        $fileName = date('Y-m-d'). $image->getClientOriginalName();
+        $path = 'ruangan/'.$fileName;
+
+        Storage::disk('public')->put($path, file_get_contents($image));
 
         RuanganModel::create([
-            'room_code' => $request->room_code,
-            'room_name' => $request->room_name,
-            'room_floor' => $request->room_floor,
-            'image' => $imagePath
+        'room_code' => $request->room_code,
+        'room_name' => $request->room_name,
+        'room_floor' => $request->room_floor,
+        'image' => $fileName
         ]);
-
+        
         return redirect('/ruangan')->with('success', 'Data ruangan berhasil disimpan');
     }
 
@@ -111,7 +115,7 @@ class RuanganController extends Controller
 
         $breadcrumb = (object) [
             'title' => 'Edit Ruangan',
-            'list'=> ['Home', 'Ruangan', 'Edit']
+            'list' => ['Home', 'Ruangan', 'Edit']
         ];
 
         $page = (object) [
@@ -125,25 +129,26 @@ class RuanganController extends Controller
 
     public function update(Request $request, string $id)
     {
-        $request->validate([
-            'room_code' => 'required|string',
+        $validator = Validator::make($request->all(), [
+            'room_code' => 'required|string|unique:m_room,room_code,'.$id.',room_id',
             'room_name' => 'required|string',
-            'room_floor' => 'required|integer',
-            'image' => 'required|image'
+            'room_floor' => 'required|string',
+            'image' => 'required|mimes:png,jpg,jpeg|max:2048'
         ]);
 
-        if ($request->file('image')->isValid()) {
-            $imagePath = $request->file('image')->store('images', 'public');
-        } else {
-            return redirect()->back()->withErrors('Gagal mengupload gambar.');
-        }
+        if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
+        $image = $request->file('image');
+        $fileName = date('Y-m-d'). $image->getClientOriginalName();
+        $path = 'ruangan/'.$fileName;
+
+        Storage::disk('public')->put($path, file_get_contents($image));
 
         RuanganModel::find($id)->update([
             'room_code' => $request->room_code,
             'room_name' => $request->room_name,
             'room_floor' => $request->room_floor,
-            'image' => $imagePath
-        ]);
+            'image' => $fileName
+            ]);
 
         return redirect('/ruangan')->with('success', 'Data ruangan berhasil diubah');
     }
@@ -151,11 +156,11 @@ class RuanganController extends Controller
     public function destroy(string $id)
     {
         $check = RuanganModel::find($id);
-        if(!$check) {
+        if (!$check) {
             return redirect('/ruangan')->with('error', 'Data ruangan tidak ditemukan');
         }
 
-        try{
+        try {
             RuanganModel::destroy($id);
             return redirect('/ruangan')->with('success', 'Data ruangan berhasil dihapus');
         } catch (\Illuminate\Database\QueryException $e) {

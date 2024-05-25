@@ -38,6 +38,7 @@
                         <th>Barang Nama</th>
                         <th>Nama Brand</th>
                         <th>Jumlah</th>
+                        <th>Gambar</th>
                         <th>Tanggal diterima</th>
                         <th>Aksi</th>
                     </tr>
@@ -82,6 +83,15 @@
                     className: "",
                     orderable: true,
                     searchable: true
+                },{
+                    data: "image",
+                    render: function(data, type, row) {
+                        return '<img src="{{ asset('storage/barang/') }}/' + row.image +
+                            '" alt="Gambar Barang" style="max-height: 200px">';
+                    },
+                    className: "",
+                    orderable: false,
+                    searchable: false
                 },{
                     data: "date_received",
                     className: "",

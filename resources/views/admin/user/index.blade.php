@@ -18,11 +18,11 @@
                         <div class="col-3">
                             <select class="form-control" id="level_id" name="level_id" required>
                                 <option value="">- Semua -</option>
-                                @foreach ($level as $item)
-                                    <option value="{{$item->level_id}}">{{$item->level_name}}</option>
+                                @foreach ($level as $i)
+                                    <option value="{{$i->level_id}}">{{$i->level_name}}</option>
                                 @endforeach
                             </select>
-                            <small class="form-text text-muted">Level Pengguna</small>
+                            <small class="form-text text-muted">Kelas Pengguna</small>
                         </div>
                     </div>
                 </div>
@@ -31,9 +31,11 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>NIM/NIP</th>
-                        <th>Level Pengguna</th>
-                        <th>password</th>
+                        <th>No Induk Mahasiswa</th>
+                        <th>Nama</th>
+                        <th>Jurusan</th>
+                        <th>Angkatan</th>
+                        <th>Kelas</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -46,7 +48,7 @@
     <script>
         $(document).ready(function() {
             var dataUser = $('#table_user').DataTable({
-                serverSide: true, // serverSide: true, jika ingin menggunakan server side processing 
+                serverSide: true,
                 ajax: {
                     "url": "{{ url('user/list') }}",
                     "dataType": "json",
@@ -56,30 +58,40 @@
                     }
                 },
                 columns: [{
-                    data: "DT_RowIndex", // nomor urut dari laravel datatable addIndexColumn() 
+                    data: "DT_RowIndex",
                     className: "text-center",
                     orderable: false,
                     searchable: false
                 }, {
                     data: "nim",
                     className: "",
-                    orderable: true, // orderable: true, jika ingin kolom ini bisa diurutkan 
-                    searchable: true // searchable: true, jika ingin kolom ini bisa dicari 
-                }, {
-                    data: "level.level_name",
+                    orderable: true,
+                    searchable: true
+                },{
+                    data: "nama",
                     className: "",
-                    orderable: true, // orderable: true, jika ingin kolom ini bisa diurutkan 
-                    searchable: true // searchable: true, jika ingin kolom ini bisa dicari 
-                }, {
-                    data: "password",
+                    orderable: true,
+                    searchable: true
+                },{
+                    data: "jurusan",
                     className: "",
-                    orderable: false, // orderable: true, jika ingin kolom ini bisa diurutkan 
-                    searchable: false // searchable: true, jika ingin kolom ini bisa dicari 
+                    orderable: false,
+                    searchable: false
                 }, {
+                    data: "angkatan",
+                    className: "",
+                    orderable: false,
+                    searchable: false
+                },{
+                    data: "kelas",
+                    className: "",
+                    orderable: true,
+                    searchable: true
+                },{
                     data: "aksi",
                     className: "",
-                    orderable: false, // orderable: true, jika ingin kolom ini bisa diurutkan
-                    searchable: false // searchable: true, jika ingin kolom ini bisa dicari 
+                    orderable: false,
+                    searchable: false 
                 }]
             });
             $('#level_id').on('change', function(){
