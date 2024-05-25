@@ -141,8 +141,10 @@ class ItemController extends Controller
             'date_received' => 'required|date',
             'image' => 'nullable|mimes:png,jpg,jpeg|max:2048'
         ]);
-        $item = ItemModel::find($id);
+
         if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
+
+        $item = ItemModel::find($id);
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $fileName = date('Y-m-d') . '-' . $image->getClientOriginalName();
@@ -155,20 +157,17 @@ class ItemController extends Controller
             }
             // Update with the new image
             $item->image = $fileName;
-        } else {
-            // Retain the existing image
-            $item->image = $request->input('current_image');
         }
 
-        ItemModel::find($id)->update([
-            'item_name' => $request->item_name,
-            'brand' => $request->brand,
-            'item_qty' => $request->item_qty,
-            'date_received' => $request->date_received,
-        ]);
+        $item->item_name = $request->item_name;
+        $item->brand = $request->brand;
+        $item->item_qty = $request->item_qty;
+        $item->date_received = $request->date_received;
+        $item->save();
 
         return redirect('/barang')->with('success', 'Data barang berhasil diubah');
     }
+
 
     public function destroy(string $id)
     {
