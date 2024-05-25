@@ -5,14 +5,9 @@
     <head>
         <meta charset="UTF-8" />
         <title>Dashboard | User</title>
-        <link rel="stylesheet" href="{{ asset('css\style.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
         <!-- Font Awesome Cdn Link -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-        <style>
-            .main {
-                background: #07617D;
-            }
-        </style>
     </head>
 
     <body>
@@ -20,7 +15,7 @@
             <nav>
                 <ul>
                     <li><a href="dashboard" class="logo">
-                            <img src="{{ asset('images/IQUBE.png') }}" alt="">
+                            <img src="{{ asset('images/IQUBE_2.png') }}" alt="">
                             <span class="nav-title">i-QUBE</span>
                         </a></li>
                     <li><a href="item_user">
@@ -47,9 +42,10 @@
             </nav>
 
             <section class="main">
-                <div class="main-top">
-                    <h1>Dashboard</h1>
-                    <i class="fas fa-user-cog"></i>
+                <i class="fas fa-user-cog"></i>
+                <div class="image-container">
+                    <img src="images/auditorium.jpg" alt="landing_page_image" class="image">
+                    <p class="image-text">Sistem Informasi Peminjaman Sarana dan Prasarana JTI Polinema</p>
                 </div>
             </section>
         </div>

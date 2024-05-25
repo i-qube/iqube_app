@@ -23,7 +23,7 @@ class LoginController extends Controller
         $credentials = $request->only('nim', 'password');
 
         if (Auth::attempt($credentials)) {
-            return redirect('/dashboard');
+            return redirect('/dashboard_user');
         } else {
             return redirect('login')->with('failed', 'No Induk atau Password Salah');
         }

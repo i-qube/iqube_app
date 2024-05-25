@@ -14,7 +14,7 @@
 
 /* Global Styles */
 body {
-  background: #07617D;
+  background: #ffffff;
 }
 
 .container {
@@ -27,7 +27,7 @@ nav {
   bottom: 0;
   height: 100vh;
   left: 0;
-  background: #fff;
+  background: #07617D;
   width: 280px;
   overflow: hidden;
   box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
@@ -54,7 +54,7 @@ nav {
 
 a {
   position: relative;
-  color: rgb(85, 83, 83);
+  color: rgb(255, 255, 255);
   font-size: 14px;
   display: table;
   width: 280px;
@@ -83,7 +83,7 @@ nav .fas {
   }
 
 a:hover {
-  background: #eee;
+  background: #07556c;
 }
 
 .logout {
@@ -96,20 +96,30 @@ a:hover {
   position: relative;
   padding: 20px;
   width: 100%;
-}
-
-.main-top {
-  display: flex;
-  width: 100%;
   color: #fff;
 }
 
-.main-top i {
-  position: absolute;
-  right: 0;
-  margin: 10px 30px;
-  color: #fff(110, 109, 109);
-  cursor: pointer;
+.image-container {
+  position: relative; /* Set the image container as a positioning context */
+  display: inline-block; /* Display container as inline-block to fit content */
+  width: 100%;
+}
+
+.image {
+  max-width: 100%; /* Limit the maximum width of the image */
+  height: auto; /* Maintain the aspect ratio of the image */
+  display: block; /* Ensure image is displayed as a block element */
+}
+
+.image-text {
+  position: absolute; /* Position the text absolutely within the image container */
+  margin-bottom: 10px;
+  display: block;
+  top: 50%; /* Position the text vertically at the center */
+  left: 50%; /* Position the text horizontally at the center */
+  transform: translate(-50%, -50%); /* Move the text back by half its size to center it */
+  color: white; /* Text color */
+  font-size: 36px; /* Adjust the font size as needed */
 }
 
 .main-skills {
