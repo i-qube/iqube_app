@@ -8,11 +8,6 @@
         <link rel="stylesheet" href="{{ asset('css\style.css') }}" />
         <!-- Font Awesome Cdn Link -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-        <style>
-            .main {
-                background: #07617D;
-            }
-        </style>
     </head>
 
     <body>
@@ -20,7 +15,7 @@
             <nav>
                 <ul>
                     <li><a href="{{url('dashboard_user')}}" class="logo">
-                            <img src="{{ asset('images/IQUBE.png') }}" alt="">
+                            <img src="{{ asset('images/iQUBE_3.png') }}" alt="">
                             <span class="nav-title">i-QUBE</span>
                         </a></li>
                     <li><a href="{{url('item_user')}}">
@@ -46,12 +41,17 @@
                 </ul>
             </nav>
 
-            <section class="main">
-                <div class="main-top">
-                    <h1>Dashboard</h1>
-                    <i class="fas fa-user-cog"></i>
-                </div>
-            </section>
+            <div class="content">
+                <section class="image-container">
+                    <div class="image-wrapper">
+                        <img src="{{ asset('images/auditorium.jpg') }}" alt="">
+                        <div class="image-text">
+                            <h2>Sistem Informasi Peminjaman</h2>
+                            <h2>Sarana dan Prasarana</h2>
+                        </div>
+                    </div>
+                </section>
+            </div>
         </div>
     </body>
     </html>
