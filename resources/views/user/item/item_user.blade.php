@@ -1,6 +1,7 @@
 <span style="font-family: verdana, geneva, sans-serif;">
     <!DOCTYPE html>
     <html lang="en">
+
     <head>
         <meta charset="UTF-8" />
         <title>Data Barang</title>
@@ -12,7 +13,8 @@
             .main {
                 background: #07617D;
             }
-            .h1{
+
+            .h1 {
                 font-size: 30px;
                 font-weight: 600;
             }
@@ -23,15 +25,15 @@
         <div class="container">
             <nav>
                 <ul>
-                    <li><a href="dashboard" class="logo">
+                    <li><a href="{{ url('dashboard_user') }}" class="logo">
                             <img src="{{ asset('images/iQUBE.png') }}" alt="">
                             <span class="nav-title">i-QUBE</span>
                         </a></li>
-                    <li><a href="item_user">
+                    <li><a href="{{ url('item_user') }}">
                             <i class="fas fa-home"></i>
                             <span class="nav-item">Data Barang</span>
                         </a></li>
-                    <li><a href="room_user">
+                    <li><a href="{{ url('room_user') }}">
                             <i class="fas fa-user"></i>
                             <span class="nav-item">Data Ruangan</span>
                         </a></li>
@@ -49,7 +51,6 @@
                         </a></li>
                 </ul>
             </nav>
-
             <section class="main">
                 <div class="main-top">
                     <h1 class="h1">Data Barang</h1>
@@ -60,37 +61,36 @@
                     <tbody>
                         @foreach ($items as $item)
                             <tr class="md-8">
-                                <td colspan="4" class="ml-8">
-                                    <div class="p-4 w-full bg-white text-black rounded-full my-2">
-                                        <p>{{ $item->item_name }}</p>
-                                    </div>
-                                </td>
-                                @if ($item->item_qty != 0)
-                                <td colspan="1">
-                                    <button id="button" class="p-4 w-full bg-yellow-500 text-white rounded-full text-center hover:bg-blue-500 my-2" onclick="navigateToItemUser('{{ $item->item_id }}' , '{{ $item->item_name }}')">
-                                        <p>Pinjam</p>
-                                    </button>
-                                </td> 
-                                @else
-                                <td colspan="1">
-                                    <button id="button" class="p-4 w-full bg-gray-400 text-white rounded-full text-center cursor-not-allowed my-2 disabled">
-                                        <p>Pinjam</p>
-                                    </button>
-                                </td> 
-                                @endif
-                                <script>
-                                    function navigateToItemUser(itemId) {
-                                        if (itemId) {
-                                            window.location.href = "{{ url('item_user/item_borrow') }}?item_id=" + itemId;
-                                        }
-                                    }
-                                </script>
+                                {{-- <td colspan="4" class="ml-8"> --}}
+                                <button type="button" style="max-height: 500px" 
+                                    class=" px-9 py-9 focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                                    onclick="navigateToItemUser('{{ $item->item_id }}', '{{ $item->item_name }}', '{{ $item->brand }}')">
+                                    <img src="{{ asset('storage/barang/' . $item->image) }}"
+                                        alt="{{ $item->item_name }}" class="image-center"
+                                        style="height: 200px;">
+                                    </br>
+                                    <p class="text-center">{{ $item->item_name }}</p>
+                                    <hr class="text-center">{{ $item->brand }}</hr>
+                                </button>
+                                {{-- </td> --}}
+
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
             </section>
         </div>
+
+        <script>
+            function navigateToItemUser(itemId, itemName, brand) {
+                if (itemId && itemName && brand) {
+                    window.location.href = "{{ url('item_user/item_borrow') }}?item_id=" + itemId + "&item_name=" + itemName +
+                        "&brand=" + brand;
+                }
+            }
+        </script>
+
     </body>
+
     </html>
 </span>

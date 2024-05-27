@@ -25,15 +25,15 @@
     <div class="container">
         <nav>
             <ul>
-                <li><a href="dashboard" class="logo">
+                <li><a href="{{url('dashboard_user')}}" class="logo">
                         <img src="{{ asset('images/iQUBE.png') }}" alt="">
                         <span class="nav-title">i-QUBE</span>
                     </a></li>
-                <li><a href="item_user">
+                <li><a href="{{url('item_user')}}">
                         <i class="fas fa-home"></i>
                         <span class="nav-item">Data Barang</span>
                     </a></li>
-                <li><a href="room_user">
+                <li><a href="{{url('room_user')}}">
                         <i class="fas fa-user"></i>
                         <span class="nav-item">Data Ruangan</span>
                     </a></li>
@@ -62,17 +62,17 @@
                 <div class="mb-5 mt-4">
                     <form class="max-w-md">
                         <div class="flex justify-between mb-5 relative">
-                            <div class="w-3/4 pr-2 relative">
-                                <label for="name" class="text-white pl-5">Barang</label>
+                            <div class="w-2/4 pr-2 relative">
+                                <label for="name" class="text-white pl-5">Id Barang</label>
                                 <input type="text" id="selection" name="item_id" readonly
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pl-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-1/6 p-2.5 pl-6 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             </div>
-                            {{-- <div class="w-3/4 pr-2 relative">
+                            <div class="w-2/4 pr-2 relative">
                                 <label for="name" class="text-white pl-5">Nama Barang</label>
                                 <input type="text" id="selection_name" name="item_name" readonly
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pl-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            </div> --}}
-                            <div class="w-1/4 pl-2 relative">
+                            </div>
+                            <div class="w-3/4 pl-2 relative">
                                 <label for="name" class="text-white pl-5">Jumlah</label>
                                 <div class="relative max-w-sm">
                                     <div
@@ -84,7 +84,7 @@
                                         </svg>
                                     </div>
                                     <input type="number" id="quantity" name="jumlah"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:-blue-500 focus:border-blue-500 block w-full p-2.5 pl-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 text-center"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:-blue-500 focus:border-blue-500 block w-2/6 p-2.5 pl-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 text-center"
                                         placeholder="Qty">
                                 </div>
                             </div>
@@ -139,6 +139,8 @@
                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-8">Submit</button>
                 <script>
                     const urlParams = new URLSearchParams(window.location.search);
+                    const itemName = urlParams.get('item_name');
+                    document.getElementById("selection_name").value = itemName;
                     const itemId = urlParams.get('item_id');
                     document.getElementById("selection").value = itemId;
                 </script>
