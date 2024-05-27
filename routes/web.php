@@ -26,7 +26,7 @@ use Spatie\FlareClient\View;
 |
 */
 Route::get('/dashboard_user', function(){
-    return view('dashboard');
+    return view('user.dashboard');
 });
 Route::group(['prefix' => 'item_user'], function () {
     Route::get('/', [UserItemController::class, 'index']);
