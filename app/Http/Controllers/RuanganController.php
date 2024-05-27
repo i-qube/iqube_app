@@ -59,7 +59,7 @@ class RuanganController extends Controller
             'title' => 'Tambah ruangan baru'
         ];
 
-        
+
         $activeMenu = 'ruangan';
 
         return view('admin.ruangan.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'room' => $room, 'activeMenu' => $activeMenu]);
@@ -71,23 +71,23 @@ class RuanganController extends Controller
             'room_code' => 'required|string',
             'room_name' => 'required|string',
             'room_floor' => 'required|string',
-            'image' => 'required|mimes:png,jpg,jpeg|max:2048'
+            'image' => 'required|mimes:png,jpg,jpeg,heic|max:2048'
         ]);
 
         if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
         $image = $request->file('image');
-        $fileName = date('Y-m-d'). $image->getClientOriginalName();
-        $path = 'ruangan/'.$fileName;
+        $fileName = date('Y-m-d') . $image->getClientOriginalName();
+        $path = 'ruangan/' . $fileName;
 
         Storage::disk('public')->put($path, file_get_contents($image));
 
         RuanganModel::create([
-        'room_code' => $request->room_code,
-        'room_name' => $request->room_name,
-        'room_floor' => $request->room_floor,
-        'image' => $fileName
+            'room_code' => $request->room_code,
+            'room_name' => $request->room_name,
+            'room_floor' => $request->room_floor,
+            'image' => $fileName
         ]);
-        
+
         return redirect('/ruangan')->with('success', 'Data ruangan berhasil disimpan');
     }
 
@@ -130,25 +130,36 @@ class RuanganController extends Controller
     public function update(Request $request, string $id)
     {
         $validator = Validator::make($request->all(), [
-            'room_code' => 'required|string|unique:m_room,room_code,'.$id.',room_id',
+            'room_code' => 'required|string|unique:m_room,room_code,' . $id . ',room_id',
             'room_name' => 'required|string',
             'room_floor' => 'required|string',
-            'image' => 'required|mimes:png,jpg,jpeg|max:2048'
+            'image' => 'nullable|mimes:png,jpg,jpeg,heic|max:2048'
         ]);
 
         if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
-        $image = $request->file('image');
-        $fileName = date('Y-m-d'). $image->getClientOriginalName();
-        $path = 'ruangan/'.$fileName;
 
-        Storage::disk('public')->put($path, file_get_contents($image));
+        $room = RuanganModel::find($id);
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $fileName = date('Y-m-d') . '-' . $image->getClientOriginalName();
+            $path = 'ruangan/' . $fileName;
+            // Store the new image
+            Storage::disk('public')->put($path, file_get_contents($image));
+            // Delete the old image if a new one is uploaded
+            if ($room->image) {
+                Storage::disk('public')->delete('ruangan/' . $room->image);
+            }
+            // Update with the new image
+            $room->image = $fileName;
+        }else {
+            // Retain the existing image
+            $room->image = $request->input('current_image');
+        }
 
-        RuanganModel::find($id)->update([
-            'room_code' => $request->room_code,
-            'room_name' => $request->room_name,
-            'room_floor' => $request->room_floor,
-            'image' => $fileName
-            ]);
+        $room->room_code = $request->room_code;
+        $room->room_name = $request->room_name;
+        $room->room_floor = $request->room_floor;
+        $room->save();
 
         return redirect('/ruangan')->with('success', 'Data ruangan berhasil diubah');
     }
