@@ -4,14 +4,11 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreatePeminjamanRuanganTable extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+    public function up()
     {
-        Schema::create('t_peminjaman_ruangan', function (Blueprint $table) {
+        Schema::create('peminjaman_ruangan', function (Blueprint $table) {
             $table->id('peminjaman_ruangan_id');
             $table->string('nim');
             $table->unsignedBigInteger('room_id');
@@ -22,11 +19,8 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('t_peminjaman_ruangan');
+        Schema::dropIfExists('peminjaman_ruangan');
     }
-};
+}
