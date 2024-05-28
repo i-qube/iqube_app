@@ -6,6 +6,7 @@
         <meta charset="UTF-8" />
         <title>Dashboard | User</title>
         <link rel="stylesheet" href="{{ asset('css\style.css') }}" />
+        <script src="https://cdn.tailwindcss.com"></script>
         <!-- Font Awesome Cdn Link -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     </head>
@@ -41,16 +42,35 @@
                 </ul>
             </nav>
 
-            <div class="content">
-                <section class="image-container">
-                    <div class="image-wrapper">
-                        <img src="{{ asset('images/auditorium.jpg') }}" alt="">
-                        <div class="image-text">
-                            <h2>Sistem Informasi Peminjaman</h2>
-                            <h2>Sarana dan Prasarana</h2>
+            {{-- <section class="image-container">
+                <div class="flex justify-between mb-5 relative">
+                    <div class="mb-5 mt-5" style="display: flex; align-items: flex-start;">
+                        <div style="margin-left: 400px; margin-right: 50px; margin-top: 150px">
+                            <img src="{{ asset('images/landing_page.png') }}" alt="" style="width: 500px;">
+                        </div>
+                        <div style="margin-left: 50px; margin-top:200px">
+                            <h1 style="font-size: 36px; margin-bottom: 16px;">Sistem Informasi Peminjaman Sarana dan Prasarana</h1>
+                            <button id="button" class="p-3 px-6 bg-cyan-800 text-white rounded-full text-center hover:bg-cyan-900 my-2" onclick="scrollToSection('target-section')">
+                                <p>Mulai</p>
+                            </button>
                         </div>
                     </div>
-                </section>
+                </div>
+            </section>   
+            
+            <section id="target-section">
+                <h2>Target Section</h2>
+                <p>This is the section to navigate to.</p>
+            </section>
+
+            <script>
+                function scrollToSection(sectionId) {
+                    // Scroll to the target section
+                    document.getElementById(sectionId).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            </script> --}}
             </div>
         </div>
     </body>
