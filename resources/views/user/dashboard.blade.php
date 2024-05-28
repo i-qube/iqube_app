@@ -8,6 +8,14 @@
         <link rel="stylesheet" href="{{ asset('css\style.css') }}" />
         <!-- Font Awesome Cdn Link -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+<<<<<<< HEAD
+        <style>
+            .main {
+                background: #fdfdfd;
+            }
+        </style>
+=======
+>>>>>>> 3ffc1105b76604794349b7a971dafe3eaf6de188
     </head>
 
     <body>
@@ -15,14 +23,18 @@
             <nav>
                 <ul>
                     <li><a href="{{url('dashboard_user')}}" class="logo">
+<<<<<<< HEAD
+                            <img src="{{ asset('images/IQUBE.png') }}" alt="">
+=======
                             <img src="{{ asset('images/iQUBE_3.png') }}" alt="">
+>>>>>>> 3ffc1105b76604794349b7a971dafe3eaf6de188
                             <span class="nav-title">i-QUBE</span>
                         </a></li>
-                    <li><a href="{{ url('item_user') }}">
+                    <li><a href="{{url('item_user')}}">
                             <i class="fas fa-home"></i>
                             <span class="nav-item">Data Barang</span>
                         </a></li>
-                    <li><a href="{{ url('room_user') }}">
+                    <li><a href="{{url('room_user')}}">
                             <i class="fas fa-user"></i>
                             <span class="nav-item">Data Ruangan</span>
                         </a></li>
@@ -54,6 +66,5 @@
             </div>
         </div>
     </body>
-
     </html>
 </span>

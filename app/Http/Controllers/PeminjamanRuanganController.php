@@ -27,7 +27,7 @@ class PeminjamanRuanganController extends Controller
     public function list(Request $request)
     {
         $peminjamans = PeminjamanRuanganModel::select('peminjaman_ruangan_id', 'nim', 'room_id', 'date_borrow', 'date_return','status')
-        ->with('user');
+        ->where('status', 'Not Complete')->with('user');
 
         if ($request->nim) {
             $peminjamans->where('nim', $request->nim);
@@ -56,4 +56,3 @@ class PeminjamanRuanganController extends Controller
         return response()->json(['success' => false]);
     }
 }
-

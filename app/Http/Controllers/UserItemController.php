@@ -46,7 +46,7 @@ class UserItemController extends Controller
         $nim = session('user.nim');
         $now = Carbon::now();
         $date_borrow = $now->format('Y/m/d H:i:s');
-
+        //dd($request->all());
        dd($request->all()); PeminjamanBarangModel::create([
             'nim' => $nim,
             'item_id' => $request->item_id,

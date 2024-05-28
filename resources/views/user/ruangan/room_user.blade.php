@@ -4,7 +4,7 @@
 
     <head>
         <meta charset="UTF-8" />
-        <title>Barang</title>
+        <title>Ruangan JTI Polinema</title>
         <link rel="stylesheet" href="{{ asset('css\style.css') }}" />
         <!-- Font Awesome Cdn Link -->
         <script src="https://cdn.tailwindcss.com"></script>
@@ -26,7 +26,7 @@
         <div class="container">
             <nav>
                 <ul>
-                    <li><a href="{{ url('dashboard_user') }}" class="logo">
+                    <li><a href="dashboard_user" class="logo">
                             <img src="{{ asset('images/iQUBE_3.png') }}" alt="">
                             <span class="nav-title">i-QUBE</span>
                         </a></li>
@@ -52,41 +52,39 @@
                         </a></li>
                 </ul>
             </nav>
+
             <section class="main">
                 <div class="main-top">
-                    <h1 class="h1">Data Barang</h1>
+                    <h1 class="h1">Data Ruangan</h1>
                     <br>
                 </div>
                 <table
                     class="w-full table-fixed border-collapse border border-slate-400 mt-8 border-separate border-spacing-x-3">
                     <tbody>
-                        @foreach ($items as $item)
+                        @foreach ($rooms as $room)
                             <tr class="md-8">
-                                <button type="button" style="height: 230px; width: 230px;" 
-                                class=" px-9 py-9 focus:outline-none text-white bg-yellow-500 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-500 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-yellow-600 dark:hover:bg-yellow-650 dark:focus:ring-yellow-650"
-                                    onclick="navigateToItemUser('{{ $item->item_id }}', '{{ $item->item_name }}')">
-                                    <img src="{{ asset('storage/barang/' . $item->image) }}"
-                                        alt="{{ $item->item_name }}" class="image-center"
-                                        style="height: 120px; width: 200px;">
-                                    
-                                    <p class="text-center">{{ $item->item_name }}</p>
-                                    <hr class="text-center">{{ $item->brand }}</hr>
+                                {{-- <td colspan="4" class="ml-8"> --}}
+                                <button type="button"
+                                    class=" px-9 py-9 focus:outline-none text-white bg-yellow-500 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-500 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-yellow-600 dark:hover:bg-yellow-650 dark:focus:ring-yellow-650"
+                                    onclick="navigateToItemUser('{{ $room->room_name }}', '{{ $room->room_floor }}', '{{ $room->image }}')">
+                                    <p class="text-center">{{ $room->room_code }}</p>
+                                    <hr class="text-center">{{ $room->room_floor }}</hr>
                                 </button>
+                                {{-- </td> --}}
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
             </section>
         </div>
-
         <script>
-            function navigateToItemUser(itemId, itemName) {
-                if (itemId && itemName) {
-                    window.location.href = "{{ url('item_user/item_borrow') }}?item_id=" + itemId + "&item_name=" + itemName;
+            function navigateToItemUser(roomName, roomFloor, roomImage) {
+                if (roomName && roomFloor && roomImage) {
+                    window.location.href = "{{ url('room_user/room_borrow') }}?room_name=" + roomName + "&room_floor=" +
+                        roomFloor + "&image=" + roomImage;
                 }
             }
         </script>
-
     </body>
 
     </html>
