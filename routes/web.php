@@ -15,18 +15,8 @@ use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 use Spatie\FlareClient\View;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 Route::get('/dashboard_user', function(){
-    return view('dashboard');
+    return view('user.dashboard');
 });
 Route::group(['prefix' => 'item_user'], function () {
     Route::get('/', [UserItemController::class, 'index']);
@@ -36,6 +26,8 @@ Route::group(['prefix' => 'item_user'], function () {
 });
 Route::group(['prefix' => 'room_user'], function(){
     Route::get('/', [UserRoomController::class, 'index']);
+    Route::get('/load', [UserRoomController::class, 'load']);
+    Route::get('/room_borrow', [UserRoomController::class, 'form']);
 });
 
 Route::group(['prefix', 'authentication'], function () {
@@ -97,7 +89,8 @@ Route::group(['prefix' => 'pinjam'], function() {
     Route::get('/', [PeminjamanBarangController::class, 'index']);
     Route::post('/list/barang', [PeminjamanBarangController::class, 'list']);
     Route::post('/list/ruangan', [PeminjamanRuanganController::class, 'list']);
-    Route::post('/change-status', [PeminjamanRuanganController::class, 'changeStatus']);
+     // Route::post('pinjam/update-status', [PeminjamanRuanganController::class, 'updateStatus'])->name('pinjam.update-status');\
+    //Route::post('pinjam/change-status', [PeminjamanRuanganController::class, 'changeStatus'])->name('pinjam.changeStatus');
 });
 
 Route::group(['prefix' => 'riwayat'], function() {
@@ -105,4 +98,7 @@ Route::group(['prefix' => 'riwayat'], function() {
     Route::get('/listBarang', [RiwayatController::class, 'listBarang']);
     Route::get('/listRuangan', [RiwayatController::class, 'listRuangan']);
 });
+
+Route::post('pinjam/change-status', [PeminjamanRuanganController::class, 'changeStatus'])->name('pinjam.changeStatus');
+
 

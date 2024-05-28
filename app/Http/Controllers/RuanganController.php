@@ -71,7 +71,7 @@ class RuanganController extends Controller
             'room_code' => 'required|string',
             'room_name' => 'required|string',
             'room_floor' => 'required|string',
-            'image' => 'required|mimes:png,jpg,jpeg,heic|max:2048'
+            'image' => 'required|mimes:png,jpg,jpeg'
         ]);
 
         if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
@@ -151,9 +151,6 @@ class RuanganController extends Controller
             }
             // Update with the new image
             $room->image = $fileName;
-        }else {
-            // Retain the existing image
-            $room->image = $request->input('current_image');
         }
 
         $room->room_code = $request->room_code;

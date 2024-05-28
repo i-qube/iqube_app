@@ -13,13 +13,12 @@ return new class extends Migration
     {
         Schema::create('t_peminjaman_ruangan', function (Blueprint $table) {
             $table->id('peminjaman_ruangan_id');
-            $table->unsignedBigInteger('nim')->index();
-            $table->unsignedBigInteger('room_id')->index();
+            $table->string('nim');
+            $table->unsignedBigInteger('room_id');
             $table->dateTime('date_borrow');
-            $table->dateTime('date_return');
-            $table->string('status')->default('Not Complete'); 
-            $table->foreign('nim')->references('nim')->on('m_user');
-            $table->foreign('room_id')->references('room_id')->on('m_room');
+            $table->dateTime('date_return')->nullable();
+            $table->string('status')->default('Not Complete');
+            $table->timestamps();
         });
     }
 

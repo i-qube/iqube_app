@@ -70,7 +70,7 @@
                 <h3 class="card-title">{{ $page->title }}</h3>
             </div>
             <div class="card-body w-full">
-                <table id="table_peminjaman_ruangan" class="table-bordered table-striped table-hover  table table-full">
+                <table id="table_peminjaman_ruangan" class="table-bordered table-striped table-hover table table-full">
                     <thead>
                         <tr>
                             <th>NO</th>
@@ -89,7 +89,6 @@
 
     </div>
 @endsection
-
 
 @push('js')
     <script>
@@ -236,9 +235,9 @@
                     render: function(data, type, row) {
                         if (row.status === 'Not Complete') {
                             return '<button class="btn btn-danger btn-change-status" data-id="' +
-                                row.peminjaman_ruangan_id + '">Not Complete</button>';
+                                row.peminjaman_ruangan_id + '"> Not Complete </button>';
                         } else if (row.status === 'Complete') {
-                            return '<button class="btn btn-success" disabled>Complete</button>';
+                            return '<button class="btn btn-success" disabled> Complete </button>';
                         } else {
                             return '<button class="btn btn-primary" disabled>' + row.status +
                                 '</button>';
@@ -258,7 +257,7 @@
 
                 // Kirim permintaan AJAX untuk mengubah status
                 $.ajax({
-                    url: 'pinjam/change-status', // Ubah sesuai dengan URL endpoint Anda
+                    url: '{{ url('pinjam/change-status') }}', // Update to match your route
                     type: 'POST',
                     data: {
                         peminjaman_ruangan_id: peminjamanRuanganId,
@@ -267,9 +266,8 @@
                     success: function(response) {
                         // Tanggapan berhasil
                         if (response.success) {
-                            // Perbarui tombol menjadi 'Complete'
-                            button.removeClass('btn-danger').addClass('btn-success').prop(
-                                'disabled', true).text('Complete');
+                            // Hapus baris dari DataTable
+                            dataPeminjamanRuangan.row(button.closest('tr')).remove().draw();
                         } else {
                             // Tanggapan gagal
                             console.error('Failed to update status.');
@@ -281,9 +279,6 @@
                     }
                 });
             });
-
-
         });
     </script>
 @endpush
-

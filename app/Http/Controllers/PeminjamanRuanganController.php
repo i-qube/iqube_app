@@ -24,11 +24,10 @@ class PeminjamanRuanganController extends Controller
         return view('admin.pinjam.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'user' => $user, 'activeMenu' => $activeMenu]);
     }
 
-
     public function list(Request $request)
     {
         $peminjamans = PeminjamanRuanganModel::select('peminjaman_ruangan_id', 'nim', 'room_id', 'date_borrow', 'date_return','status')
-        ->with('user');
+        ->where('status', 'Not Complete')->with('user');
 
         if ($request->nim) {
             $peminjamans->where('nim', $request->nim);
@@ -39,20 +38,21 @@ class PeminjamanRuanganController extends Controller
             ->make(true);
     }
 
+    // routes/web.php
+
     public function changeStatus(Request $request)
     {
-        $request->validate([
-            'peminjaman_ruangan_id' => 'required|exists:peminjaman_ruangan,peminjaman_ruangan_id',
-        ]);
+        $id = $request->input('peminjaman_ruangan_id');
+        $peminjaman = PeminjamanRuanganModel::find($id);
 
-        try {
-            $peminjamanRuangan = PeminjamanRuanganModel::findOrFail($request->peminjaman_ruangan_id);
-            $peminjamanRuangan->status = 'complete';
-            $peminjamanRuangan->save();
+        if ($peminjaman) {
+            // Update status to 'Complete'
+            $peminjaman->status = 'Complete';
+            $peminjaman->save();
 
             return response()->json(['success' => true]);
-        } catch (\Exception $e) {
-            return response()->json(['success' => false, 'message' => 'Failed to update status.']);
         }
+
+        return response()->json(['success' => false]);
     }
 }
