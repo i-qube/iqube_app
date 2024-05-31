@@ -115,6 +115,25 @@
             .button-target:hover {
                 background-color: #0f3542;
             }
+
+            .upload-button {
+                display: inline-block;
+                padding: 8px 16px;
+                background-color: #164e63;
+                color: white;
+                border: none;
+                border-radius: 9999px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+            .upload-button:hover {
+                background-color: #0f3542;
+            }
+
+            .upload-button input[type="file"] {
+                display: none;
+            }
         </style>
     </head>
 
@@ -184,7 +203,7 @@
                     </div>
                     <div class="button-target">
                         <button id="button" onclick="scrollToSection('new-target-section')">
-                        Next
+                            Next
                         </button>
                     </div>
                 </section>
@@ -213,7 +232,11 @@
                         <div class="feature">
                             <img src="{{ asset('images/icons_4.png') }}" alt="Icons 4">
                             <h3>Unggah Surat</h3>
-                            <p>Unggah surat dengan tanda tangan lengkap</p>
+                            <p>Unggah surat dengan tanda tangan lengkap disini</p>
+                            <label class="upload-button">
+                                Upload PDF
+                                <input type="file" accept="application/pdf">
+                            </label>
                         </div>
                         <div class="feature">
                             <img src="{{ asset('images/icons_5.png') }}" alt="Icons 5">
