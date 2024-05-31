@@ -212,13 +212,13 @@
                         </div>
                         <div class="feature">
                             <img src="{{ asset('images/icons_4.png') }}" alt="Icons 4">
-                            <h3>Unduh Surat</h3>
-                            <p>Unduh surat peminjaman disini</p>
+                            <h3>Unggah Surat</h3>
+                            <p>Unggah surat dengan tanda tangan lengkap</p>
                         </div>
                         <div class="feature">
                             <img src="{{ asset('images/icons_5.png') }}" alt="Icons 5">
-                            <h3>Serahkan Surat</h3>
-                            <p>Serahkan surat kepada admin jurusan</p>
+                            <h3>Cek Surat</h3>
+                            <p>Cek surat secara berkala di admin jurusan</p>
                         </div>
                     </div>
                 </section>
