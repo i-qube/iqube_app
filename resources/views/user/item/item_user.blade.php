@@ -10,8 +10,15 @@
         <script src="https://cdn.tailwindcss.com"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
         <style>
+            .container {
+                padding-left: 300px;
+            }
+
             .main {
                 background: #ffffff;
+                position: relative;
+                padding-left: 20px;
+                width: 100%;
             }
 
             .h1 {
@@ -38,11 +45,11 @@
                             <i class="fas fa-user"></i>
                             <span class="nav-item">Data Ruangan</span>
                         </a></li>
-                    <li><a href="">
+                    <li><a href="{{ url('peminjaman') }}">
                             <i class="fas fa-wallet"></i>
                             <span class="nav-item">Data Peminjaman</span>
                         </a></li>
-                    <li><a href="">
+                    <li><a href="{{ url('riwayat') }}">
                             <i class="fas fa-chart-bar"></i>
                             <span class="nav-item">Riwayat</span>
                         </a></li>
