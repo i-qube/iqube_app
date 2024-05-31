@@ -281,8 +281,4 @@
             });
         });
     </script>
-<<<<<<< HEAD
 @endpush
-=======
-@endpush
->>>>>>> 3ffc1105b76604794349b7a971dafe3eaf6de188

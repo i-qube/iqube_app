@@ -12,7 +12,7 @@
 
         <style>
             .main {
-                background: #fdfdfd;
+                background: #07617D;
             }
         </style>
     </head>
@@ -33,7 +33,7 @@
                             <i class="fas fa-user"></i>
                             <span class="nav-item">Data Ruangan</span>
                         </a></li>
-                    <li><a href="">
+                    <li><a href="{{url('peminjaman')}}">
                             <i class="fas fa-wallet"></i>
                             <span class="nav-item">Data Peminjaman</span>
                         </a></li>
