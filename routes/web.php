@@ -8,6 +8,7 @@ use App\Http\Controllers\PeminjamanBarangController;
 use App\Http\Controllers\PeminjamanRuanganController;
 use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\RuanganController;
+use App\Http\Controllers\UserBorrowController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserItemController;
 use App\Http\Controllers\UserRoomController;
@@ -29,6 +30,7 @@ Route::group(['prefix' => 'room_user'], function(){
     Route::get('/load', [UserRoomController::class, 'load']);
     Route::get('/room_borrow', [UserRoomController::class, 'form']);
 });
+Route::get('/peminjaman', [UserBorrowController::class, 'index']);
 
 Route::group(['prefix', 'authentication'], function () {
     Route::get('/login', [LoginController::class, 'index'])->name('login');
