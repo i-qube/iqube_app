@@ -47,7 +47,7 @@ class UserItemController extends Controller
         $now = Carbon::now();
         $date_borrow = $now->format('Y/m/d H:i:s');
         //dd($request->all());
-       dd($request->all()); PeminjamanBarangModel::create([
+        PeminjamanBarangModel::create([
             'nim' => $nim,
             'item_id' => $request->item_id,
             'jumlah' => $request->jumlah,
