@@ -56,7 +56,7 @@
                             <th>NIM</th>
                             <th>Nama</th>
                             <th>Kelas</th>
-                            <th>Item ID</th>
+                            <th>Nama Item</th>
                             <th>Jumlah</th>
                             <th>Tanggal Pemakaian</th>
                         </tr>
@@ -77,7 +77,7 @@
                             <th>NIM</th>
                             <th>Nama</th>
                             <th>Kelas</th>
-                            <th>ID Ruangan</th>
+                            <th>Nama Ruangan</th>
                             <th>Tanggal Peminjaman</th>
                             <th>Tanggal Pengembalian</th>
                             <th>Status</th>
@@ -162,7 +162,7 @@
                     orderable: false,
                     searchable: false
                 },{
-                    data: "item_id",
+                    data: "item.item_name",
                     className: "",
                     orderable: true,
                     searchable: true
@@ -215,10 +215,10 @@
                     orderable: false,
                     searchable: false
                 }, {
-                    data: "room_id",
+                    data: "room.room_name",
                     className: "",
-                    orderable: true,
-                    searchable: true
+                    orderable: false,
+                    searchable: false
                 }, {
                     data: "date_borrow",
                     className: "",

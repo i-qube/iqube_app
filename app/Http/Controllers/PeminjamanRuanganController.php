@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PeminjamanRuanganModel;
 use App\Models\RiwayatModel;
+use App\Models\RuanganModel;
 use App\Models\UserModel;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -21,13 +22,14 @@ class PeminjamanRuanganController extends Controller
         ];
         $activeMenu = 'peminjaman';
         $user = UserModel::all();
-        return view('admin.pinjam.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'user' => $user, 'activeMenu' => $activeMenu]);
+        $room = RuanganModel::all();
+        return view('admin.pinjam.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'user' => $user, 'room' => $room, 'activeMenu' => $activeMenu]);
     }
 
     public function list(Request $request)
     {
         $peminjamans = PeminjamanRuanganModel::select('peminjaman_ruangan_id', 'nim', 'room_id', 'date_borrow', 'date_return','status')
-        ->where('status', 'Not Complete')->with('user');
+        ->where('status', 'Not Complete')->with('user', 'room');
 
         if ($request->nim) {
             $peminjamans->where('nim', $request->nim);
