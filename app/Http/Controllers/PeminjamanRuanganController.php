@@ -34,7 +34,6 @@ class PeminjamanRuanganController extends Controller
         if ($request->nim) {
             $peminjamans->where('nim', $request->nim);
         }
-
         return DataTables::of($peminjamans)
             ->addIndexColumn()
             ->make(true);

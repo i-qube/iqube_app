@@ -56,7 +56,7 @@
                             <th>NIM</th>
                             <th>Nama</th>
                             <th>Kelas</th>
-                            <th>Nama Item</th>
+                            <th>Nama Barang</th>
                             <th>Jumlah</th>
                             <th>Tanggal Pemakaian</th>
                         </tr>
