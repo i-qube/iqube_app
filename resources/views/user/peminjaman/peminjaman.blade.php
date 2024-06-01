@@ -24,7 +24,8 @@
             .h1 {
                 font-size: 30px;
                 font-weight: 600;
-                color: #07617D;
+                color: #164e63;
+;
             }
         </style>
     </head>
@@ -66,7 +67,6 @@
                     <br>
                 </div>
                 </br>
-
 
                 <div class="border-b border-gray-200 dark:border-gray-700">
                     <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
