@@ -20,7 +20,7 @@ class RuanganController extends Controller
             'title' => 'Daftar ruangan yang terdaftar dalam sistem'
         ];
         $activeMenu = 'ruangan';
-        $room = RuanganModel::all();
+        $room = RuanganModel::distinct()->get('room_floor');;
         return view('admin.ruangan.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'room' => $room, 'activeMenu' => $activeMenu]);
     }
 
@@ -28,8 +28,8 @@ class RuanganController extends Controller
     {
         $rooms = RuanganModel::select('room_id', 'room_code', 'room_name', 'room_floor', 'image');
 
-        if ($request->room_id) {
-            $rooms->where('room_id', $request->room_id);
+        if ($request->room_floor) {
+            $rooms->where('room_floor', $request->room_floor);
         }
 
         return DataTables::of($rooms)

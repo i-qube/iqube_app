@@ -22,24 +22,24 @@ class UserController extends Controller
 
         $activeMenu = 'user';
 
-        $level = LevelModel::all();
-        $user = UserModel::all();
-        //$kelas = UserModel::select('kelas')->distinct()->get();
+        //$user = UserModel::all();
+        $kelas = UserModel::distinct()->get('kelas');
 
-        return view('admin.user.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'level' => $level, 'user' => $user, 'activeMenu' => $activeMenu]);
+
+        return view('admin.user.index', ['breadcrumb' => $breadcrumb, 'page' => $page,  'kelas' => $kelas, 'activeMenu' => $activeMenu]);
     }
 
     public function list(Request $request)
     {
-        $users = UserModel::select('nim', 'nama', 'jurusan', 'angkatan', 'kelas' ,'level_id', 'password')
-        ->with('level');
+        $users = UserModel::select('nim', 'nama', 'jurusan', 'angkatan', 'kelas', 'level_id', 'password')
+            ->with('level');
 
-        if($request->level_id){
-            $users->where('level_id', $request->level_id);
+        if ($request->kelas) {
+            $users->where('kelas', $request->kelas);
         }
         return DataTables::of($users)
             ->addIndexColumn()
-            ->addColumn('aksi', function ($user) { 
+            ->addColumn('aksi', function ($user) {
                 $btn = '<a href="' . url('/user/' . $user->nim) . '" class="btn btn-info btn-sm">Detail</a> ';
                 $btn .= '<a href="' . url('/user/' . $user->nim . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
                 $btn .= '<form class="d-inline-block" method="POST" action="' . url('/user/' . $user->nim) . '">'
@@ -51,7 +51,8 @@ class UserController extends Controller
             ->make(true);
     }
 
-    public function  create(){
+    public function  create()
+    {
         $breadcrumb = (object)[
             'title' => 'Tambah User',
             'list' => ['Home', 'User', 'Tambah']
@@ -60,13 +61,14 @@ class UserController extends Controller
         $page = (object)[
             'title' => 'Tambah user baru'
         ];
-        $level = LevelModel::all(); 
+        $level = LevelModel::all();
         $activeMenu = 'user';
 
         return view('admin.user.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'level' => $level, 'activeMenu' => $activeMenu]);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $request->validate([
             'nim' => 'required|string|min:3|unique:users,nim',
             'nama' => 'required|string',
@@ -89,7 +91,8 @@ class UserController extends Controller
         return redirect('/user')->with('success', 'Data user berhasil disimpan');
     }
 
-    public function show(string $id){
+    public function show(string $id)
+    {
         $user = UserModel::with('level')->find($id);
 
         $breadcrumb = (object)[
@@ -101,12 +104,13 @@ class UserController extends Controller
             'title' => 'Detail user'
         ];
 
-        $activeMenu = 'user'; 
-        
+        $activeMenu = 'user';
+
         return view('admin.user.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'user' => $user, 'activeMenu' => $activeMenu]);
     }
 
-    public function edit(string $id){
+    public function edit(string $id)
+    {
         $user = UserModel::find($id);
         $level = LevelModel::all();
 
@@ -123,9 +127,10 @@ class UserController extends Controller
         return view('admin.user.edit', ['breadcrumb' => $breadcrumb, 'page' => $page, 'user' => $user, 'level' => $level, 'activeMenu' => $activeMenu]);
     }
 
-    public function update(Request $request, string $id){
+    public function update(Request $request, string $id)
+    {
         $request->validate([
-            'nim' => 'required|string|min:3|unique:users,nim,'.$id.',nim',
+            'nim' => 'required|string|min:3|unique:users,nim,' . $id . ',nim',
             'nama' => 'required|string',
             'jurusan' => 'required|string',
             'angkatan' => 'required|string',
@@ -146,17 +151,18 @@ class UserController extends Controller
         return redirect('/user')->with('success', 'Data user berhasil diubah');
     }
 
-    public function destroy(string $id){
+    public function destroy(string $id)
+    {
         $check = UserModel::find($id);
-        if(!$check){
+        if (!$check) {
             return redirect('/user')->with('error', 'Data user tidak ditemukan');
         }
 
-        try{
+        try {
             UserModel::destroy($id);
 
             return redirect('/user')->with('success', 'Data user berhasil dihapus');
-        }catch(\Illuminate\Database\QueryException $e){
+        } catch (\Illuminate\Database\QueryException $e) {
             return redirect('/user')->with('error', 'Data user gagal dihapus karena masih terdapat tabel lain yang terkait dengan data ini');
         }
     }

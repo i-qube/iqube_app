@@ -20,10 +20,10 @@
                     <div class="form-group row">
                         <label class="col-1 control-label col-form-label">Filter: </label>
                         <div class="col-3">
-                            <select class="form-control" name="room_id" id="room_id" required>
+                            <select class="form-control" name="room_floor" id="room_floor" required>
                                 <option value="">-- Semua --</option>
                                 @foreach ($room as $i)
-                                    <option value="{{ $i->room_id }}">{{ $i->room_floor }}</option>
+                                    <option value="{{ $i->room_floor }}">{{ $i->room_floor }}</option>
                                 @endforeach
                             </select>
                             <small class="form-text text-muted">Code Ruangan</small>
@@ -59,7 +59,7 @@
                     "dataType": "json",
                     "type": "POST",
                     "data": function(d) {
-                        d.room_id = $('#room_id').val();
+                        d.room_floor = $('#room_floor').val();
                     }
                 },
                 columns: [{
@@ -98,7 +98,7 @@
                     searchable: false
                 }]
             });
-            $('#room_id').on('change', function() {
+            $('#room_floor').on('change', function() {
                 dataRoom.ajax.reload();
             });
         });

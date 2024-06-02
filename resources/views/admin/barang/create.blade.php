@@ -39,7 +39,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-3 control-label col-form-label">Foto Ruangan</label>
+                    <label class="col-3 control-label col-form-label">Foto Barang</label>
                     <div class="col-9">
                         <input type="file" class="form-control-file mt-2" id="image" name="image">
                         @error('image')

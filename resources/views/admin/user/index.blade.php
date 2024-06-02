@@ -16,10 +16,10 @@
                     <div class="form-group row">
                         <label class="col-1 control-label col-form-label">Filter:</label>
                         <div class="col-3">
-                            <select class="form-control" id="level_id" name="level_id" required>
+                            <select class="form-control" id="kelas" name="kelas" required>
                                 <option value="">- Semua -</option>
-                                @foreach ($level as $i)
-                                    <option value="{{$i->level_id}}">{{$i->level_name}}</option>
+                                @foreach ($kelas as $i)
+                                    <option value="{{$i->kelas}}">{{$i->kelas}}</option>
                                 @endforeach
                             </select>
                             <small class="form-text text-muted">Kelas Pengguna</small>
@@ -54,7 +54,7 @@
                     "dataType": "json",
                     "type": "POST",
                     "data": function(d){
-                        d.level_id = $('#level_id').val();
+                        d.kelas = $('#kelas').val();
                     }
                 },
                 columns: [{
@@ -94,7 +94,7 @@
                     searchable: false 
                 }]
             });
-            $('#level_id').on('change', function(){
+            $('#kelas').on('change', function(){
                 dataUser.ajax.reload();
             });
         });
