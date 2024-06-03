@@ -1,15 +1,15 @@
 @extends('layouts.template')
 
 @section('content')
-    <div class="card" style="max-width: 500px; margin: auto;">
-        <div class="card-header">
-            <h3 class="card-title">Halo, apakabar !!!</h3>
-            <div class="card-tools"></div>
-        </div>
+    <div class="card" style="max-width: 500px; margin: auto; float: left;">
         <div class="card-body">
-            <h4 class="card-subtitle mb-2 text-muted">Jumlah Barang</h4>
-            Selamat datang semua. Ini adalah halaman pertama.
-            <canvas id="barangChart" width="300" height="300"></canvas>
+            <h4 class="card-subtitle mb-2 text-muted">Jumlah Peminjaman Ruangan</h4>
+            <form id="filterForm">
+                <label for="week">Pilih Minggu :</label>
+                <input type="week" id="week" name="week" value="{{ $selectedWeek }}">
+                <button type="submit">Filter</button>
+            </form>
+            <canvas id="pinjamRuangChart" width="300" height="300"></canvas>
         </div>
     </div>
 
@@ -19,14 +19,14 @@
     <!-- Script untuk membuat grafik -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            var ctx = document.getElementById('barangChart').getContext('2d');
-            var barangChart = new Chart(ctx, {
+            var ctx = document.getElementById('pinjamRuangChart').getContext('2d');
+            var pinjamRuangChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['Barang'],
+                    labels: {!! json_encode($labels) !!}, // Use labels from controller
                     datasets: [{
-                        label: 'Jumlah Barang',
-                        data: [{{ $jumlahBarang }}],
+                        label: 'Jumlah',
+                        data: {!! json_encode($jumlahPinjamRuang) !!}, // Use data from controller
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)'
                         ],
@@ -39,16 +39,30 @@
                 options: {
                     plugins: {
                         title: {
-                            display: true,
-                            text: 'Jumlah Barang'
+                            display: true,  
                         }
                     },
                     scales: {
                         y: {
-                            beginAtZero: true
+                            beginAtZero: true,
+                            max: 10,
+                            ticks: {
+                                stepSize: 1,
+                                callback: function(value) {
+                                    if (Number.isInteger(value)) {
+                                        return value;
+                                    }
+                                }
+                            }
                         }
                     }
                 }
+            });
+
+            document.getElementById('filterForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                var week = document.getElementById('week').value;
+                window.location.href = '?week=' + week;
             });
         });
     </script>
