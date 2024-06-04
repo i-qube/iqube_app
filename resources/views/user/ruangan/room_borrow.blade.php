@@ -5,7 +5,7 @@
     <head>
         <meta charset="UTF-8" />
         <title>Form Pinjam Ruangan</title>
-        <link rel="stylesheet" href="{{ asset('css\style.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
         <!-- Font Awesome Cdn Link -->
         <script src="https://cdn.tailwindcss.com"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js"></script>
@@ -32,6 +32,21 @@
                 font-size: 20px;
                 font-weight: 480;
                 color: #07617D;
+            }
+
+            .flex-row {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .image-container {
+                flex: 1;
+                padding-right: 20px;
+            }
+
+            .info-container {
+                flex: 1;
+                padding-left: 20px;
             }
         </style>
     </head>
@@ -72,151 +87,119 @@
                     <h1 class="h1">Form Peminjaman Ruangan</h1></br>
                 </div>
                 <div class="main-top">
-                    <h1 class="h3" id="roomNameHeading">
-                        </h3>
-                        <i class="fas fa-user-cog"></i>
+                    <h1 class="h3" id="roomNameHeading"></h1>
+                    <i class="fas fa-user-cog"></i>
                 </div>
                 <div class="main-top">
                     <h3 class="h3" id="roomFloorHeading"></h3>
                 </div>
-                <form method="POST" action="{{ url('room_user') }}">
-                    @csrf
-                    <div class="flex justify-between mb-5 relative">
-                        <div class="mb-5 mt-4">
-                            <label for="image" class="text-black pl-5">Foto Ruangan</label>
-                            <div>
-                                <img id="roomImage" alt="Gambar tidak tersedia" style="width: 700px;">
-                            </div>
-                        </div>
 
-                        <div class="mb-5 mt-4">
-                            <form class="max-w-md">
-                                <div class="flex justify-between mb-5 relative">
-                                    <div class="w-3/4 pr-2 relative">
-                                        <label for="name" class="text-black pl-5">Nama</label>
-                                        <input type="text" id="name" name="nama"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pl-5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            value="{{ session('user.nama') }}" readonly>
-                                    </div>
-                            </form>
+                <div class="flex-row">
+                    <div class="image-container">
+                        <label for="image" class="text-black pl-5">Foto Ruangan</label>
+                        <div>
+                            <img id="roomImage" alt="Gambar tidak tersedia" style="width: 700px;">
                         </div>
-                        <div class="mb-5 mt-4">
-                            <form class="max-w-md">
-                                <div class="flex justify-between mb-5 relative">
-                                    <div class="w-3/4 pr-2 relative">
-                                        <label for="id" class="text-black pl-5">NIM</label>
-                                        <input type="text" id="nim" name="nim"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pl-5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            value="{{ session('user.nim') }}" readonly>
-                                    </div>
-                            </form>
-                        </div>
-                        <div class="mb-5 mt-4">
-                            <form class="max-w-md">
-                                <div class="flex justify-between mb-5 relative">
-                                    <div class="w-3/4 pr-2">
-                                        <label for="id" class="text-black pl-5">Kelas</label>
-                                        <input type="text" id="kelas" name="kelas"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pl-5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            value="{{ session('user.kelas') }}" readonly>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="date-picker-container">
-                            <label for="date" class="text-black pl-5">Pilih tanggal</label>
-                            <div date-rangepicker class="flex items-center">
-                                <div class="relative">
-                                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                    </div>
+
+                    <div class="info-container">
+                        <form method="POST" action="{{ url('room_user') }}">
+                            @csrf
+                            <div class="mb-5 mt-4">
+                                <label for="name" class="text-black pl-5">Nama</label>
+                                <input type="text" id="name" name="nama"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pl-5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    value="{{ session('user.nama') }}" readonly>
+                            </div>
+                            <div class="mb-5 mt-4">
+                                <label for="id" class="text-black pl-5">NIM</label>
+                                <input type="text" id="nim" name="nim"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pl-5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    value="{{ session('user.nim') }}" readonly>
+                            </div>
+                            <div class="mb-5 mt-4">
+                                <label for="id" class="text-black pl-5">Kelas</label>
+                                <input type="text" id="kelas" name="kelas"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pl-5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    value="{{ session('user.kelas') }}" readonly>
+                            </div>
+                            <div class="date-picker-container">
+                                <label for="date" class="text-black pl-5">Pilih tanggal</label>
+                                <div class="relative max-w-sm mb-5">
+                                    <div
+                                        class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
                                         <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
                                             xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                             <path
                                                 d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
                                         </svg>
                                     </div>
-                                    <input name="start" type="text"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="Tanggal peminjaman">
-                                </div>
-                                <span class="mx-4 text-gray-500">to</span>
-                                <div class="relative">
-                                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                            viewBox="0 0 20 20">
-                                            <path
-                                                d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                        </svg>
-                                    </div>
-                                    <input name="end" type="text"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="Tanggal pengembalian">
+                                    <input datepicker type="text" id="date_borrow" name="date_borrow"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pl-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="Pilih tanggal pinjam">
                                 </div>
                             </div>
-                        </div>
-                        <div class="time-picker-container">
-                            <label for="date" class="text-black pl-5">Pilih Jam</label>
-
-                            <form class="max-w-[16rem] mx-auto grid grid-cols-2 gap-4">
-                                <div>
-                                    <label for="start-time"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Start
-                                        time:</label>
-                                    <div class="relative">
-                                        <div
-                                            class="absolute inset-y-0 end-0 top-0 flex items-center pe-3.5 pointer-events-none">
-                                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                viewBox="0 0 24 24">
-                                                <path fill-rule="evenodd"
-                                                    d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z"
-                                                    clip-rule="evenodd" />
-                                            </svg>
+                            <div class="time-picker-container">
+                                <label for="date" class="text-black pl-5">Pilih Jam</label>
+                                <div class="max-w-[20rem] pl-2.5 grid grid-cols-2 gap-5">
+                                    <div>
+                                        <label for="start-time"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Start
+                                            time:</label>
+                                        <div class="relative">
+                                            <div
+                                                class="absolute inset-y-0 end-0 top-0 flex items-center pe-3.5 pointer-events-none">
+                                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path fill-rule="evenodd"
+                                                        d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z"
+                                                        clip-rule="evenodd" />
+                                                </svg>
+                                            </div>
+                                            <input type="time" id="start-time"
+                                                class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                min="09:00" max="18:00" value="00:00" required />
                                         </div>
-                                        <input type="time" id="start-time"
-                                            class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            min="09:00" max="18:00" value="00:00" required />
+                                    </div>
+                                    <div>
+                                        <label for="end-time"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">End
+                                            time:</label>
+                                        <div class="relative">
+                                            <div
+                                                class="absolute inset-y-0 end-0 top-0 flex items-center pe-3.5 pointer-events-none">
+                                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                    fill="currentColor" viewBox="0 0 24 24">
+                                                    <path fill-rule="evenodd"
+                                                        d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z"
+                                                        clip-rule="evenodd" />
+                                                </svg>
+                                            </div>
+                                            <input type="time" id="end-time"
+                                                class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                min="09:00" max="18:00" value="00:00" required />
+                                        </div>
                                     </div>
                                 </div>
-                                <div>
-                                    <label for="end-time"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">End
-                                        time:</label>
-                                    <div class="relative">
-                                        <div
-                                            class="absolute inset-y-0 end-0 top-0 flex items-center pe-3.5 pointer-events-none">
-                                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                viewBox="0 0 24 24">
-                                                <path fill-rule="evenodd"
-                                                    d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z"
-                                                    clip-rule="evenodd" />
-                                            </svg>
-                                        </div>
-                                        <input type="time" id="end-time"
-                                            class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            min="09:00" max="18:00" value="00:00" required />
-                                    </div>
-                                </div>
-                            </form>
-
-                        </div>
+                            </div>
+                            <button type="submit"
+                                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-8">Submit</button>
+                        </form>
                     </div>
-
-                    <button type="submit"
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-8">Submit</button>
-                    <script>
-                        const urlParams = new URLSearchParams(window.location.search);
-                        const roomName = urlParams.get('room_name');
-                        document.getElementById("roomNameHeading").innerText += roomName;
-                        const roomFloor = urlParams.get('room_floor');
-                        document.getElementById("roomFloorHeading").innerText += roomFloor;
-                        const roomImage = urlParams.get('image');
-                        if (roomImage) {
-                            document.getElementById("roomImage").src = "{{ asset('storage/ruangan') }}/" + roomImage;
-                        }
-                    </script>
-                </form>
+                </div>
+                <script>
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const roomName = urlParams.get('room_name');
+                    document.getElementById("roomNameHeading").innerText += roomName;
+                    const roomFloor = urlParams.get('room_floor');
+                    document.getElementById("roomFloorHeading").innerText += roomFloor;
+                    const roomImage = urlParams.get('image');
+                    if (roomImage) {
+                        document.getElementById("roomImage").src = "{{ asset('storage/ruangan') }}/" + roomImage;
+                    }
+                </script>
             </section>
         </div>
     </body>
