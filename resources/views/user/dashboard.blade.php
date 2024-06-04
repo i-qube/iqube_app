@@ -76,7 +76,7 @@
 
             .new-section .feature {
                 background-color: #ffffff;
-                padding: 20px;
+                padding: 10px;
                 border-radius: 10px;
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
                 max-width: 300px;
@@ -116,7 +116,7 @@
                 background-color: #0f3542;
             }
 
-            .upload-button {
+            .download-button {
                 display: inline-block;
                 padding: 8px 16px;
                 background-color: #164e63;
@@ -127,13 +127,10 @@
                 transition: background-color 0.3s;
             }
 
-            .upload-button:hover {
+            .download-button:hover {
                 background-color: #0f3542;
             }
-
-            .upload-button input[type="file"] {
-                display: none;
-            }
+            
         </style>
     </head>
 
@@ -231,12 +228,9 @@
                         </div>
                         <div class="feature">
                             <img src="{{ asset('images/icons_4.png') }}" alt="Icons 4">
-                            <h3>Unggah Surat</h3>
-                            <p>Unggah surat dengan tanda tangan lengkap disini</p>
-                            <label class="upload-button">
-                                Upload PDF
-                                <input type="file" accept="application/pdf">
-                            </label>
+                            <h3>Unduh Surat</h3>
+                            <p>Unduh template surat disini</p>
+                            <a href=https://drive.google.com/file/d/14WGJuiGNQuiRbdXTQDYokao1sujdfZu9/view?usp=sharing class="download-button">Download</a>
                         </div>
                         <div class="feature">
                             <img src="{{ asset('images/icons_5.png') }}" alt="Icons 5">
