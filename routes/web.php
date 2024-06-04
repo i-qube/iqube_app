@@ -16,7 +16,7 @@ use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 use Spatie\FlareClient\View;
 
-Route::get('/dashboard_user', function(){
+Route::get('/dashboard_user', function () {
     return view('user.dashboard');
 });
 Route::group(['prefix' => 'item_user'], function () {
@@ -25,24 +25,25 @@ Route::group(['prefix' => 'item_user'], function () {
     Route::get('/item_borrow', [UserItemController::class, 'form']);
     Route::post('/', [UserItemController::class, 'store']);
 });
-Route::group(['prefix' => 'room_user'], function(){
+Route::group(['prefix' => 'room_user'], function () {
     Route::get('/', [UserRoomController::class, 'index']);
     Route::get('/load', [UserRoomController::class, 'load']);
     Route::get('/room_borrow', [UserRoomController::class, 'form']);
 });
 Route::get('/peminjaman', [UserBorrowController::class, 'index']);
 
-Route::group(['prefix', 'authentication'], function () {
-    Route::get('/login', [LoginController::class, 'index'])->name('login');
-    Route::post('/login', [LoginController::class, 'login_process'])->name('login');
-    Route::get('/signup', function () {
-        return view('auth.signup');
-    });
-    Route::get('/keluar', [LogoutController::class, 'index']);
-
+Route::group(['prefix' => 'login'], function () {
+    Route::get('/', [LoginController::class, 'index'])->name('login');
+    Route::post('/', [LoginController::class, 'login_process'])->name('login');
 });
+Route::get('/keluar', [LogoutController::class, 'index']);
+
+Route::get('/dashboard_user', function () {
+    return view('user.dashboard');
+})->middleware('auth');
+
 Route::get('/dashboard', [WelcomeController::class, 'index']);
-Route::group(['prefix' => 'level'], function() {
+Route::group(['prefix' => 'level'], function () {
     Route::get('/', [LevelController::class, 'index']);
     Route::post('/list', [LevelController::class, 'list']);
     Route::get('/create', [LevelController::class, 'create']);
@@ -52,7 +53,7 @@ Route::group(['prefix' => 'level'], function() {
     Route::put('/{id}', [LevelController::class, 'update']);
     Route::delete('/{id}', [LevelController::class, 'destroy']);
 });
-Route::group(['prefix' => 'user'], function() {
+Route::group(['prefix' => 'user'], function () {
     Route::get('/', [UserController::class, 'index']);
     Route::post('/list', [UserController::class, 'list']);
     Route::get('/create', [UserController::class, 'create']);
@@ -62,7 +63,7 @@ Route::group(['prefix' => 'user'], function() {
     Route::put('/{id}', [UserController::class, 'update']);
     Route::delete('/{id}', [UserController::class, 'destroy']);
 });
-Route::group(['prefix' => 'barang'], function() {
+Route::group(['prefix' => 'barang'], function () {
     Route::get('/', [ItemController::class, 'index']);
     Route::post('/list', [ItemController::class, 'list']);
     Route::get('/create', [ItemController::class, 'create']);
@@ -72,7 +73,7 @@ Route::group(['prefix' => 'barang'], function() {
     Route::put('/{id}', [ItemController::class, 'update']);
     Route::delete('/{id}', [ItemController::class, 'destroy']);
 });
-Route::group(['prefix' => 'ruangan'], function() {
+Route::group(['prefix' => 'ruangan'], function () {
     Route::get('/', [RuanganController::class, 'index']);
     Route::post('/list', [RuanganController::class, 'list']);
     Route::get('/create', [RuanganController::class, 'create']);
@@ -87,20 +88,17 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('/item_user', [ItemController::class, 'item']);
 });
 
-Route::group(['prefix' => 'pinjam'], function() {
+Route::group(['prefix' => 'pinjam'], function () {
     Route::get('/', [PeminjamanBarangController::class, 'index']);
     Route::post('/list/barang', [PeminjamanBarangController::class, 'list']);
     Route::post('/list/ruangan', [PeminjamanRuanganController::class, 'list']);
     Route::post('/change-status', [PeminjamanRuanganController::class, 'changeStatus']);
 });
 
-Route::group(['prefix' => 'riwayat'], function() {
+Route::group(['prefix' => 'riwayat'], function () {
     Route::get('/', [RiwayatController::class, 'index']);
     Route::get('/listBarang', [RiwayatController::class, 'listBarang']);
     Route::get('/listRuangan', [RiwayatController::class, 'listRuangan']);
 });
-
-Route::post('pinjam/change-status', [PeminjamanRuanganController::class, 'changeStatus'])->name('pinjam.changeStatus');
-
 
 Route::post('pinjam/change-status', [PeminjamanRuanganController::class, 'changeStatus'])->name('pinjam.changeStatus');

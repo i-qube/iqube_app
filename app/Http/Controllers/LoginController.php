@@ -15,22 +15,23 @@ class LoginController extends Controller
 
     public function login_process(Request $request)
     {
+        //dd($request->all());
         $request->validate([
             'nim' => 'required',
             'password' => 'required',
         ]);
 
-        $credentials = $request->only('nim', 'password');
+        $credentialsUser = $request->only('nim', 'password');
 
-        if (Auth::attempt($credentials)) {
-            $user = Auth::user();
+        if (Auth::guard('web')->attempt($credentialsUser)) {
+            $user = Auth::guard('web')->user();
             session()->put('user.nim', $user->nim);
             session()->put('user.nama', $user->nama);
             session()->put('user.kelas', $user->kelas);
-            //dd(session()->all());
-            return redirect('/dashboard_user');
+            //dd($user);
+            return redirect('/dashboard_user')->with('success', 'Berhasil Masuk!');
         } else {
-            return redirect('login')->with('failed', 'No Induk atau Password Salah');
+            return redirect('/login')->with('failed', 'No Induk atau Password Salah');
         }
     }
 }
