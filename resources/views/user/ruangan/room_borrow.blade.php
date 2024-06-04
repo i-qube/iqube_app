@@ -59,21 +59,21 @@
                             <img src="{{ asset('images/iQUBE_3.png') }}" alt="">
                             <span class="nav-title">i-QUBE</span>
                         </a></li>
-                    <li><a href="{{ url('item_user') }}">
+                    <li><a href="{{ url('dashboard_user') }}">
                             <i class="fas fa-home"></i>
+                            <span class="nav-item">Homepage</span>
+                    </a></li>
+                    <li><a href="{{ url('item_user') }}">
+                            <i class="fas fa-inbox"></i>
                             <span class="nav-item">Data Barang</span>
                         </a></li>
                     <li><a href="{{ url('room_user') }}">
-                            <i class="fas fa-user"></i>
+                            <i class="fas fa-cube"></i>
                             <span class="nav-item">Data Ruangan</span>
                         </a></li>
                     <li><a href="">
-                            <i class="fas fa-wallet"></i>
+                            <i class="fas fa-server"></i>
                             <span class="nav-item">Data Peminjaman</span>
-                        </a></li>
-                    <li><a href="">
-                            <i class="fas fa-chart-bar"></i>
-                            <span class="nav-item">Riwayat</span>
                         </a></li>
                     <li><a href="" class="logout">
                             <i class="fas fa-sign-out-alt"></i>
@@ -159,7 +159,7 @@
                                             </div>
                                             <input type="time" id="start-time"
                                                 class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                min="09:00" max="18:00" value="00:00" required />
+                                                required />
                                         </div>
                                     </div>
                                     <div>
@@ -179,7 +179,7 @@
                                             </div>
                                             <input type="time" id="end-time"
                                                 class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                min="09:00" max="18:00" value="00:00" required />
+                                                required />
                                         </div>
                                     </div>
                                 </div>
@@ -190,15 +190,65 @@
                     </div>
                 </div>
                 <script>
-                    const urlParams = new URLSearchParams(window.location.search);
-                    const roomName = urlParams.get('room_name');
-                    document.getElementById("roomNameHeading").innerText += roomName;
-                    const roomFloor = urlParams.get('room_floor');
-                    document.getElementById("roomFloorHeading").innerText += roomFloor;
-                    const roomImage = urlParams.get('image');
-                    if (roomImage) {
-                        document.getElementById("roomImage").src = "{{ asset('storage/ruangan') }}/" + roomImage;
+                    function updateRoomDetails() {
+                        const urlParams = new URLSearchParams(window.location.search);
+                        const roomName = urlParams.get('room_name');
+                        document.getElementById("roomNameHeading").innerText += roomName;
+                        const roomFloor = urlParams.get('room_floor');
+                        document.getElementById("roomFloorHeading").innerText += roomFloor;
+                        const roomImage = urlParams.get('image');
+                        if (roomImage) {
+                            document.getElementById("roomImage").src = "{{ asset('storage/ruangan') }}/" + roomImage;
+                        }
                     }
+
+                    function handleDateChange() {
+                        const chosenDate = new Date(this.value);
+                        const dayOfWeek = chosenDate.getDay();
+                        const startTimeInput = document.getElementById('start-time');
+                        const endTimeInput = document.getElementById('end-time');
+
+                        if (dayOfWeek > 0 && dayOfWeek < 6) { // Weekdays (Monday to Friday)
+                            setWeekdayTimeLimits(startTimeInput, endTimeInput);
+                        } else { // Weekends (Saturday and Sunday)
+                            setWeekendTimeLimits(startTimeInput, endTimeInput);
+                        }
+
+                        disableTimeSlots(startTimeInput, endTimeInput);
+                    }
+
+                    function setWeekdayTimeLimits(startTimeInput, endTimeInput) {
+                        startTimeInput.min = '17:00';
+                        startTimeInput.max = '21:00';
+                        endTimeInput.min = '18:00';
+                        endTimeInput.max = '22:00';
+                    }
+
+                    function setWeekendTimeLimits(startTimeInput, endTimeInput) {
+                        startTimeInput.min = '07:00';
+                        startTimeInput.max = '10:00';
+                        endTimeInput.min = '07:00';
+                        endTimeInput.max = '22:00';
+                    }
+
+                    function disableTimeSlots(startTimeInput, endTimeInput) {
+                        const allTimeInputs = document.querySelectorAll('input[type="time"]');
+                        allTimeInputs.forEach(input => {
+                            const currentTime = input.value;
+                            if (currentTime < startTimeInput.min || currentTime > endTimeInput.max) {
+                                input.disabled = true;
+                                input.style.visibility = 'hidden';
+                            } else {
+                                input.disabled = false;
+                                input.style.visibility = 'visible';
+                            }
+                        });
+                    }
+
+                    document.addEventListener('DOMContentLoaded', function() {
+                        updateRoomDetails();
+                        document.getElementById('date_borrow').addEventListener('change', handleDateChange);
+                    });
                 </script>
             </section>
         </div>

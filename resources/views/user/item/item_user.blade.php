@@ -37,21 +37,21 @@
                             <img src="{{ asset('images/iQUBE_3.png') }}" alt="">
                             <span class="nav-title">i-QUBE</span>
                         </a></li>
-                    <li><a href="{{ url('item_user') }}">
+                    <li><a href="{{ url('dashboard_user') }}">
                             <i class="fas fa-home"></i>
+                            <span class="nav-item">Homepage</span>
+                        </a></li>
+                    <li><a href="{{ url('item_user') }}">
+                            <i class="fas fa-inbox"></i>
                             <span class="nav-item">Data Barang</span>
                         </a></li>
                     <li><a href="{{ url('room_user') }}">
-                            <i class="fas fa-user"></i>
+                            <i class="fas fa-cube"></i>
                             <span class="nav-item">Data Ruangan</span>
                         </a></li>
                     <li><a href="{{ url('peminjaman') }}">
-                            <i class="fas fa-wallet"></i>
+                            <i class="fas fa-server"></i>
                             <span class="nav-item">Data Peminjaman</span>
-                        </a></li>
-                    <li><a href="{{ url('riwayat') }}">
-                            <i class="fas fa-chart-bar"></i>
-                            <span class="nav-item">Riwayat</span>
                         </a></li>
                     <li><a href="" class="logout">
                             <i class="fas fa-sign-out-alt"></i>
