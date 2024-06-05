@@ -62,7 +62,7 @@
                     <li><a href="{{ url('dashboard_user') }}">
                             <i class="fas fa-home"></i>
                             <span class="nav-item">Homepage</span>
-                    </a></li>
+                        </a></li>
                     <li><a href="{{ url('item_user') }}">
                             <i class="fas fa-inbox"></i>
                             <span class="nav-item">Data Barang</span>
@@ -134,7 +134,7 @@
                                                 d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
                                         </svg>
                                     </div>
-                                    <input datepicker type="text" id="date_borrow" name="date_borrow"
+                                    <input type="date" id="date_borrow" name="date_borrow"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pl-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="Pilih tanggal pinjam">
                                 </div>
@@ -158,7 +158,7 @@
                                                 </svg>
                                             </div>
                                             <input type="time" id="start-time"
-                                                class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-50"
                                                 required />
                                         </div>
                                     </div>
@@ -203,6 +203,7 @@
                     }
 
                     function handleDateChange() {
+                        
                         const chosenDate = new Date(this.value);
                         const dayOfWeek = chosenDate.getDay();
                         const startTimeInput = document.getElementById('start-time');
@@ -214,11 +215,13 @@
                             setWeekendTimeLimits(startTimeInput, endTimeInput);
                         }
 
-                        disableTimeSlots(startTimeInput, endTimeInput);
+                        // disableTimeSlots(startTimeInput, endTimeInput);
                     }
 
                     function setWeekdayTimeLimits(startTimeInput, endTimeInput) {
+                        
                         startTimeInput.min = '17:00';
+                        console.log(startTimeInput.min);
                         startTimeInput.max = '21:00';
                         endTimeInput.min = '18:00';
                         endTimeInput.max = '22:00';
@@ -230,21 +233,6 @@
                         endTimeInput.min = '07:00';
                         endTimeInput.max = '22:00';
                     }
-
-                    function disableTimeSlots(startTimeInput, endTimeInput) {
-                        const allTimeInputs = document.querySelectorAll('input[type="time"]');
-                        allTimeInputs.forEach(input => {
-                            const currentTime = input.value;
-                            if (currentTime < startTimeInput.min || currentTime > endTimeInput.max) {
-                                input.disabled = true;
-                                input.style.visibility = 'hidden';
-                            } else {
-                                input.disabled = false;
-                                input.style.visibility = 'visible';
-                            }
-                        });
-                    }
-
                     document.addEventListener('DOMContentLoaded', function() {
                         updateRoomDetails();
                         document.getElementById('date_borrow').addEventListener('change', handleDateChange);
