@@ -13,9 +13,9 @@ class CreatePeminjamanRuanganTable extends Migration
             $table->string('nim');
             $table->unsignedBigInteger('room_id');
             $table->dateTime('date_borrow');
-            $table->dateTime('date_return')->nullable();
+            $table->time('start_time');
+            $table->time('end_time');
             $table->string('status')->default('Not Complete');
-            $table->timestamps();
         });
     }
 

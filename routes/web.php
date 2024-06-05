@@ -29,7 +29,9 @@ Route::group(['prefix' => 'room_user'], function () {
     Route::get('/', [UserRoomController::class, 'index']);
     Route::get('/load', [UserRoomController::class, 'load']);
     Route::get('/room_borrow', [UserRoomController::class, 'form']);
+    Route::post('/', [UserRoomController::class, 'store']);
 });
+
 Route::get('/peminjaman', [UserBorrowController::class, 'index']);
 
 Route::group(['prefix' => 'login'], function () {

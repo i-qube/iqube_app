@@ -79,7 +79,8 @@
                             <th>Kelas</th>
                             <th>Nama Ruangan</th>
                             <th>Tanggal Peminjaman</th>
-                            <th>Tanggal Pengembalian</th>
+                            <th>Waktu Mulai</th>
+                            <th>Waktu Selesai</th>
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -225,7 +226,12 @@
                     orderable: false,
                     searchable: false
                 }, {
-                    data: "date_return",
+                    data: "start_time",
+                    className: "",
+                    orderable: false,
+                    searchable: false
+                }, {
+                    data: "end_time",
                     className: "",
                     orderable: false,
                     searchable: false

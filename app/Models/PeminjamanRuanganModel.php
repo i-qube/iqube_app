@@ -12,7 +12,7 @@ class PeminjamanRuanganModel extends Model
     protected $table = 't_peminjaman_ruangan';
     protected $primaryKey = 'peminjaman_ruangan_id';
 
-    protected $fillable = ['nim','room_id','date_borrow','date_return', 'status'];
+    protected $fillable = ['nim','room_id','date_borrow','start_time', 'end_time', 'status'];
     public $timestamps=false;
 
     public function user(): BelongsTo
