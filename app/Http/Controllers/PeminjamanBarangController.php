@@ -28,11 +28,11 @@ class PeminjamanBarangController extends Controller
     public function list(Request $request)
     {
 
-        $peminjamans = PeminjamanBarangModel::select('peminjaman_barang_id', 'nim', 'item_id', 'jumlah', 'date_borrow')
+        $peminjamans = PeminjamanBarangModel::select('peminjaman_barang_id', 'no_induk', 'item_id', 'jumlah', 'date_borrow')
         ->with('user', 'item');
 
-        if ($request->nim) {
-            $peminjamans->where('nim', $request->nim);
+        if ($request->no_induk) {
+            $peminjamans->where('no_induk', $request->no_induk);
         }
         return DataTables::of($peminjamans)
             ->addIndexColumn()

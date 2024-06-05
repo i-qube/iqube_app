@@ -63,7 +63,7 @@
                     orderable: false,
                     searchable: false
                 }, {
-                    data: "nim",
+                    data: "no_induk",
                     className: "",
                     orderable: true,
                     searchable: true

@@ -28,11 +28,11 @@ class PeminjamanRuanganController extends Controller
 
     public function list(Request $request)
     {
-        $peminjamans = PeminjamanRuanganModel::select('peminjaman_ruangan_id', 'nim', 'room_id', 'date_borrow', 'date_return','status')
+        $peminjamans = PeminjamanRuanganModel::select('peminjaman_ruangan_id', 'no_induk', 'room_id', 'date_borrow', 'date_return','status')
         ->where('status', 'Not Complete')->with('user', 'room');
 
-        if ($request->nim) {
-            $peminjamans->where('nim', $request->nim);
+        if ($request->no_induk) {
+            $peminjamans->where('no_induk', $request->no_induk);
         }
         return DataTables::of($peminjamans)
             ->addIndexColumn()

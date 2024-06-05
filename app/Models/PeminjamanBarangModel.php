@@ -12,12 +12,12 @@ class PeminjamanBarangModel extends Model
     protected $table = 't_peminjaman_barang';
     protected $primaryKey = 'peminjaman_barang_id';
 
-    protected $fillable = ['nim','item_id','jumlah','date_borrow'];
+    protected $fillable = ['no_induk','item_id','jumlah','date_borrow'];
     public $timestamps=false;
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(UserModel::class, 'nim', 'nim');
+        return $this->belongsTo(UserModel::class, 'no_induk', 'no_induk');
     }
 
     public function item(): BelongsTo

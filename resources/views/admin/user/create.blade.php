@@ -18,8 +18,8 @@
                     </div>
                 </div>
                 <div class="form-group row"> <label class="col-3 control-label col-form-label">NIM</label>
-                    <div class="col-9"> <input type="text" class="form-control" id="nim" name="nim"
-                            value="{{ old('nim') }}" required> @error('nim')
+                    <div class="col-9"> <input type="text" class="form-control" id="no_induk" name="no_induk"
+                            value="{{ old('no_induk') }}" required> @error('no_induk')
                             <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>

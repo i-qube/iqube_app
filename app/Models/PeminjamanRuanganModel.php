@@ -12,12 +12,12 @@ class PeminjamanRuanganModel extends Model
     protected $table = 't_peminjaman_ruangan';
     protected $primaryKey = 'peminjaman_ruangan_id';
 
-    protected $fillable = ['nim','room_id','date_borrow','date_return', 'status'];
+    protected $fillable = ['no_induk','room_id','date_borrow','date_return', 'status'];
     public $timestamps=false;
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(UserModel::class, 'nim', 'nim');
+        return $this->belongsTo(UserModel::class, 'no_induk', 'no_induk');
     }
 
     public function room(): BelongsTo

@@ -8,7 +8,7 @@
                     <h5><i class="icon fas fa-ban"></i> Kesalahan!</h5> Data yang Anda cari tidak ditemukan.
                 </div> <a href="{{ url('user') }}" class="btn btn-sm btn-default mt-2">Kembali</a>
             @else
-                <form method="POST" action="{{ url('/user/' . $user->nim) }}" class="form-horizontal">
+                <form method="POST" action="{{ url('/user/' . $user->no_induk) }}" class="form-horizontal">
                     @csrf {!! method_field('PUT') !!} <!-- tambahkan baris ini untuk proses edit yang butuh method PUT -->
                     <div class="form-group row"> <label class="col-3 control-label col-form-label">Level</label>
                         <div class="col-9"> <select class="form-control" id="level_id" name="level_id" required>
@@ -23,8 +23,8 @@
                         </div>
                     </div>
                     <div class="form-group row"> <label class="col-3 control-label col-form-label">NIM</label>
-                        <div class="col-9"> <input type="text" class="form-control" id="nim" name="nim"
-                                value="{{ old('nim', $user->nim) }}" required> @error('nim')
+                        <div class="col-9"> <input type="text" class="form-control" id="no_induk" name="no_induk"
+                                value="{{ old('no_induk', $user->no_induk) }}" required> @error('no_induk')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>

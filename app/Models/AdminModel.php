@@ -11,7 +11,7 @@ class AdminModel extends Model
 {
     use HasFactory;
     protected $table = 'm_admin';
-    protected $primaryKey = 'nip';
+    protected $primaryKey = 'no_induk';
 
     protected $fillable = ['level_id','nama','password'];
     public $timestamps = false;

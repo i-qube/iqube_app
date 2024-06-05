@@ -12,7 +12,7 @@
                 <table class="table table-bordered table-striped table-hover table-sm">
                     <tr>
                         <th>NIM</th>
-                        <td>{{ $user->nim }}</td>
+                        <td>{{ $user->no_induk }}</td>
                     </tr>
                     <tr>
                         <th>Nama</th>

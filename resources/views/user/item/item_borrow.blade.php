@@ -106,10 +106,10 @@
                 <div class="mb-5 mt-4">
                     <div class="flex justify-between mb-5 relative">
                         <div class="w-3/4 pr-2 relative">
-                            <label for="nim" class="text-black pl-5">NIM</label>
-                            <input type="text" id="nim" name="nim"
+                            <label for="no_induk" class="text-black pl-5">NIM</label>
+                            <input type="text" id="no_induk" name="no_induk"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pl-5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                value="{{ session('user.nim') }}" readonly>
+                                value="{{ session('user.no_induk') }}" readonly>
                         </div>
                     </div>
                 </div>

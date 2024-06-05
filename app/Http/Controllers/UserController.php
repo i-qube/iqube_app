@@ -31,7 +31,7 @@ class UserController extends Controller
 
     public function list(Request $request)
     {
-        $users = UserModel::select('nim', 'nama', 'jurusan', 'angkatan', 'kelas', 'level_id', 'password')
+        $users = UserModel::select('no_induk', 'nama', 'jurusan', 'angkatan', 'kelas', 'level_id', 'password')
             ->with('level');
 
         if ($request->kelas) {
@@ -40,9 +40,9 @@ class UserController extends Controller
         return DataTables::of($users)
             ->addIndexColumn()
             ->addColumn('aksi', function ($user) {
-                $btn = '<a href="' . url('/user/' . $user->nim) . '" class="btn btn-info btn-sm">Detail</a> ';
-                $btn .= '<a href="' . url('/user/' . $user->nim . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
-                $btn .= '<form class="d-inline-block" method="POST" action="' . url('/user/' . $user->nim) . '">'
+                $btn = '<a href="' . url('/user/' . $user->no_induk) . '" class="btn btn-info btn-sm">Detail</a> ';
+                $btn .= '<a href="' . url('/user/' . $user->no_induk . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
+                $btn .= '<form class="d-inline-block" method="POST" action="' . url('/user/' . $user->no_induk) . '">'
                     . csrf_field() . method_field('DELETE') .
                     '<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm(\'Apakah Anda yakit menghapus data ini?\');">Hapus</button></form>';
                 return $btn;
@@ -70,7 +70,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nim' => 'required|string|min:3|unique:users,nim',
+            'no_induk' => 'required|string|min:3|unique:users,no_induk',
             'nama' => 'required|string',
             'jurusan' => 'required|string',
             'angkatan' => 'required|string',
@@ -80,7 +80,7 @@ class UserController extends Controller
         ]);
 
         UserModel::create([
-            'nim' => $request->nim,
+            'no_induk' => $request->no_induk,
             'nama' => $request->nama,
             'jurusan' => $request->jurusan,
             'angkatan' => $request->angkatan,
@@ -130,7 +130,7 @@ class UserController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'nim' => 'required|string|min:3|unique:users,nim,' . $id . ',nim',
+            'no_induk' => 'required|string|min:3|unique:users,no_induk,' . $id . ',no_induk',
             'nama' => 'required|string',
             'jurusan' => 'required|string',
             'angkatan' => 'required|string',
@@ -140,7 +140,7 @@ class UserController extends Controller
         ]);
 
         UserModel::find($id)->update([
-            'nim' => $request->nim,
+            'no_induk' => $request->no_induk,
             'nama' => $request->nama,
             'jurusan' => $request->jurusan,
             'angkatan' => $request->angkatan,
