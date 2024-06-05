@@ -3,16 +3,17 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+// use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Foundation\Auth\User as Model;
 
-class UserModel extends Model
+class AdminModel extends Model  
 {
     use HasFactory;
-    protected $table = 'm_user';
+    protected $table = 'm_admin';
     protected $primaryKey = 'no_induk';
 
-    protected $fillable = ['level_id','nama','jurusan','angkatan','kelas','password'];
+    protected $fillable = ['level_id','nama','password'];
     public $timestamps = false;
 
     public function level(): BelongsTo

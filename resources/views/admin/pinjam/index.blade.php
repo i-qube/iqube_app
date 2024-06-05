@@ -148,7 +148,7 @@
                     orderable: false,
                     searchable: false
                 }, {
-                    data: "nim",
+                    data: "no_induk",
                     className: "",
                     orderable: false,
                     searchable: false
@@ -201,7 +201,7 @@
                     orderable: false,
                     searchable: false
                 }, {
-                    data: "nim",
+                    data: "no_induk",
                     className: "",
                     orderable: true,
                     searchable: true

@@ -43,12 +43,12 @@ class UserItemController extends Controller
             'jumlah' => 'required|integer',
             'date_borrow' => 'required|date'
         ]);
-        $nim = session('user.nim');
+        $no_induk = session('user.no_induk');
         $now = Carbon::now();
         $date_borrow = $now->format('Y/m/d H:i:s');
         //dd($request->all());
         PeminjamanBarangModel::create([
-            'nim' => $nim,
+            'no_induk' => $no_induk,
             'item_id' => $request->item_id,
             'jumlah' => $request->jumlah,
             'date_borrow' => $date_borrow

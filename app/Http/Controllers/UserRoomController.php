@@ -46,12 +46,12 @@ class UserRoomController extends Controller
             'start_time' => 'required|date_format:H:i',
             'end_time' => 'required|date_format:H:i|after:start_time',
         ]);
-        $nim = session('user.nim');
+        $no_induk = session('user.no_induk');
         $now = Carbon::now();
         $date_borrow = $now->format('Y/m/d H:i:s');
 
         PeminjamanRuanganModel::create([
-            'nim' => $nim,
+            'no_induk' => $no_induk,
             'room_id' => $request->room_id,
             'date_borrow' => $date_borrow,
             'start_time' => $request->start_time,

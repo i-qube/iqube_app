@@ -12,11 +12,11 @@ class UserBorrowController extends Controller
     public function index(Request $request)
     {
         $item = ItemModel::all();
-        // Retrieve nim from session
-        $nim = session('user.nim');
+        // Retrieve no_induk from session
+        $no_induk = session('user.no_induk');
 
-        // Fetch peminjamans data filtered by nim
-        $peminjamans = PeminjamanBarangModel::where('nim', $nim)->get();
+        // Fetch peminjamans data filtered by no_induk
+        $peminjamans = PeminjamanBarangModel::where('no_induk', $no_induk)->get();
 
         // Pass the data to the view
         return view('user.peminjaman.peminjaman', compact('peminjamans'));

@@ -2,7 +2,7 @@
     <!DOCTYPE html>
     <html lang="en">
     <head>
-      <meta charset="UTF-8" />
+      <meta charset="UTF-8"/>
       <title>Dashboard | Admin</title>
       <link rel="stylesheet" href="{{ asset('css\style.css') }}" />
       <!-- Font Awesome Cdn Link -->

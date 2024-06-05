@@ -17,21 +17,30 @@ class LoginController extends Controller
     {
         //dd($request->all());
         $request->validate([
-            'nim' => 'required',
+            'no_induk' => 'required',
             'password' => 'required',
         ]);
 
-        $credentialsUser = $request->only('nim', 'password');
+        $credentials = $request->only('no_induk', 'password');
 
-        if (Auth::guard('web')->attempt($credentialsUser)) {
+        if (Auth::guard('web')->attempt($credentials)) {
             $user = Auth::guard('web')->user();
-            session()->put('user.nim', $user->nim);
+            session()->put('user.no_induk', $user->no_induk);
             session()->put('user.nama', $user->nama);
             session()->put('user.kelas', $user->kelas);
             //dd($user);
             return redirect('/dashboard_user')->with('success', 'Berhasil Masuk!');
-        } else {
-            return redirect('/login')->with('failed', 'No Induk atau Password Salah');
         }
+
+        if (Auth::guard('admin')->attempt($credentials)) {
+            $admin = Auth::guard('admin')->user();
+            session()->put('admin.no_induk', $admin->no_induk);
+            session()->put('admin.nama', $admin->nama);
+            //dd($admin);
+            return redirect('/dashboard')->with('success', 'Berhasil Masuk!');
+        }
+
+
+        return redirect('/login')->with('failed', 'No Induk atau Password Salah');
     }
 }
