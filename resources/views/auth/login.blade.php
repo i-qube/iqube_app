@@ -87,7 +87,7 @@
             <div class="row d-flex align-items-center justify-content-center h-100">
                 <div class="col-md-8 col-lg-7 col-xl-6 text-center">
                     <div class="d-flex flex-column align-items-center">
-                        <img src="{{ asset('images/IQUBE.png') }}" class="logo-container" alt="Logo">
+                        <img src="{{ asset('images/logoIqube.png') }}" class="logo-container" alt="Logo">
                         <div class="title">Innovative Quality Unified Booking Environment</div>
                     </div>
                 </div>
@@ -96,10 +96,9 @@
                         @csrf
                         <!-- Nim input -->
                         <div class="form-outline mb-4">
-                            <label class="form-label" for="nim">Nomor Induk</label>
-                            <input type="text" name="nim" class="form-control form-control-lg"
-                                placeholder="Masukkan NIP/NIM" />
-                            @error('nim')
+                            <label class="form-label" for="no_induk">Username</label>
+                            <input type="text" name="no_induk" class="form-control form-control-lg"/>
+                            @error('no_induk')
                                 <small>{{ $message }}</small>
                             @enderror
                         </div>
@@ -107,8 +106,7 @@
                         <!-- Password input -->
                         <div class="form-outline mb-4">
                             <label class="form-label" for="password">Password</label>
-                            <input type="password" name="password" class="form-control form-control-lg"
-                                placeholder="Masukkan Password" />
+                            <input type="password" name="password" class="form-control form-control-lg" />
                             @error('password')
                                 <small>{{ $message }}</small>
                             @enderror

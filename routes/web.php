@@ -16,9 +16,6 @@ use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 use Spatie\FlareClient\View;
 
-Route::get('/dashboard_user', function () {
-    return view('user.dashboard');
-});
 Route::group(['prefix' => 'item_user'], function () {
     Route::get('/', [UserItemController::class, 'index']);
     Route::post('/load', [UserItemController::class, 'load']);
@@ -40,9 +37,9 @@ Route::get('/keluar', [LogoutController::class, 'index']);
 
 Route::get('/dashboard_user', function () {
     return view('user.dashboard');
-})->middleware('auth');
+})->middleware('auth.user');
 
-Route::get('/dashboard', [WelcomeController::class, 'index']);
+Route::get('/dashboard', [WelcomeController::class, 'index'])->middleware('auth.admin');
 Route::group(['prefix' => 'level'], function () {
     Route::get('/', [LevelController::class, 'index']);
     Route::post('/list', [LevelController::class, 'list']);
