@@ -32,9 +32,8 @@ class UserRoomController extends Controller
     public function form()
     {
         $peminjaman = PeminjamanRuanganModel::all();
-        $rooms = RuanganModel::all();
 
-        return view('user.ruangan.room_borrow', ['peminjaman' => $peminjaman, 'rooms' => $rooms]);
+        return view('user.ruangan.room_borrow', ['peminjaman' => $peminjaman]);
     }
 
     public function store(Request $request)
@@ -46,7 +45,7 @@ class UserRoomController extends Controller
             'end_time' => 'required',
             'status' => 'required',
         ]);
-
+        //dd($request->all());
         PeminjamanRuanganModel::create([
             'no_induk' => session('user.no_induk'),
             'room_id' => $request->room_id,
@@ -56,6 +55,6 @@ class UserRoomController extends Controller
             'status' => $request->status,
         ]);
 
-        return redirect('/room_user')->with('success', 'Data ruangan berhasil disimpan');
+        return redirect('/peminjaman')->with('success', 'Data ruangan berhasil disimpan');
     }
 }

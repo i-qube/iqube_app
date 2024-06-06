@@ -40,23 +40,19 @@
                         </a></li>
                     <li><a href="{{ url('dashboard_user') }}">
                             <i class="fas fa-home"></i>
-                            <span class="nav-item">Homepage</span>
+                            <span class="nav-item">Home</span>
                         </a></li>
                     <li><a href="{{ url('item_user') }}">
                             <i class="fas fa-inbox"></i>
-                            <span class="nav-item">Data Barang</span>
+                            <span class="nav-item">Barang</span>
                         </a></li>
                     <li><a href="{{ url('room_user') }}">
                             <i class="fas fa-cube"></i>
-                            <span class="nav-item">Data Ruangan</span>
+                            <span class="nav-item">Ruangan</span>
                         </a></li>
                     <li><a href="{{ url('peminjaman') }}">
                             <i class="fas fa-server"></i>
-                            <span class="nav-item">Data Peminjaman</span>
-                        </a></li>
-                    <li><a href="">
-                            <i class="fas fa-chart-bar"></i>
-                            <span class="nav-item">Riwayat</span>
+                            <span class="nav-item">History</span>
                         </a></li>
                     <li><a href="" class="logout">
                             <i class="fas fa-sign-out-alt"></i>
@@ -67,63 +63,62 @@
 
         <section class="main">
             <div class="main-top">
-                <h1 class="h1">Form Peminjaman Barang</h1></br>
-            </div>
+                <h1 class="h1">Formulir Penggunaan Barang</h1></br>
+            </div></br>
             <form method="POST" action="{{ url('item_user') }}">
                 @csrf
                 <div class="mb-5 mt-4">
                     <div class="flex justify-between mb-5 relative">
                         <div class="w-full pr-2 relative">
-                            <label for="selection_name" class="text-black pl-5">Nama Barang</label>
+                            {{-- <label for="selection_name" class="text-black pl-5">Nama Barang</label> --}}
                             <input type="text" id="selection_name" name="item_name" readonly
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pl-5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pl-5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Nama Barang">
                         </div>
                         <div class="w-2/4 pl-2 relative">
-                            <label for="quantity" class="text-black pl-1">Jumlah</label>
+                            {{-- <label for="quantity" class="text-black pl-1">Jumlah</label> --}}
                             <div class="relative max-w-sm">
                                 <input type="number" id="quantity" name="jumlah"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5 pl-5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 text-center"
-                                    placeholder="Qty">
+                                    placeholder="Jumlah">
                             </div>
                         </div>
                         <div class="w-2/4 pr-2 relative">
-                            {{-- <label for="quantity" class="text-black pl-1">Id</label> --}}
                             <input type="text" id="selection" name="item_id" readonly hidden>
-                                {{-- class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-1/6 p-2.5 pl-6 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"> --}}
                         </div>
                     </div>
                 </div>
                 <div class="mb-5 mt-4">
                     <div class="flex justify-between mb-5 relative">
                         <div class="w-3/4 pr-2 relative">
-                            <label for="name" class="text-black pl-5">Nama</label>
+                            {{-- <label for="name" class="text-black pl-5">Nama</label> --}}
                             <input type="text" id="name" name="nama"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pl-5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                value="{{ session('user.nama') }}" readonly>
+                                placeholder="Nama" value="{{ session('user.nama') }}" readonly>
                         </div>
                     </div>
                 </div>
                 <div class="mb-5 mt-4">
                     <div class="flex justify-between mb-5 relative">
                         <div class="w-3/4 pr-2 relative">
-                            <label for="no_induk" class="text-black pl-5">NIM</label>
+                            {{-- <label for="no_induk" class="text-black pl-5">NIM</label> --}}
                             <input type="text" id="no_induk" name="no_induk"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pl-5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                value="{{ session('user.no_induk') }}" readonly>
+                                placeholder="NIM" value="{{ session('user.no_induk') }}" readonly>
                         </div>
                     </div>
                 </div>
                 <div class="mb-5 mt-4">
                     <div class="flex justify-between mb-5 relative">
                         <div class="w-3/4 pr-2">
-                            <label for="kelas" class="text-black pl-5">Kelas</label>
+                            {{-- <label for="kelas" class="text-black pl-5">Kelas</label> --}}
                             <input type="text" id="kelas" name="kelas"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pl-5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                value="{{ session('user.kelas') }}" readonly>
+                                placeholder="Kelas" value="{{ session('user.kelas') }}" readonly>
                         </div>
                     </div>
                 </div>
-                <label for="date_borrow" class="text-black pl-5">Pilih tanggal</label>
+                {{-- <label for="date_borrow" class="text-black pl-5">Pilih tanggal</label> --}}
                 <div class="relative max-w-sm mb-5">
                     <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
                         <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"

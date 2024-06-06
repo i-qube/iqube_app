@@ -54,6 +54,6 @@ class UserItemController extends Controller
             'date_borrow' => $date_borrow
         ]);
 
-        return redirect('/item_user')->with('success', 'Data barang berhasil disimpan');
+        return redirect('/peminjaman')->with('success', 'Data barang berhasil disimpan');
     }
 }

@@ -20,6 +20,18 @@
                     <p>Dashboard</p>
                 </a>
             </li>
+            <li class="nav-header">Data Peminjaman</li>
+            <li class="nav-item"> <a href="{{ url('/pinjam') }}"
+                    class="nav-link {{ $activeMenu == 'stok' ? 'active' : '' }} "> 
+                    <i class="nav-icon fas fa-tasks"></i>
+                    <p>Data Peminjaman</p>
+                </a> </li>
+            <li class="nav-item">
+                <a href="{{ url('/riwayat') }}" class="nav-link {{ $activeMenu == 'riwayat' ? 'active' : '' }} ">
+                    <i class="nav-icon fas fa-history"></i>
+                    <p>Riwayat Peminjaman</p>
+                </a>
+            </li>
             <li class="nav-header">Data Pengguna</li>
             <li class="nav-item"> <a href="{{ url('/level') }}"
                     class="nav-link {{ $activeMenu == 'level' ? 'active' : '' }} "> <i
@@ -41,18 +53,6 @@
                         class="nav-icon far fa-list-alt"></i>
                     <p>Data Ruangan</p>
                 </a> </li>
-            <li class="nav-header">Data Peminjaman</li>
-            <li class="nav-item"> <a href="{{ url('/pinjam') }}"
-                    class="nav-link {{ $activeMenu == 'stok' ? 'active' : '' }} "> 
-                    <i class="nav-icon fas fa-tasks"></i>
-                    <p>Data Peminjaman</p>
-                </a> </li>
-            <li class="nav-item">
-                <a href="{{ url('/riwayat') }}" class="nav-link {{ $activeMenu == 'riwayat' ? 'active' : '' }} ">
-                    <i class="nav-icon fas fa-history"></i>
-                    <p>Riwayat Peminjaman</p>
-                </a>
-            </li>
             <li class="nav-item">
                 <a href="{{ url('/keluar') }}" class="nav-link {{ $activeMenu == 'keluar' ? 'active' : '' }} ">
                     <i class="nav-icon fas fa-power-off"></i>

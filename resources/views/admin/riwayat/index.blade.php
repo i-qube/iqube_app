@@ -56,7 +56,7 @@
                             <th>NIM</th>
                             <th>Nama</th>
                             <th>Kelas</th>
-                            <th>Item ID</th>
+                            <th>Nama Item</th>
                             <th>Jumlah</th>
                             <th>Tanggal Pemakaian</th>
                         </tr>
@@ -77,9 +77,10 @@
                             <th>NIM</th>
                             <th>Nama</th>
                             <th>Kelas</th>
-                            <th>ID Ruangan</th>
+                            <th>Nama Ruangan</th>
                             <th>Tanggal Peminjaman</th>
-                            <th>Tanggal Pengembalian</th>
+                            <th>Jam Mulai</th>
+                            <th>Jam Selesai</th>
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -122,6 +123,10 @@
                     $('#pinjam_ruangan_card').show();
                     currentTable = 'peminjaman_ruangan';
                 }
+
+                // Tambahkan dan hapus kelas .active
+                $('.toggle-button').removeClass('active');
+                $(this).addClass('active');
             });
 
             $.ajaxSetup({
@@ -162,8 +167,8 @@
                     className: "",
                     orderable: false,
                     searchable: false
-                },{
-                    data: "item_id",
+                }, {
+                    data: "item.item_name",
                     className: "",
                     orderable: true,
                     searchable: true
@@ -217,7 +222,7 @@
                     orderable: false,
                     searchable: false
                 }, {
-                    data: "room_id",
+                    data: "room.room_name",
                     className: "",
                     orderable: true,
                     searchable: true
@@ -227,7 +232,12 @@
                     orderable: false,
                     searchable: false
                 }, {
-                    data: "date_return",
+                    data: "start_time",
+                    className: "",
+                    orderable: false,
+                    searchable: false
+                }, {
+                    data: "end_time",
                     className: "",
                     orderable: false,
                     searchable: false

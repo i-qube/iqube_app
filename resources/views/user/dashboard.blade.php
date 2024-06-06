@@ -47,7 +47,6 @@
                 background-color: #0f3542;
             }
 
-            /* New section styles */
             .new-section {
                 background-color: #ffffff;
                 padding-left: 330px;
@@ -144,21 +143,21 @@
                         </a></li>
                     <li><a href="{{ url('dashboard_user') }}">
                             <i class="fas fa-home"></i>
-                            <span class="nav-item">Homepage</span>
+                            <span class="nav-item">Home</span>
                         </a></li>
                     <li><a href="{{ url('item_user') }}">
                             <i class="fas fa-inbox"></i>
-                            <span class="nav-item">Data Barang</span>
+                            <span class="nav-item">Barang</span>
                         </a></li>
                     <li><a href="{{ url('room_user') }}">
                             <i class="fas fa-cube"></i>
-                            <span class="nav-item">Data Ruangan</span>
+                            <span class="nav-item">Ruangan</span>
                         </a></li>
                     <li><a href="{{url('peminjaman')}}">
                             <i class="fas fa-server"></i>
-                            <span class="nav-item">Data Peminjaman</span>
+                            <span class="nav-item">History</span>
                         </a></li>
-                    <li><a href="" class="logout">
+                    <li><a href="{{url('keluar')}}" class="logout">
                             <i class="fas fa-sign-out-alt"></i>
                             <span class="nav-item">Log out</span>
                         </a></li>
@@ -230,7 +229,7 @@
                             <img src="{{ asset('images/icons_4.png') }}" alt="Icons 4">
                             <h3>Unduh Surat</h3>
                             <p>Unduh template surat disini</p>
-                            <a href=https://drive.google.com/file/d/14WGJuiGNQuiRbdXTQDYokao1sujdfZu9/view?usp=sharing class="download-button">Download</a>
+                            <a href=https://drive.google.com/file/d/14WGJuiGNQuiRbdXTQDYokao1sujdfZu9/view?uspsharing class="download-button">Download</a>
                         </div>
                         <div class="feature">
                             <img src="{{ asset('images/icons_5.png') }}" alt="Icons 5">
