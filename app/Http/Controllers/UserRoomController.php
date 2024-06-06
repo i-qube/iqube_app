@@ -39,23 +39,21 @@ class UserRoomController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
         $request->validate([
-            'room_id' => 'required|integer',
-            'date_borrow' => 'required|date',
-            'start_time' => 'required|date_format:H:i',
-            'end_time' => 'required|date_format:H:i|after:start_time',
+            'room_id' => 'required',
+            'date_borrow' => 'required',
+            'start_time' => 'required',
+            'end_time' => 'required',
+            'status' => 'required',
         ]);
-        $no_induk = session('user.no_induk');
-        $now = Carbon::now();
-        $date_borrow = $now->format('Y/m/d H:i:s');
 
         PeminjamanRuanganModel::create([
-            'no_induk' => $no_induk,
+            'no_induk' => session('user.no_induk'),
             'room_id' => $request->room_id,
-            'date_borrow' => $date_borrow,
+            'date_borrow' => now()->format('Y/m/d H:i:s'),
             'start_time' => $request->start_time,
             'end_time' => $request->end_time,
+            'status' => $request->status,
         ]);
 
         return redirect('/room_user')->with('success', 'Data ruangan berhasil disimpan');

@@ -17,10 +17,12 @@ class PinjamRuanganSeeder extends Seeder
         $data = [
             [
                 'peminjaman_ruangan_id' => 1,
-                'nim'=> 2141762110,
+                'no_induk'=> 2141762110,
                 'room_id'=> 1,
                 'date_borrow'=> Carbon::now(),
-                'date_return'=> Carbon::now(),
+                'start_time'=>now(),
+                'end_time'=>now(),
+                'status'=>"Not Complete",
             ],
         ];
         DB::table('t_peminjaman_ruangan')->insert($data);

@@ -28,7 +28,7 @@ class PeminjamanRuanganController extends Controller
 
     public function list(Request $request)
     {
-        $peminjamans = PeminjamanRuanganModel::select('peminjaman_ruangan_id', 'no_induk', 'room_id', 'date_borrow', 'date_return','status')
+        $peminjamans = PeminjamanRuanganModel::select('peminjaman_ruangan_id', 'no_induk', 'room_id', 'date_borrow', 'start_time', 'end_time', 'status')
         ->where('status', 'Not Complete')->with('user', 'room');
 
         if ($request->no_induk) {
@@ -39,15 +39,12 @@ class PeminjamanRuanganController extends Controller
             ->make(true);
     }
 
-    // routes/web.php
-
     public function changeStatus(Request $request)
     {
         $id = $request->input('peminjaman_ruangan_id');
         $peminjaman = PeminjamanRuanganModel::find($id);
 
         if ($peminjaman) {
-            // Update status to 'Complete'
             $peminjaman->status = 'Complete';
             $peminjaman->save();
 

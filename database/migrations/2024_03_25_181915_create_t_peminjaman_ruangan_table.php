@@ -4,13 +4,13 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePeminjamanRuanganTable extends Migration
+return new class extends Migration
 {
     public function up()
     {
-        Schema::create('peminjaman_ruangan', function (Blueprint $table) {
+        Schema::create('t_peminjaman_ruangan', function (Blueprint $table) {
             $table->id('peminjaman_ruangan_id');
-            $table->string('nim');
+            $table->string('no_induk');
             $table->unsignedBigInteger('room_id');
             $table->dateTime('date_borrow');
             $table->time('start_time');
@@ -23,4 +23,4 @@ class CreatePeminjamanRuanganTable extends Migration
     {
         Schema::dropIfExists('peminjaman_ruangan');
     }
-}
+};

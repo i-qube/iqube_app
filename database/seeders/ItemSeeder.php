@@ -21,6 +21,7 @@ class ItemSeeder extends Seeder
                 'brand' => "PALO",
                 'item_qty' => 8,
                 'date_received' => Carbon::create(2023, 5, 19),
+                'image' => "rt1.png"
             ],
             [
                 'item_id' => 2,
@@ -28,6 +29,7 @@ class ItemSeeder extends Seeder
                 'brand' => "Eneloop",
                 'item_qty' => 15,
                 'date_received' => Carbon::create(2023, 5, 19),
+                'image' => "rt1.png"
             ],
             [
                 'item_id' => 3,
@@ -35,6 +37,7 @@ class ItemSeeder extends Seeder
                 'brand' => "Eneloop",
                 'item_qty' => 15,
                 'date_received' => Carbon::create(2023, 5, 19),
+                'image' => "rt1.png"
             ],
             [
                 'item_id' => 4,
@@ -42,6 +45,7 @@ class ItemSeeder extends Seeder
                 'brand' => "Belden",
                 'item_qty' => 3,
                 'date_received' => Carbon::create(2023, 5, 19),
+                'image' => "rt1.png"
             ],
             [
                 'item_id' => 5,
@@ -49,6 +53,7 @@ class ItemSeeder extends Seeder
                 'brand' => "RX7",
                 'item_qty' => 58,
                 'date_received' =>  Carbon::create(2023, 5, 22),
+                'image' => "rt1.png"
             ],
         ];
         DB::table('m_item')->insert($data);
