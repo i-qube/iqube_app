@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\PeminjamanBarangController;
 use App\Http\Controllers\PeminjamanRuanganController;
+use App\Http\Controllers\ReportBarangController;
 use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\UserBorrowController;
@@ -93,6 +94,8 @@ Route::group(['prefix' => 'pinjam'], function () {
     Route::post('/list/ruangan', [PeminjamanRuanganController::class, 'list']);
     Route::post('/change-status', [PeminjamanRuanganController::class, 'changeStatus']);
 });
+
+Route::get('export', [ReportBarangController::class, 'export']);
 
 Route::group(['prefix' => 'riwayat'], function () {
     Route::get('/', [RiwayatController::class, 'index']);
