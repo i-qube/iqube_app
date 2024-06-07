@@ -29,9 +29,14 @@ class UserRoomController extends Controller
             ->make(true);
     }
 
-    public function form()
+    public function form(Request $request)
     {
-        $peminjaman = PeminjamanRuanganModel::all();
+        $room_id = $request->room_id;
+        $peminjaman = PeminjamanRuanganModel::where('room_id', $room_id)
+        ->where('status', 'not complete')
+        ->whereDate('date_borrow', '>=', now()->toDateString())
+        ->limit(3)
+        ->get();
 
         return view('user.ruangan.room_borrow', ['peminjaman' => $peminjaman]);
     }
