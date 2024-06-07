@@ -129,7 +129,20 @@
             .download-button:hover {
                 background-color: #0f3542;
             }
-            
+
+            .logout {
+                color: white;
+                font-size: 16px;
+                /* Optional: Adjust font size if needed */
+            }
+
+            .logout .fas {
+                color: white;
+            }
+
+            .logout .nav-item {
+                color: white;
+            }
         </style>
     </head>
 
@@ -153,14 +166,19 @@
                             <i class="fas fa-cube"></i>
                             <span class="nav-item">Ruangan</span>
                         </a></li>
-                    <li><a href="{{url('peminjaman')}}">
+                    <li><a href="{{ url('peminjaman') }}">
                             <i class="fas fa-server"></i>
                             <span class="nav-item">History</span>
                         </a></li>
-                    <li><a href="{{url('keluar')}}" class="logout">
-                            <i class="fas fa-sign-out-alt"></i>
-                            <span class="nav-item">Log out</span>
-                        </a></li>
+                    <li>
+                        <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                            @csrf
+                            <button class="logout">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span class="nav-item">Log out</span>
+                            </button>
+                        </form>
+                    </li>
                 </ul>
             </nav>
 
@@ -229,7 +247,8 @@
                             <img src="{{ asset('images/icons_4.png') }}" alt="Icons 4">
                             <h3>Unduh Surat</h3>
                             <p>Unduh template surat disini</p>
-                            <a href=https://drive.google.com/file/d/14WGJuiGNQuiRbdXTQDYokao1sujdfZu9/view?uspsharing class="download-button">Download</a>
+                            <a href=https://drive.google.com/file/d/14WGJuiGNQuiRbdXTQDYokao1sujdfZu9/view?uspsharing
+                                class="download-button">Download</a>
                         </div>
                         <div class="feature">
                             <img src="{{ asset('images/icons_5.png') }}" alt="Icons 5">

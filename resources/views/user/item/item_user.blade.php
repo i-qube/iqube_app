@@ -26,6 +26,20 @@
                 font-weight: 600;
                 color: #07617D;
             }
+
+            .logout {
+                color: white;
+                font-size: 16px;
+                /* Optional: Adjust font size if needed */
+            }
+
+            .logout .fas {
+                color: white;
+            }
+
+            .logout .nav-item {
+                color: white;
+            }
         </style>
     </head>
 
@@ -53,29 +67,34 @@
                             <i class="fas fa-server"></i>
                             <span class="nav-item">History</span>
                         </a></li>
-                    <li><a href="{{url('keluar')}}" class="logout">
-                            <i class="fas fa-sign-out-alt"></i>
-                            <span class="nav-item">Log out</span>
-                        </a></li>
+                    <li>
+                        <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                            @csrf
+                            <button class="logout">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span class="nav-item">Log out</span>
+                            </button>
+                        </form>
+                    </li>
                 </ul>
             </nav>
             <section class="main">
                 <div class="main-top">
                     <h1 class="h1">Barang</h1>
-                </br></br></br>
+                    </br></br></br>
                 </div>
                 <table
                     class="w-full table-fixed border-collapse border border-slate-400 mt-8 border-separate border-spacing-x-3">
                     <tbody>
                         @foreach ($items as $item)
                             <tr class="md-8">
-                                <button type="button" style="height: 230px; width: 230px;" 
-                                class=" px-9 py-9 focus:outline-none text-white bg-cyan-900 hover:bg-cyan-900 focus:ring-4 focus:ring-cyan-900 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-650 dark:focus:ring-cyan-650"
+                                <button type="button" style="height: 230px; width: 230px;"
+                                    class=" px-9 py-9 focus:outline-none text-white bg-cyan-900 hover:bg-cyan-900 focus:ring-4 focus:ring-cyan-900 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-650 dark:focus:ring-cyan-650"
                                     onclick="navigateToItemUser('{{ $item->item_id }}', '{{ $item->item_name }}')">
                                     <img src="{{ asset('storage/barang/' . $item->image) }}"
                                         alt="{{ $item->item_name }}" class="image-center"
                                         style="height: 120px; width: 200px;">
-                                    
+
                                     <p class="text-center">{{ $item->item_name }}</p>
                                     <hr class="text-center">{{ $item->brand }}</hr>
                                 </button>

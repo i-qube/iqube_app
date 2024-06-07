@@ -8,8 +8,15 @@ use Illuminate\Support\Facades\Auth;
 
 class LogoutController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+        //dd($request);
+
         return redirect('/login');
     }
 }

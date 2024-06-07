@@ -25,7 +25,20 @@
                 font-size: 30px;
                 font-weight: 600;
                 color: #164e63;
-;
+            }
+
+            .logout {
+                color: white;
+                font-size: 16px;
+                /* Optional: Adjust font size if needed */
+            }
+
+            .logout .fas {
+                color: white;
+            }
+
+            .logout .nav-item {
+                color: white;
             }
         </style>
     </head>
@@ -54,10 +67,15 @@
                             <i class="fas fa-server"></i>
                             <span class="nav-item">History</span>
                         </a></li>
-                    <li><a href="{{url('keluar')}}" class="logout">
-                            <i class="fas fa-sign-out-alt"></i>
-                            <span class="nav-item">Log out</span>
-                        </a></li>
+                    <li>
+                        <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                            @csrf
+                            <button class="logout">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span class="nav-item">Log out</span>
+                            </button>
+                        </form>
+                    </li>
                 </ul>
             </nav>
 
