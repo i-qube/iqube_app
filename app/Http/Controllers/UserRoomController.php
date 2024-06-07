@@ -45,7 +45,6 @@ class UserRoomController extends Controller
             'end_time' => 'required',
             'status' => 'required',
         ]);
-        //dd($request->all());
         PeminjamanRuanganModel::create([
             'no_induk' => session('user.no_induk'),
             'room_id' => $request->room_id,

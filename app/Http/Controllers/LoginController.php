@@ -25,6 +25,9 @@ class LoginController extends Controller
 
         if (Auth::guard('web')->attempt($credentials)) {
             $user = Auth::guard('web')->user();
+
+            Auth::login($user);
+
             session()->put('user.no_induk', $user->no_induk);
             session()->put('user.nama', $user->nama);
             session()->put('user.kelas', $user->kelas);

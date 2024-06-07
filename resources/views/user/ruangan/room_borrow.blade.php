@@ -70,11 +70,11 @@
                             <i class="fas fa-cube"></i>
                             <span class="nav-item">Ruangan</span>
                         </a></li>
-                    <li><a href="">
+                    <li><a href="{{ url('peminjaman') }}">
                             <i class="fas fa-server"></i>
                             <span class="nav-item">History</span>
                         </a></li>
-                    <li><a href="" class="logout">
+                    <li><a href="{{ url('keluar') }}" class="logout">
                             <i class="fas fa-sign-out-alt"></i>
                             <span class="nav-item">Log out</span>
                         </a></li>
@@ -135,6 +135,7 @@
 
                     <div class="info-container">
                         <form method="POST" action="{{ url('room_user') }}">
+                            <input type="hidden" name="room_id" value="{{request('room_id')}}">
                             @csrf
                             <div class="mb-5 mt-4">
                                 {{-- <label for="name" class="text-black pl-5">Nama</label> --}}
@@ -180,9 +181,9 @@
                                         <div class="relative">
                                             <div
                                                 class="absolute inset-y-0 end-0 top-0 flex items-center pe-3.5 pointer-events-none">
-                                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400"
-                                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                                    fill="currentColor" viewBox="0 0 24 24">
+                                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                                    viewBox="0 0 24 24">
                                                     <path fill-rule="evenodd"
                                                         d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z"
                                                         clip-rule="evenodd" />

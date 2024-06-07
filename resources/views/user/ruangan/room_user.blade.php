@@ -53,7 +53,7 @@
                             <i class="fas fa-server"></i>
                             <span class="nav-item">History</span>
                         </a></li>
-                    <li><a href="" class="logout">
+                    <li><a href="{{url('keluar')}}" class="logout">
                             <i class="fas fa-sign-out-alt"></i>
                             <span class="nav-item">Log out</span>
                         </a></li>
@@ -72,7 +72,7 @@
                             <tr class="md-8">
                                 <button type="button"
                                     class=" px-9 py-9 focus:outline-none text-white bg-cyan-900 hover:bg-cyan-900 focus:ring-4 focus:ring-cyan-900 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-650 dark:focus:ring-cyan-650"
-                                    onclick="navigateToItemUser('{{ $room->room_name }}', '{{ $room->room_floor }}', '{{ $room->image }}')">
+                                    onclick="navigateToItemUser('{{ $room->room_name }}', '{{ $room->room_floor }}', '{{ $room->image }}', '{{ $room->room_id }}')">
                                     <p class="text-center">{{ $room->room_code }}</p>
                                     <hr class="text-center">{{ $room->room_floor }}</hr>
                                 </button>
@@ -83,10 +83,10 @@
             </section>
         </div>
         <script>
-            function navigateToItemUser(roomName, roomFloor, roomImage) {
+            function navigateToItemUser(roomName, roomFloor, roomImage, roomId) {
                 if (roomName && roomFloor && roomImage) {
                     window.location.href = "{{ url('room_user/room_borrow') }}?room_name=" + roomName + "&room_floor=" +
-                        roomFloor + "&image=" + roomImage;
+                        roomFloor + "&image=" + roomImage + `&room_id=${roomId}`;
                 }
             }
         </script>
