@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Exports\MonthlyReportBarang;
-use App\Exports\MonthlyReportExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 

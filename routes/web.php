@@ -95,7 +95,7 @@ Route::group(['prefix' => 'pinjam'], function () {
     Route::post('/change-status', [PeminjamanRuanganController::class, 'changeStatus']);
 });
 
-Route::get('export', [ReportBarangController::class, 'export']);
+Route::get('/export', [ReportBarangController::class, 'export']);
 
 Route::group(['prefix' => 'riwayat'], function () {
     Route::get('/', [RiwayatController::class, 'index']);

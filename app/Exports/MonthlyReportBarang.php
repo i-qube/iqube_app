@@ -23,7 +23,7 @@ class MonthlyReportBarang implements FromCollection, WithHeadings, WithMapping
     public function collection()
     {
         return PeminjamanBarangModel::all()->filter(function ($record) {
-            $date = \Carbon\Carbon::createFromFormat('d/m/Y', $record->date_borrow);
+            $date = \Carbon\Carbon::createFromFormat('Y/m/d', $record->date_borrow);
             return $date->month == $this->month && $date->year == $this->year;
         });
     }

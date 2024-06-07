@@ -16,7 +16,7 @@ class AdminSeeder extends Seeder
     {
         $data = [
             [
-                'nip' => 1234567,
+                'no_induk' => 1234567,
                 'level_id' => 1,
                 'nama' => 'Admin Jurusan',
                 'password' => Hash::make('1234567'),

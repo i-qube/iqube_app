@@ -49,6 +49,7 @@
                 <h3 class="card-title">{{ $page->title }}</h3>
             </div>
             <div class="card-body">
+                <button id="exportButton" class="btn btn-primary mb-3">Export to Excel</button>
                 <table id="table_peminjaman_barang" class="table-bordered table-striped table-hover table-sm table">
                     <thead>
                         <tr>
@@ -70,7 +71,7 @@
                 <h3 class="card-title">{{ $page->title }}</h3>
             </div>
             <div class="card-body w-full">
-                <table id="table_peminjaman_ruangan" class="table-bordered table-striped table-hover  table table-full">
+                <table id="table_peminjaman_ruangan" class="table-bordered table-striped table-hover table table-full">
                     <thead>
                         <tr>
                             <th>NO</th>
@@ -87,10 +88,8 @@
                 </table>
             </div>
         </div>
-
     </div>
 @endsection
-
 
 @push('js')
     <script>
@@ -187,6 +186,15 @@
 
             $('#peminjaman_barang_id').on('change', function() {
                 dataPeminjamanBarang.ajax.reload();
+            });
+
+            // Add export button click event
+            $('#exportButton').click(function() {
+                var month = prompt("Enter month (01-12):", new Date().getMonth() + 1);
+                var year = prompt("Enter year (YYYY):", new Date().getFullYear());
+                if (month && year) {
+                    window.location.href = '/export?month=' + month + '&year=' + year;
+                }
             });
 
             var dataPeminjamanRuangan = $('#table_peminjaman_ruangan').DataTable({
