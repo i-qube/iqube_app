@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class UserModel extends Model
+class UserModel extends Authenticatable
 {
     use HasFactory;
     protected $table = 'm_user';
@@ -14,6 +15,10 @@ class UserModel extends Model
 
     protected $fillable = ['level_id','nama','jurusan','angkatan','kelas','password'];
     public $timestamps = false;
+
+    public function getAuthIdentifier() {
+        return $this->no_induk;
+    }
 
     public function level(): BelongsTo
     {

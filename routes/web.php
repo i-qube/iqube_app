@@ -36,7 +36,7 @@ Route::group(['prefix' => 'login'], function () {
     Route::get('/', [LoginController::class, 'index'])->name('login');
     Route::post('/', [LoginController::class, 'login_process'])->name('login');
 });
-Route::get('/keluar', [LogoutController::class, 'index']);
+Route::post('/keluar', [LogoutController::class, 'index'])->name('logout');
 
 Route::get('/dashboard_user', function () {
     return view('user.dashboard');

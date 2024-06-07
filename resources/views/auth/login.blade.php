@@ -87,8 +87,7 @@
             <div class="row d-flex align-items-center justify-content-center h-100">
                 <div class="col-md-8 col-lg-7 col-xl-6 text-center">
                     <div class="d-flex flex-column align-items-center">
-                        <img src="{{ asset('images/logoIqube.png') }}" class="logo-container" alt="Logo">
-                        <div class="title">Innovative Quality Unified Booking Environment</div>
+                        <img src="{{ asset('images/loginIqube.png') }}" class="logo-container; width:600px;" alt="Logo">
                     </div>
                 </div>
                 <div class="col-md-7 col-lg-5 col-xl-5 offset-md-1 form-signup">

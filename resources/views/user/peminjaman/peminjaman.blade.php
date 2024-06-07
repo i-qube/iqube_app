@@ -25,7 +25,20 @@
                 font-size: 30px;
                 font-weight: 600;
                 color: #164e63;
-;
+            }
+
+            .logout {
+                color: white;
+                font-size: 16px;
+                /* Optional: Adjust font size if needed */
+            }
+
+            .logout .fas {
+                color: white;
+            }
+
+            .logout .nav-item {
+                color: white;
             }
         </style>
     </head>
@@ -34,30 +47,35 @@
         <div class="container">
             <nav>
                 <ul>
-                    <li><a href="dashboard_user" class="logo">
+                    <li><a href="{{ url('dashboard_user') }}" class="logo">
                             <img src="{{ asset('images/iQUBE_3.png') }}" alt="">
                             <span class="nav-title">i-QUBE</span>
                         </a></li>
                     <li><a href="{{ url('dashboard_user') }}">
                             <i class="fas fa-home"></i>
-                            <span class="nav-item">Homepage</span>
+                            <span class="nav-item">Home</span>
                         </a></li>
                     <li><a href="{{ url('item_user') }}">
                             <i class="fas fa-inbox"></i>
-                            <span class="nav-item">Data Barang</span>
+                            <span class="nav-item">Barang</span>
                         </a></li>
                     <li><a href="{{ url('room_user') }}">
                             <i class="fas fa-cube"></i>
-                            <span class="nav-item">Data Ruangan</span>
+                            <span class="nav-item">Ruangan</span>
                         </a></li>
                     <li><a href="{{ url('peminjaman') }}">
                             <i class="fas fa-server"></i>
-                            <span class="nav-item">Data Peminjaman</span>
+                            <span class="nav-item">History</span>
                         </a></li>
-                    <li><a href="" class="logout">
-                            <i class="fas fa-sign-out-alt"></i>
-                            <span class="nav-item">Log out</span>
-                        </a></li>
+                    <li>
+                        <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                            @csrf
+                            <button class="logout">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span class="nav-item">Log out</span>
+                            </button>
+                        </form>
+                    </li>
                 </ul>
             </nav>
 
@@ -68,7 +86,7 @@
                 </div>
                 </br>
 
-                <div class="border-b border-gray-200 dark:border-gray-700">
+                <div class="border-b border-black-200 dark:border-gray-700">
                     <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
                         <li class="me-2"><a></a></li>
                         <li class="me-2">
@@ -149,7 +167,10 @@
                                         Tanggal Pinjam
                                     </th>
                                     <th scope="col" class="px-6 py-3">
-                                        Tanggal Kembali
+                                        Waktu Awal
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Waktu Akhir
                                     </th>
                                     <th scope="col" class="px-6 py-3">
                                         Status
@@ -157,20 +178,26 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @foreach ($peminjamans as $item)
+                                @foreach ($peminjaman as $room)
                                     <tr class="bg-white border-2 dark:bg-gray-800 dark:border-gray-700">
                                         <th scope="row"
                                             class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                            {{ $item->item->item_name }}
+                                            {{ $room->room->room_name }}
                                         </th>
                                         <td class="px-6 py-4">
-                                            {{ $item->jumlah }}
+                                            {{ $room->date_borrow }}
                                         </td>
                                         <td class="px-6 py-4">
-                                            {{ $item->date_borrow }}
+                                            {{ $room->start_time }}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            {{ $room->end_time }}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            {{ $room->status }}
                                         </td>
                                     </tr>
-                                @endforeach --}}
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
