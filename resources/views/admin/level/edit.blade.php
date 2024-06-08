@@ -32,5 +32,15 @@
             @endempty
         </div>
     </div> @endsection @push('css')
-    @endpush @push('js')
+    @endpush
+    @push('js')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var levelNameInput = document.getElementById('level_name');
+
+        levelNameInput.addEventListener('input', function () {
+            this.value = this.value.replace(/\d+/g, '');
+        });
+    });
+</script>
 @endpush

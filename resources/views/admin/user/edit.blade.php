@@ -75,5 +75,27 @@
             @endempty
         </div>
     </div> @endsection @push('css')
-    @endpush @push('js')
+@endpush
+@push('js')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var nameInput = document.getElementById('nama');
+            var jurusanInput = document.getElementById('jurusan');
+            var nimInput = document.getElementById('no_induk');
+            var angkatanInput = document.getElementById('angkatan');
+
+            nameInput.addEventListener('input', function() {
+                this.value = this.value.replace(/\d+/g, '');
+            });
+            jurusanInput.addEventListener('input', function() {
+                this.value = this.value.replace(/\d+/g, '');
+            });
+            nimInput.addEventListener('input', function() {
+                this.value = this.value.replace(/[a-zA-Z]+/g, '');
+            });
+            angkatanInput.addEventListener('input', function() {
+                this.value = this.value.replace(/[a-zA-Z]+/g, '');
+            });
+        });
+    </script>
 @endpush
