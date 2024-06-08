@@ -41,6 +41,15 @@
             .logout .nav-item {
                 color: white;
             }
+
+            .navbar-active {
+                background-color: rgb(255, 255, 255);
+                color: black;
+            }
+
+            .navbar-active a {
+                color: black;
+            }
         </style>
     </head>
 
@@ -52,22 +61,30 @@
                             <img src="{{ asset('images/iQUBE_3.png') }}" alt="">
                             <span class="nav-title">i-QUBE</span>
                         </a></li>
-                    <li><a href="{{ url('dashboard_user') }}">
+                    <li class="{{ request()->is('dashboard_user') ? 'navbar-active' : '' }}">
+                        <a href="{{ url('dashboard_user') }}">
                             <i class="fas fa-home"></i>
                             <span class="nav-item">Home</span>
-                        </a></li>
-                    <li><a href="{{ url('item_user') }}">
+                        </a>
+                    </li>
+                    <li class="{{ request()->is('item_user') ? 'navbar-active' : '' }}">
+                        <a href="{{ url('item_user') }}">
                             <i class="fas fa-inbox"></i>
                             <span class="nav-item">Barang</span>
-                        </a></li>
-                    <li><a href="{{ url('room_user') }}">
+                        </a>
+                    </li>
+                    <li class="{{ request()->is('room_user') ? 'navbar-active' : '' }}">
+                        <a href="{{ url('room_user') }}">
                             <i class="fas fa-cube"></i>
                             <span class="nav-item">Ruangan</span>
-                        </a></li>
-                    <li><a href="{{ url('peminjaman') }}">
+                        </a>
+                    </li>
+                    <li class="{{ request()->is('peminjaman') ? 'navbar-active' : '' }}">
+                        <a href="{{ url('peminjaman') }}">
                             <i class="fas fa-server"></i>
                             <span class="nav-item">History</span>
-                        </a></li>
+                        </a>
+                    </li>
                     <li>
                         <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                             @csrf
