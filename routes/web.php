@@ -38,11 +38,16 @@ Route::group(['prefix' => 'login'], function () {
 });
 Route::post('/keluar', [LogoutController::class, 'index'])->name('logout');
 
-Route::get('/dashboard_user', function () {
-    return view('user.dashboard');
-})->middleware('auth.user');
+Route::group(['middleware' => 'auth:web'], function () {
+    Route::get('/dashboard_user', function () {
+        return view('user.dashboard');
+    });
+});
 
-Route::get('/dashboard', [WelcomeController::class, 'index'])->middleware('auth.admin');
+Route::group(['middleware' => 'auth:admin'], function () {
+    Route::get('/dashboard', [WelcomeController::class, 'index'])->name('admin.dashboard');
+});
+
 Route::group(['prefix' => 'level'], function () {
     Route::get('/', [LevelController::class, 'index']);
     Route::post('/list', [LevelController::class, 'list']);

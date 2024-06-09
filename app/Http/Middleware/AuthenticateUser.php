@@ -17,11 +17,12 @@ class AuthenticateUser
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $user = User::where('no_induk', $request->no_induk)->first();
-        if ($user && $user->level_id == 2) {
-            return redirect('/dashboard_user');
+        // Check if the user is authenticated and is an admin
+        if (Auth::guard('admin')->check()) {
+            return $next($request);
         }
 
-        return $next($request);
+        // If not authenticated or not an admin, redirect to login
+        return redirect('/login');
     }
 }
