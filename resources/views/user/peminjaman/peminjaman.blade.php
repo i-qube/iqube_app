@@ -30,7 +30,6 @@
             .logout {
                 color: white;
                 font-size: 16px;
-                /* Optional: Adjust font size if needed */
             }
 
             .logout .fas {
@@ -48,6 +47,43 @@
 
             .navbar-active a {
                 color: black;
+            }
+
+            .tab a {
+                color: grey;
+                font-size: 17px;
+            }
+
+            .tab::after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                background-color: transparent;
+            }
+
+            .tab.active::after {
+                background-color: #07617D;
+                color: #ffffff;
+            }
+
+            .tab.active a {
+                background-color: #07617D;
+                color: #ffffff;
+            }
+
+            .tab.active svg {
+                fill: #ffffff;
+            }
+
+            .tab-list {
+                display: flex;
+                justify-content: center;
+                list-style-type: none;
+                padding: 0;
+            }
+
+            .tab {
+                margin-right: 3px;
             }
         </style>
     </head>
@@ -104,32 +140,35 @@
                 </br>
 
                 <div class="border-b border-black-200 dark:border-gray-700">
-                    <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
-                        <li class="me-2"><a></a></li>
-                        <li class="me-2">
+                    <ul
+                        class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400 tab-list">
+
+                        <li class="me-2 tab">
                             <a href="#barang"
-                                class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
+                                class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group"
+                                style="border: 2px solid grey; border-radius: 16px;">
                                 <svg class="w-4 h-4 me-2 text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-300 w-[30px] h-[30px] fill-[#8e8e8e]"
                                     viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                    fill="currentColor">
                                     <path
                                         d="M248 0H208c-26.5 0-48 21.5-48 48V160c0 35.3 28.7 64 64 64H352c35.3 0 64-28.7 64-64V48c0-26.5-21.5-48-48-48H328V80c0 8.8-7.2 16-16 16H264c-8.8 0-16-7.2-16-16V0zM64 256c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H224c35.3 0 64-28.7 64-64V320c0-35.3-28.7-64-64-64H184v80c0 8.8-7.2 16-16 16H120c-8.8 0-16-7.2-16-16V256H64zM352 512H512c35.3 0 64-28.7 64-64V320c0-35.3-28.7-64-64-64H472v80c0 8.8-7.2 16-16 16H408c-8.8 0-16-7.2-16-16V256H352c-15 0-28.8 5.1-39.7 13.8c4.9 10.4 7.7 22 7.7 34.2V464c0 12.2-2.8 23.8-7.7 34.2C323.2 506.9 337 512 352 512z">
                                     </path>
                                 </svg>Barang
                             </a>
                         </li>
-                        <li class="me-2">
+                        <li class="me-2 tab">
                             <a href="#ruangan"
-                                class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
+                                class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group"
+                                style="border: 2px solid grey; border-radius: 16px;">
                                 <svg class="w-4 h-4 me-2 text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-300 w-[30px] h-[30px] fill-[#878282]"
                                     viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
+                                    fill="currentColor">
                                     <path
                                         d="M320 32c0-9.9-4.5-19.2-12.3-25.2S289.8-1.4 280.2 1l-179.9 45C79 51.3 64 70.5 64 92.5V448H32c-17.7 0-32 14.3-32 32s14.3 32 32 32H96 288h32V480 32zM256 256c0 17.7-10.7 32-24 32s-24-14.3-24-32s10.7-32 24-32s24 14.3 24 32zm96-128h96V480c0 17.7 14.3 32 32 32h64c17.7 0 32-14.3 32-32s-14.3-32-32-32H512V128c0-35.3-28.7-64-64-64H352v64z">
+                                    </path>
                                 </svg>Ruangan
                             </a>
                         </li>
-                        <li class="me-2"><a></a></li>
                     </ul>
                 </div>
 
@@ -223,22 +262,25 @@
         </div>
 
         <script>
-            document.querySelectorAll('.group').forEach(tab => {
+            document.querySelectorAll('.tab').forEach(tab => {
                 tab.addEventListener('click', function(e) {
                     e.preventDefault();
                     // Menghapus kelas 'hidden' dari semua konten tab
                     document.querySelectorAll('.tab-content').forEach(content => {
                         content.classList.add('hidden');
                     });
-                    // Menemukan href yang sesuai dengan tab yang ditekan
-                    const href = this.getAttribute('href');
-                    // Menghapus kelas 'hidden' dari konten yang sesuai dengan tab yang ditekan
+                    const href = this.querySelector('a').getAttribute('href');
                     document.querySelector(href).classList.remove('hidden');
+
+                    // Menghapus kelas 'active' dari semua tab
+                    document.querySelectorAll('.tab').forEach(tab => {
+                        tab.classList.remove('active');
+                    });
+                    // Menambahkan kelas 'active' pada tab yang ditekan
+                    this.classList.add('active');
                 });
             });
         </script>
-
-
     </body>
 
     </html>

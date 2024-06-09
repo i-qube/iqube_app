@@ -49,6 +49,15 @@
             .navbar-active a {
                 color: black;
             }
+
+            .container {
+                align-items: center;
+            }
+
+            .ket {
+                font-size: 17px;
+                font-weight: 600;
+            }
         </style>
     </head>
 
@@ -98,8 +107,15 @@
             <section class="main">
                 <div class="main-top">
                     <h1 class="h1">Barang</h1>
-                    </br></br></br>
+                    </br>
                 </div>
+                <div class="container">
+                    <div class="card bg-neutral-200 shadow-lg rounded-lg p-5"
+                        style="display: inline-block; width: auto;">
+                        <p class="ket">BARANG HANYA DAPAT DIGUNAKAN UNTUK KEBUTUHAN INTERNAL JTI</p>
+                    </div>
+                </div>
+                </br></br>
                 <table
                     class="w-full table-fixed border-collapse border border-slate-400 mt-8 border-separate border-spacing-x-3">
                     <tbody>
